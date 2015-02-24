@@ -1,5 +1,3 @@
-#!/usr/bin/env runhaskell
-
 digitSum :: (Integral a) => a -> a
 digitSum n = digitSum' n 0 where
     digitSum' 0 acc = acc
