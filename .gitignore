@@ -3,3 +3,5 @@
 *.exe
 .git/
 target/
+.vscode
+**/launch.json
