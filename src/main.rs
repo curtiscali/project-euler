@@ -8,7 +8,8 @@ use problem::{
     largest_palindrome_product::LargestPalindromeProduct, 
     sum_square_difference::SumSquareDifference,
     prime_10001::NthPrimeProblem, 
-    summation_of_primes::SummationOfPrimes
+    summation_of_primes::SummationOfPrimes, 
+    highly_divisible_triangle_number::HighlyDivisibleTriangleNumber
 };
 
 /// Simple program to greet a person
@@ -46,7 +47,8 @@ fn main() {
         (4, Box::new(LargestPalindromeProduct { limit: 1000 }) as Box<dyn Problem>),
         (6, Box::new(SumSquareDifference { count: 100 }) as Box<dyn Problem>),
         (7, Box::new(NthPrimeProblem { n: 10001 }) as Box<dyn Problem>),
-        (10, Box::new(SummationOfPrimes { upper_bound: 2_000_000 }) as Box<dyn Problem>)
+        (10, Box::new(SummationOfPrimes { upper_bound: 2_000_000 }) as Box<dyn Problem>),
+        (12, Box::new(HighlyDivisibleTriangleNumber { num_divisors: 500 }) as Box<dyn Problem>)
     ]);
 
     if args.problem.is_some() {
