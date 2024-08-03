@@ -6,7 +6,8 @@ use problem::{
     even_fibonacci::EvenFibonacciProblem, 
     largest_palindrome_product::LargestPalindromeProduct, 
     sum_square_difference::SumSquareDifference,
-    prime_10001::NthPrimeProblem
+    prime_10001::NthPrimeProblem, 
+    summation_of_primes::SummationOfPrimes
 };
 
 /// Simple program to greet a person
@@ -67,6 +68,15 @@ fn main() {
 
         let problem = NthPrimeProblem {
             n: 10001
+        };
+
+        result = problem.solve();
+        milliseconds = now.elapsed().as_millis();
+    } else if args.problem == 10 {
+        let now = Instant::now();
+
+        let problem = SummationOfPrimes {
+            upper_bound: 2_000_000
         };
 
         result = problem.solve();
