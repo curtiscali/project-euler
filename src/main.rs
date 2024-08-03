@@ -5,7 +5,8 @@ use problem::{
     Problem, 
     even_fibonacci::EvenFibonacciProblem, 
     largest_palindrome_product::LargestPalindromeProduct, 
-    sum_square_difference::SumSquareDifference
+    sum_square_difference::SumSquareDifference,
+    prime_10001::NthPrimeProblem
 };
 
 /// Simple program to greet a person
@@ -18,6 +19,7 @@ struct Args {
 }
 
 pub mod problem;
+pub mod primes;
 
 fn main() {
     let args = Args::parse();
@@ -55,7 +57,16 @@ fn main() {
         let now = Instant::now();
 
         let problem = SumSquareDifference {
-            count: 1_000_000
+            count: 100
+        };
+
+        result = problem.solve();
+        milliseconds = now.elapsed().as_millis();
+    } else if args.problem == 7 {
+        let now = Instant::now();
+
+        let problem = NthPrimeProblem {
+            n: 10001
         };
 
         result = problem.solve();
