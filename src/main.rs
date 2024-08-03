@@ -1,6 +1,6 @@
 use std::time::Instant;
 use clap::Parser;
-use problem::{multiples::MultiplesProblem, Problem, even_fibonacci::EvenFibonacciProblem};
+use problem::{multiples::MultiplesProblem, Problem, even_fibonacci::EvenFibonacciProblem, largest_palindrome_product::LargestPalindromeProduct};
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
@@ -32,6 +32,15 @@ fn main() {
 
         let problem = EvenFibonacciProblem {
             limit: 4_000_000i32
+        };
+
+        result = problem.solve();
+        milliseconds = now.elapsed().as_millis();
+    } else if args.problem == 4 {
+        let now = Instant::now();
+
+        let problem = LargestPalindromeProduct {
+            limit: 1000
         };
 
         result = problem.solve();
