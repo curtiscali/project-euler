@@ -1,4 +1,4 @@
-use crate::problem::Problem;
+use crate::Problem;
 
 pub struct EvenFibonacciProblem {
     pub limit: i32
