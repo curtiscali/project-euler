@@ -1,4 +1,5 @@
 use std::time::Instant;
+use std::collections::BTreeMap;
 use clap::Parser;
 use problem::{
     multiples::MultiplesProblem, 
@@ -16,74 +17,54 @@ use problem::{
 struct Args {
     /// Number of the problem for which you would like a solution as referenced on https://projecteuler.net
     #[arg(short, long)]
-    problem: u8
+    problem: Option<u8>
 }
 
 pub mod problem;
 pub mod primes;
 
-fn main() {
-    let args = Args::parse();
+fn print_solution(problem_number: u8, problem: &dyn Problem) {
+    println!("Selected Problem: {}", problem_number);
 
     let mut result: String = String::from("");
     let mut milliseconds: u128 = 0;
-    if args.problem == 1 {
-        let now = Instant::now();
+    let now = Instant::now();
 
-        let problem = MultiplesProblem {
-            limit: 1000
-        };
+    result = problem.solve();
+    milliseconds = now.elapsed().as_millis();
 
-        result = problem.solve();
-        milliseconds = now.elapsed().as_millis();
-    } else if args.problem == 2 {
-        let now = Instant::now();
-
-        let problem = EvenFibonacciProblem {
-            limit: 4_000_000i32
-        };
-
-        result = problem.solve();
-        milliseconds = now.elapsed().as_millis();
-    } else if args.problem == 4 {
-        let now = Instant::now();
-
-        let problem = LargestPalindromeProduct {
-            limit: 1000
-        };
-
-        result = problem.solve();
-        milliseconds = now.elapsed().as_millis();
-    } else if args.problem == 6 {
-        let now = Instant::now();
-
-        let problem = SumSquareDifference {
-            count: 100
-        };
-
-        result = problem.solve();
-        milliseconds = now.elapsed().as_millis();
-    } else if args.problem == 7 {
-        let now = Instant::now();
-
-        let problem = NthPrimeProblem {
-            n: 10001
-        };
-
-        result = problem.solve();
-        milliseconds = now.elapsed().as_millis();
-    } else if args.problem == 10 {
-        let now = Instant::now();
-
-        let problem = SummationOfPrimes {
-            upper_bound: 2_000_000
-        };
-
-        result = problem.solve();
-        milliseconds = now.elapsed().as_millis();
-    }
-
-    println!("Selected problem: {}", args.problem);
     println!("Solution: {}", result);
     println!("Time taken to solve the problem: {}ms", milliseconds);
+}
+
+fn main() {
+    let args = Args::parse();
+
+    let problems_lookup: BTreeMap<u8, Box<dyn Problem>> = BTreeMap::from([
+        (1, Box::new(MultiplesProblem { limit: 1000 }) as Box<dyn Problem>),
+        (2, Box::new(EvenFibonacciProblem { limit: 4_000_000 }) as Box<dyn Problem>),
+        (4, Box::new(LargestPalindromeProduct { limit: 1000 }) as Box<dyn Problem>),
+        (6, Box::new(SumSquareDifference { count: 100 }) as Box<dyn Problem>),
+        (7, Box::new(NthPrimeProblem { n: 10001 }) as Box<dyn Problem>),
+        (10, Box::new(SummationOfPrimes { upper_bound: 2_000_000 }) as Box<dyn Problem>)
+    ]);
+
+    if args.problem.is_some() {
+        let problem_number = args.problem.unwrap();
+        if problems_lookup.contains_key(&problem_number) {
+            let selected_problem = problems_lookup.get(&problem_number).unwrap();
+            print_solution(problem_number, selected_problem.as_ref());
+        } else {
+            println!("Problem {} has not yet been solved", problem_number);
+        }
+    } else {
+        println!("No problem specified. Showing solutions to all solved problems");
+
+        for problem_number in problems_lookup.keys() {
+            let selected_problem = problems_lookup.get(&problem_number).unwrap();
+            print_solution(*problem_number, selected_problem.as_ref());
+
+            print!("\n\n");
+        }
+    } 
 }
