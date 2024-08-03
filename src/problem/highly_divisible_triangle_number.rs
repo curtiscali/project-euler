@@ -35,6 +35,6 @@ impl Problem for HighlyDivisibleTriangleNumber {
             n += 1;
         }
 
-        return format!("{}", triangle(n));
+        return format!("The first triangular number with over {} factors is the {}th triangular number ({})", self.num_divisors, n, triangle(n));
     }
 }
