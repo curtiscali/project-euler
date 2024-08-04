@@ -10,6 +10,7 @@ pub mod largest_product;
 pub mod special_pythagorean_triplet;
 pub mod longest_collatz_sequence;
 pub mod lattice_paths;
+pub mod power_digit_sum;
 
 pub trait Problem {
     fn solve(&self) -> String;

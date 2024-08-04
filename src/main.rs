@@ -14,7 +14,8 @@ use problem::{
     largest_product::LargestProductProblem,
     special_pythagorean_triplet::SpecialPythagoreanTripletProblem,
     longest_collatz_sequence::LongestCollatzSequenceProblem,
-    lattice_paths::LatticePathsProblem
+    lattice_paths::LatticePathsProblem,
+    power_digit_sum::PowerDigitSum
 };
 
 pub mod problem;
@@ -58,7 +59,8 @@ fn main() {
         (12, Box::new(HighlyDivisibleTriangleNumber { num_divisors: 500 })),
         (13, Box::new(LargeSumProblem {})),
         (14, Box::new(LongestCollatzSequenceProblem { limit: 1_000_000 })),
-        (15, Box::new(LatticePathsProblem {}))
+        (15, Box::new(LatticePathsProblem {})),
+        (16, Box::new(PowerDigitSum {}))
     ]);
 
     if args.problem.is_some() {
