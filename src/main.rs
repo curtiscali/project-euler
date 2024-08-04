@@ -2,8 +2,8 @@ use std::time::Instant;
 use std::collections::BTreeMap;
 use clap::Parser;
 use problem::{
-    multiples::MultiplesProblem, 
     Problem, 
+    multiples::MultiplesProblem, 
     even_fibonacci::EvenFibonacciProblem, 
     largest_palindrome_product::LargestPalindromeProduct, 
     sum_square_difference::SumSquareDifference,
@@ -12,7 +12,9 @@ use problem::{
     highly_divisible_triangle_number::HighlyDivisibleTriangleNumber,
     large_sum::LargeSumProblem,
     largest_product::LargestProductProblem,
-    special_pythagorean_triplet::SpecialPythagoreanTripletProblem
+    special_pythagorean_triplet::SpecialPythagoreanTripletProblem,
+    longest_collatz_sequence::LongestCollatzSequenceProblem,
+    lattice_paths::LatticePathsProblem
 };
 
 pub mod problem;
@@ -46,15 +48,17 @@ fn main() {
 
     let problems_lookup: BTreeMap<u8, Box<dyn Problem>> = BTreeMap::from([
         (1, Box::new(MultiplesProblem { limit: 1000 }) as Box<dyn Problem>),
-        (2, Box::new(EvenFibonacciProblem { limit: 4_000_000 }) as Box<dyn Problem>),
-        (4, Box::new(LargestPalindromeProduct { limit: 1000 }) as Box<dyn Problem>),
-        (6, Box::new(SumSquareDifference { count: 100 }) as Box<dyn Problem>),
-        (7, Box::new(NthPrimeProblem { n: 10001 }) as Box<dyn Problem>),
-        (8, Box::new(LargestProductProblem {}) as Box<dyn Problem>),
-        (9, Box::new(SpecialPythagoreanTripletProblem { target_sum: 1000 }) as Box<dyn Problem>),
-        (10, Box::new(SummationOfPrimes { upper_bound: 2_000_000 }) as Box<dyn Problem>),
-        (12, Box::new(HighlyDivisibleTriangleNumber { num_divisors: 500 }) as Box<dyn Problem>),
-        (13, Box::new(LargeSumProblem {}) as Box<dyn Problem>)
+        (2, Box::new(EvenFibonacciProblem { limit: 4_000_000 })),
+        (4, Box::new(LargestPalindromeProduct { limit: 1000 })),
+        (6, Box::new(SumSquareDifference { count: 100 }) ),
+        (7, Box::new(NthPrimeProblem { n: 10001 })),
+        (8, Box::new(LargestProductProblem {})),
+        (9, Box::new(SpecialPythagoreanTripletProblem { target_sum: 1000 })),
+        (10, Box::new(SummationOfPrimes { upper_bound: 2_000_000 })),
+        (12, Box::new(HighlyDivisibleTriangleNumber { num_divisors: 500 })),
+        (13, Box::new(LargeSumProblem {})),
+        (14, Box::new(LongestCollatzSequenceProblem { limit: 1_000_000 })),
+        (15, Box::new(LatticePathsProblem {}))
     ]);
 
     if args.problem.is_some() {

@@ -8,6 +8,8 @@ pub mod highly_divisible_triangle_number;
 pub mod large_sum;
 pub mod largest_product;
 pub mod special_pythagorean_triplet;
+pub mod longest_collatz_sequence;
+pub mod lattice_paths;
 
 pub trait Problem {
     fn solve(&self) -> String;
