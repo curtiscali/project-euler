@@ -11,7 +11,8 @@ use problem::{
     summation_of_primes::SummationOfPrimes, 
     highly_divisible_triangle_number::HighlyDivisibleTriangleNumber,
     large_sum::LargeSumProblem,
-    largest_product::LargestProductProblem
+    largest_product::LargestProductProblem,
+    special_pythagorean_triplet::SpecialPythagoreanTripletProblem
 };
 
 pub mod problem;
@@ -50,6 +51,7 @@ fn main() {
         (6, Box::new(SumSquareDifference { count: 100 }) as Box<dyn Problem>),
         (7, Box::new(NthPrimeProblem { n: 10001 }) as Box<dyn Problem>),
         (8, Box::new(LargestProductProblem {}) as Box<dyn Problem>),
+        (9, Box::new(SpecialPythagoreanTripletProblem { target_sum: 1000 }) as Box<dyn Problem>),
         (10, Box::new(SummationOfPrimes { upper_bound: 2_000_000 }) as Box<dyn Problem>),
         (12, Box::new(HighlyDivisibleTriangleNumber { num_divisors: 500 }) as Box<dyn Problem>),
         (13, Box::new(LargeSumProblem {}) as Box<dyn Problem>)

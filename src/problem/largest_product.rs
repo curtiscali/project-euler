@@ -38,7 +38,7 @@ impl Problem for LargestProductProblem {
             let combo = extremely_large_number.get(i..i + COMBO_LENGTH).unwrap();
 
             let product = digit_product(combo);
-            if (product > max_product) {
+            if product > max_product {
                 max_product = product;
             }
 
