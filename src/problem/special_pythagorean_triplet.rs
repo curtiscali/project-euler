@@ -1,4 +1,3 @@
-use std::cmp::{max, min};
 use num::integer::Roots;
 
 use crate::Problem;
