@@ -1,7 +1,6 @@
-use std::{ops::Add, str::FromStr};
-
 use crate::Problem;
-use num::{BigInt};
+use num::BigInt;
+use std::{ops::Add, str::FromStr};
 
 fn num_digits(n: &BigInt) -> u32 {
     let mut num_digits: u32 = 0;

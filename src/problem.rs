@@ -6,6 +6,7 @@ pub mod prime_10001;
 pub mod summation_of_primes;
 pub mod highly_divisible_triangle_number;
 pub mod large_sum;
+pub mod largest_product;
 
 pub trait Problem {
     fn solve(&self) -> String;
