@@ -9,8 +9,12 @@ use problem::{
     sum_square_difference::SumSquareDifference,
     prime_10001::NthPrimeProblem, 
     summation_of_primes::SummationOfPrimes, 
-    highly_divisible_triangle_number::HighlyDivisibleTriangleNumber
+    highly_divisible_triangle_number::HighlyDivisibleTriangleNumber,
+    large_sum::LargeSumProblem
 };
+
+pub mod problem;
+pub mod primes;
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
@@ -20,9 +24,6 @@ struct Args {
     #[arg(short, long)]
     problem: Option<u8>
 }
-
-pub mod problem;
-pub mod primes;
 
 fn print_solution(problem_number: u8, problem: &dyn Problem) {
     println!("Selected Problem: {}", problem_number);
@@ -48,7 +49,8 @@ fn main() {
         (6, Box::new(SumSquareDifference { count: 100 }) as Box<dyn Problem>),
         (7, Box::new(NthPrimeProblem { n: 10001 }) as Box<dyn Problem>),
         (10, Box::new(SummationOfPrimes { upper_bound: 2_000_000 }) as Box<dyn Problem>),
-        (12, Box::new(HighlyDivisibleTriangleNumber { num_divisors: 500 }) as Box<dyn Problem>)
+        (12, Box::new(HighlyDivisibleTriangleNumber { num_divisors: 500 }) as Box<dyn Problem>),
+        (13, Box::new(LargeSumProblem {}) as Box<dyn Problem>)
     ]);
 
     if args.problem.is_some() {
