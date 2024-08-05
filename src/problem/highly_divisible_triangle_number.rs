@@ -1,4 +1,4 @@
-use crate::Problem;
+use super::Problem;
 
 fn triangle(n: u128) -> u128 {
     return (n * (n + 1)) / 2;

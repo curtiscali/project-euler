@@ -1,6 +1,6 @@
 use num::integer::Roots;
 
-use crate::Problem;
+use super::Problem;
 
 fn get_factor_pairs(n: u32) -> Vec<(u32, u32)> {
     let mut factors: Vec<(u32, u32)> = vec![(1, n)];

@@ -1,4 +1,4 @@
-use crate::Problem;
+use super::Problem;
 
 fn digit_product(str: &str) -> u64 {
     return  str.chars()

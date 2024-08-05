@@ -1,6 +1,6 @@
 use num::ToPrimitive;
 
-use crate::Problem;
+use super::Problem;
 
 fn combo(n: u64, k: u64) -> u64 {
     let mut combos: f64 = 1.0;

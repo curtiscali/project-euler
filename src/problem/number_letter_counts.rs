@@ -1,4 +1,4 @@
-use crate::Problem;
+use super::Problem;
 
 static TENS: [&str; 8] = [
     "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"

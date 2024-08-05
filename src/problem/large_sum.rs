@@ -1,4 +1,4 @@
-use crate::Problem;
+use super::Problem;
 use num::BigInt;
 use std::{ops::Add, str::FromStr};
 

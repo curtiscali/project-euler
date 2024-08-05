@@ -1,4 +1,4 @@
-use crate::Problem;
+use super::Problem;
 
 fn reverse(n: i32) -> i32 {
     let mut rev: i32 = 0;

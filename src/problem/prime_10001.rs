@@ -1,5 +1,5 @@
 use crate::primes::primes_below;
-use crate::Problem;
+use super::Problem;
 
 pub struct NthPrimeProblem {
     pub n: u32

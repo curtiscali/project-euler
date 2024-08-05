@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::Problem;
+use super::Problem;
 
 fn chain_length(n: u64, solutions: &mut HashMap<u64, u64>) -> u64 {
     let mut m = n;

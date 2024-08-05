@@ -1,6 +1,6 @@
 use num::{BigInt, Integer};
 
-use crate::Problem;
+use super::Problem;
 
 pub struct PowerDigitSum {}
 

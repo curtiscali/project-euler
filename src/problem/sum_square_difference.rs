@@ -1,4 +1,4 @@
-use crate::Problem;
+use super::Problem;
 
 pub struct SumSquareDifference {
     pub count: u128
