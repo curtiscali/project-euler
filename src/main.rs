@@ -15,7 +15,8 @@ use problem::{
     special_pythagorean_triplet::SpecialPythagoreanTripletProblem,
     longest_collatz_sequence::LongestCollatzSequenceProblem,
     lattice_paths::LatticePathsProblem,
-    power_digit_sum::PowerDigitSum
+    power_digit_sum::PowerDigitSum,
+    number_letter_counts::NumberLetterCountsProblem
 };
 
 pub mod problem;
@@ -60,7 +61,8 @@ fn main() {
         (13, Box::new(LargeSumProblem {})),
         (14, Box::new(LongestCollatzSequenceProblem { limit: 1_000_000 })),
         (15, Box::new(LatticePathsProblem {})),
-        (16, Box::new(PowerDigitSum {}))
+        (16, Box::new(PowerDigitSum {})),
+        (17, Box::new(NumberLetterCountsProblem {}))
     ]);
 
     if args.problem.is_some() {
