@@ -34,12 +34,10 @@ struct Args {
 fn print_solution(problem_number: u8, problem: &dyn Problem) {
     println!("Selected Problem: {}", problem_number);
 
-    let mut result: String = String::from("");
-    let mut milliseconds: u128 = 0;
     let now = Instant::now();
 
-    result = problem.solve();
-    milliseconds = now.elapsed().as_millis();
+    let result = problem.solve();
+    let milliseconds = now.elapsed().as_millis();
 
     println!("Solution: {}", result);
     println!("Time taken to solve the problem: {}ms", milliseconds);
