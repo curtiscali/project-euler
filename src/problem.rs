@@ -14,6 +14,7 @@ pub mod power_digit_sum;
 pub mod number_letter_counts;
 pub mod factorial_digit_sum;
 pub mod triangle_containment;
+pub mod largest_exponential;
 
 pub trait Problem {
     fn solve(&self) -> String;

@@ -18,6 +18,7 @@ use problem::{
     sum_square_difference::SumSquareDifference, 
     summation_of_primes::SummationOfPrimes, 
     triangle_containment::TriangleContainmentProblem,
+    largest_exponential::LargestExponentialProblem,
     Problem
 };
 
@@ -64,7 +65,8 @@ fn main() {
         (16, Box::new(PowerDigitSum {})),
         (17, Box::new(NumberLetterCountsProblem {})),
         (20, Box::new(FactorialDigitSum { n: 100 })),
-        (102, Box::new(TriangleContainmentProblem {}))
+        (99, Box::new(LargestExponentialProblem {})),
+        (102, Box::new(TriangleContainmentProblem {})),
     ]);
 
     if args.problem.is_some() {
