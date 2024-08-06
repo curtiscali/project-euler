@@ -19,6 +19,7 @@ use problem::{
     summation_of_primes::SummationOfPrimes, 
     triangle_containment::TriangleContainmentProblem,
     largest_exponential::LargestExponentialProblem,
+    lexicographic_permutations::LexicographicPermutationsProblem,
     Problem
 };
 
@@ -65,6 +66,7 @@ fn main() {
         (16, Box::new(PowerDigitSum {})),
         (17, Box::new(NumberLetterCountsProblem {})),
         (20, Box::new(FactorialDigitSum { n: 100 })),
+        (24, Box::new(LexicographicPermutationsProblem {})),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
     ]);
