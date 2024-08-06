@@ -25,6 +25,7 @@ use problem::{
 
 pub mod problem;
 pub mod primes;
+pub mod arithmetic;
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]

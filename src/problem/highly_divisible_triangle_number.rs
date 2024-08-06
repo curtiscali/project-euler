@@ -1,8 +1,5 @@
 use super::Problem;
-
-fn triangle(n: u128) -> u128 {
-    return (n * (n + 1)) / 2;
-}
+use crate::arithmetic::linear_sum;
 
 fn num_factors(n: u128) -> u32 {
     let mut factor_count: u32 = 0;
@@ -31,10 +28,10 @@ pub struct HighlyDivisibleTriangleNumber {
 impl Problem for HighlyDivisibleTriangleNumber {
     fn solve(&self) -> String {
         let mut n = 7;
-        while num_factors(triangle(n)) <= self.num_divisors {
+        while num_factors(linear_sum(n)) <= self.num_divisors {
             n += 1;
         }
 
-        return format!("The first triangular number with over {} factors is the {}th triangular number ({})", self.num_divisors, n, triangle(n));
+        return format!("The first triangular number with over {} factors is the {}th triangular number ({})", self.num_divisors, n, linear_sum(n));
     }
 }
