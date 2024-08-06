@@ -13,6 +13,7 @@ pub mod lattice_paths;
 pub mod power_digit_sum;
 pub mod number_letter_counts;
 pub mod factorial_digit_sum;
+pub mod triangle_containment;
 
 pub trait Problem {
     fn solve(&self) -> String;

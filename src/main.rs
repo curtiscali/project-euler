@@ -2,22 +2,23 @@ use std::time::Instant;
 use std::collections::BTreeMap;
 use clap::Parser;
 use problem::{
-    Problem, 
-    multiples::MultiplesProblem, 
     even_fibonacci::EvenFibonacciProblem, 
+    factorial_digit_sum::FactorialDigitSum, 
+    highly_divisible_triangle_number::HighlyDivisibleTriangleNumber, 
+    large_sum::LargeSumProblem, 
     largest_palindrome_product::LargestPalindromeProduct, 
-    sum_square_difference::SumSquareDifference,
+    largest_product::LargestProductProblem, 
+    lattice_paths::LatticePathsProblem, 
+    longest_collatz_sequence::LongestCollatzSequenceProblem, 
+    multiples::MultiplesProblem, 
+    number_letter_counts::NumberLetterCountsProblem, 
+    power_digit_sum::PowerDigitSum, 
     prime_10001::NthPrimeProblem, 
+    special_pythagorean_triplet::SpecialPythagoreanTripletProblem, 
+    sum_square_difference::SumSquareDifference, 
     summation_of_primes::SummationOfPrimes, 
-    highly_divisible_triangle_number::HighlyDivisibleTriangleNumber,
-    large_sum::LargeSumProblem,
-    largest_product::LargestProductProblem,
-    special_pythagorean_triplet::SpecialPythagoreanTripletProblem,
-    longest_collatz_sequence::LongestCollatzSequenceProblem,
-    lattice_paths::LatticePathsProblem,
-    power_digit_sum::PowerDigitSum,
-    number_letter_counts::NumberLetterCountsProblem,
-    factorial_digit_sum::FactorialDigitSum
+    triangle_containment::TriangleContainmentProblem,
+    Problem
 };
 
 pub mod problem;
@@ -62,7 +63,8 @@ fn main() {
         (15, Box::new(LatticePathsProblem {})),
         (16, Box::new(PowerDigitSum {})),
         (17, Box::new(NumberLetterCountsProblem {})),
-        (20, Box::new(FactorialDigitSum { n: 100 }))
+        (20, Box::new(FactorialDigitSum { n: 100 })),
+        (102, Box::new(TriangleContainmentProblem {}))
     ]);
 
     if args.problem.is_some() {
