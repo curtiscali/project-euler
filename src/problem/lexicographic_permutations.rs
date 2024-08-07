@@ -6,6 +6,7 @@ fn swap(arr: &mut [u8; 10], i: usize, j: usize) {
     arr[j] = tmp;
 }
 
+// Algorithm based on: https://www.baeldung.com/cs/array-generate-all-permutations#bd-permutations-in-lexicographic-order
 fn get_next_permutation(arr: &mut [u8; 10]) -> bool {
     let mut i = arr.len() - 1;
     while i > 0 && arr[i - 1] >= arr[i] {
