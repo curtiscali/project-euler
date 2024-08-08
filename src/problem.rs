@@ -16,6 +16,7 @@ pub mod factorial_digit_sum;
 pub mod triangle_containment;
 pub mod largest_exponential;
 pub mod lexicographic_permutations;
+pub mod distinct_powers;
 
 pub trait Problem {
     fn solve(&self) -> String;
