@@ -17,6 +17,7 @@ pub mod triangle_containment;
 pub mod largest_exponential;
 pub mod lexicographic_permutations;
 pub mod distinct_powers;
+pub mod number_power_spirals;
 
 pub trait Problem {
     fn solve(&self) -> String;

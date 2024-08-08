@@ -2,25 +2,26 @@ use std::time::Instant;
 use std::collections::BTreeMap;
 use clap::Parser;
 use problem::{
+    distinct_powers::DistinctPowersProblem, 
     even_fibonacci::EvenFibonacciProblem, 
     factorial_digit_sum::FactorialDigitSum, 
     highly_divisible_triangle_number::HighlyDivisibleTriangleNumber, 
     large_sum::LargeSumProblem, 
+    largest_exponential::LargestExponentialProblem, 
     largest_palindrome_product::LargestPalindromeProduct, 
     largest_product::LargestProductProblem, 
     lattice_paths::LatticePathsProblem, 
+    lexicographic_permutations::LexicographicPermutationsProblem, 
     longest_collatz_sequence::LongestCollatzSequenceProblem, 
     multiples::MultiplesProblem, 
     number_letter_counts::NumberLetterCountsProblem, 
+    number_power_spirals::NumberPowerSpiralsProblem, 
     power_digit_sum::PowerDigitSum, 
     prime_10001::NthPrimeProblem, 
     special_pythagorean_triplet::SpecialPythagoreanTripletProblem, 
     sum_square_difference::SumSquareDifference, 
     summation_of_primes::SummationOfPrimes, 
-    triangle_containment::TriangleContainmentProblem,
-    largest_exponential::LargestExponentialProblem,
-    lexicographic_permutations::LexicographicPermutationsProblem,
-    distinct_powers::DistinctPowersProblem,
+    triangle_containment::TriangleContainmentProblem, 
     Problem
 };
 
@@ -69,6 +70,7 @@ fn main() {
         (17, Box::new(NumberLetterCountsProblem {})),
         (20, Box::new(FactorialDigitSum { n: 100 })),
         (24, Box::new(LexicographicPermutationsProblem {})),
+        (28, Box::new(NumberPowerSpiralsProblem { spiral_size: 1001 })),
         (29, Box::new(DistinctPowersProblem { upper_bound: 100 })),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
