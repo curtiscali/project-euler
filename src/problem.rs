@@ -18,6 +18,8 @@ pub mod largest_exponential;
 pub mod lexicographic_permutations;
 pub mod distinct_powers;
 pub mod number_power_spirals;
+pub mod digit_fifth_powers;
+pub mod digit_factorials;
 
 pub trait Problem {
     fn solve(&self) -> String;

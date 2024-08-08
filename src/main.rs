@@ -21,7 +21,9 @@ use problem::{
     special_pythagorean_triplet::SpecialPythagoreanTripletProblem, 
     sum_square_difference::SumSquareDifference, 
     summation_of_primes::SummationOfPrimes, 
-    triangle_containment::TriangleContainmentProblem, 
+    triangle_containment::TriangleContainmentProblem,
+    digit_fifth_powers::DigitFifthPowersProblem,
+    digit_factorials::DigitFactorialsProblem,
     Problem
 };
 
@@ -72,6 +74,8 @@ fn main() {
         (24, Box::new(LexicographicPermutationsProblem {})),
         (28, Box::new(NumberPowerSpiralsProblem { spiral_size: 1001 })),
         (29, Box::new(DistinctPowersProblem { upper_bound: 100 })),
+        (30, Box::new(DigitFifthPowersProblem {})),
+        (34, Box::new(DigitFactorialsProblem {})),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
     ]);
