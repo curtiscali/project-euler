@@ -21,6 +21,7 @@ pub mod number_power_spirals;
 pub mod digit_fifth_powers;
 pub mod digit_factorials;
 pub mod coded_triangle_numbers;
+pub mod champernownes_constant;
 
 pub trait Problem {
     fn solve(&self) -> String;
