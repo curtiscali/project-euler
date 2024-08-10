@@ -1,9 +1,9 @@
 use super::Problem;
 use crate::arithmetic::linear_sum;
 
-fn num_factors(n: u128) -> u32 {
+fn num_factors(n: usize) -> u32 {
     let mut factor_count: u32 = 0;
-    let root = (n as f64).sqrt().ceil() as u128;
+    let root = (n as f64).sqrt().ceil() as usize;
 
     let mut i = 1;
     while i <= root {
