@@ -25,6 +25,7 @@ use problem::{
     digit_fifth_powers::DigitFifthPowersProblem,
     digit_factorials::DigitFactorialsProblem,
     coded_triangle_numbers::CodedTriangleNumbersProblem,
+    champernownes_constant::ChampernownesConstantProblem,
     Problem
 };
 
@@ -77,6 +78,7 @@ fn main() {
         (29, Box::new(DistinctPowersProblem { upper_bound: 100 })),
         (30, Box::new(DigitFifthPowersProblem {})),
         (34, Box::new(DigitFactorialsProblem {})),
+        (40, Box::new(ChampernownesConstantProblem {})),
         (42, Box::new(CodedTriangleNumbersProblem {})),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
