@@ -28,12 +28,14 @@ use problem::{
     champernownes_constant::ChampernownesConstantProblem,
     pandigital_prime::PandigitalPrimeProblem,
     self_powers::SelfPowersProblem,
+    names_scores::NamesScoresProblem,
     Problem
 };
 
 pub mod problem;
 pub mod primes;
 pub mod arithmetic;
+pub mod strings;
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
@@ -75,6 +77,7 @@ fn main() {
         (16, Box::new(PowerDigitSum {})),
         (17, Box::new(NumberLetterCountsProblem {})),
         (20, Box::new(FactorialDigitSum { n: 100 })),
+        (22, Box::new(NamesScoresProblem {})),
         (24, Box::new(LexicographicPermutationsProblem {})),
         (28, Box::new(NumberPowerSpiralsProblem { spiral_size: 1001 })),
         (29, Box::new(DistinctPowersProblem { upper_bound: 100 })),
