@@ -27,6 +27,7 @@ use problem::{
     coded_triangle_numbers::CodedTriangleNumbersProblem,
     champernownes_constant::ChampernownesConstantProblem,
     pandigital_prime::PandigitalPrimeProblem,
+    self_powers::SelfPowersProblem,
     Problem
 };
 
@@ -82,6 +83,7 @@ fn main() {
         (40, Box::new(ChampernownesConstantProblem {})),
         (41, Box::new(PandigitalPrimeProblem {})),
         (42, Box::new(CodedTriangleNumbersProblem {})),
+        (48, Box::new(SelfPowersProblem { upper_bound: 1000 })),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
     ]);

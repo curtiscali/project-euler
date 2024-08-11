@@ -23,6 +23,7 @@ pub mod digit_factorials;
 pub mod coded_triangle_numbers;
 pub mod champernownes_constant;
 pub mod pandigital_prime;
+pub mod self_powers;
 
 pub trait Problem {
     fn solve(&self) -> String;
