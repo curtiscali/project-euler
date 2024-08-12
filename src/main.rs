@@ -2,34 +2,7 @@ use std::time::Instant;
 use std::collections::BTreeMap;
 use clap::Parser;
 use problem::{
-    distinct_powers::DistinctPowersProblem, 
-    even_fibonacci::EvenFibonacciProblem, 
-    factorial_digit_sum::FactorialDigitSum, 
-    highly_divisible_triangle_number::HighlyDivisibleTriangleNumber, 
-    large_sum::LargeSumProblem, 
-    largest_exponential::LargestExponentialProblem, 
-    largest_palindrome_product::LargestPalindromeProduct, 
-    largest_product::LargestProductProblem, 
-    lattice_paths::LatticePathsProblem, 
-    lexicographic_permutations::LexicographicPermutationsProblem, 
-    longest_collatz_sequence::LongestCollatzSequenceProblem, 
-    multiples::MultiplesProblem, 
-    number_letter_counts::NumberLetterCountsProblem, 
-    number_power_spirals::NumberPowerSpiralsProblem, 
-    power_digit_sum::PowerDigitSum, 
-    prime_10001::NthPrimeProblem, 
-    special_pythagorean_triplet::SpecialPythagoreanTripletProblem, 
-    sum_square_difference::SumSquareDifference, 
-    summation_of_primes::SummationOfPrimes, 
-    triangle_containment::TriangleContainmentProblem,
-    digit_fifth_powers::DigitFifthPowersProblem,
-    digit_factorials::DigitFactorialsProblem,
-    coded_triangle_numbers::CodedTriangleNumbersProblem,
-    champernownes_constant::ChampernownesConstantProblem,
-    pandigital_prime::PandigitalPrimeProblem,
-    self_powers::SelfPowersProblem,
-    names_scores::NamesScoresProblem,
-    Problem
+    champernownes_constant::ChampernownesConstantProblem, circular_primes::CircularPrimesProblem, coded_triangle_numbers::CodedTriangleNumbersProblem, digit_factorials::DigitFactorialsProblem, digit_fifth_powers::DigitFifthPowersProblem, distinct_powers::DistinctPowersProblem, even_fibonacci::EvenFibonacciProblem, factorial_digit_sum::FactorialDigitSum, highly_divisible_triangle_number::HighlyDivisibleTriangleNumber, large_sum::LargeSumProblem, largest_exponential::LargestExponentialProblem, largest_palindrome_product::LargestPalindromeProduct, largest_product::LargestProductProblem, lattice_paths::LatticePathsProblem, lexicographic_permutations::LexicographicPermutationsProblem, longest_collatz_sequence::LongestCollatzSequenceProblem, multiples::MultiplesProblem, names_scores::NamesScoresProblem, number_letter_counts::NumberLetterCountsProblem, number_power_spirals::NumberPowerSpiralsProblem, pandigital_prime::PandigitalPrimeProblem, power_digit_sum::PowerDigitSum, prime_10001::NthPrimeProblem, self_powers::SelfPowersProblem, special_pythagorean_triplet::SpecialPythagoreanTripletProblem, sum_square_difference::SumSquareDifference, summation_of_primes::SummationOfPrimes, triangle_containment::TriangleContainmentProblem, Problem
 };
 
 pub mod problem;
@@ -83,6 +56,7 @@ fn main() {
         (29, Box::new(DistinctPowersProblem { upper_bound: 100 })),
         (30, Box::new(DigitFifthPowersProblem {})),
         (34, Box::new(DigitFactorialsProblem {})),
+        (35, Box::new(CircularPrimesProblem { upper_bound: 1_000_000 })),
         (40, Box::new(ChampernownesConstantProblem {})),
         (41, Box::new(PandigitalPrimeProblem {})),
         (42, Box::new(CodedTriangleNumbersProblem {})),

@@ -1,4 +1,5 @@
 use std::mem;
+use num::pow;
 
 const FISR_ACCURACY_LIMIT: usize = 410881;
 
@@ -56,4 +57,27 @@ pub fn num_digits(n: usize) -> usize {
     }
 
     return digit_count;
+}
+
+pub fn to_digits(n: usize) -> Vec<usize> {
+    let mut digits: Vec<usize> = Vec::new();
+
+    let mut i = n;
+    while i > 0 {
+        digits.insert(0, i % 10);
+        i /= 10;
+    }
+
+    return digits;
+}
+
+pub fn from_digits(digits: Vec<usize>) -> usize {
+    let mut number: usize = 0;
+    let mut i = 0;
+    while i < digits.len() {
+        number += (digits[i]) * pow(10, digits.len() - i - 1);
+        i += 1;
+    }
+
+    return number;
 }

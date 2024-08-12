@@ -25,6 +25,7 @@ pub mod champernownes_constant;
 pub mod pandigital_prime;
 pub mod self_powers;
 pub mod names_scores;
+pub mod circular_primes;
 
 pub trait Problem {
     fn solve(&self) -> String;
