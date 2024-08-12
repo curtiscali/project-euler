@@ -16,10 +16,10 @@ pub mod strings;
 struct Args {
     /// Number of the problem for which you would like a solution as referenced on https://projecteuler.net
     #[arg(short, long)]
-    problem: Option<u8>
+    problem: Option<u16>
 }
 
-fn print_solution(problem_number: u8, problem: &dyn Problem) {
+fn print_solution(problem_number: u16, problem: &dyn Problem) {
     println!("Selected Problem: {}", problem_number);
 
     let now = Instant::now();
@@ -34,7 +34,7 @@ fn print_solution(problem_number: u8, problem: &dyn Problem) {
 fn main() {
     let args = Args::parse();
 
-    let problems_lookup: BTreeMap<u8, Box<dyn Problem>> = BTreeMap::from([
+    let problems_lookup: BTreeMap<u16, Box<dyn Problem>> = BTreeMap::from([
         (1, Box::new(MultiplesProblem { limit: 1000 }) as Box<dyn Problem>),
         (2, Box::new(EvenFibonacciProblem { limit: 4_000_000 })),
         (4, Box::new(LargestPalindromeProduct { limit: 1000 })),
