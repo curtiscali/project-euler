@@ -26,6 +26,7 @@ pub mod pandigital_prime;
 pub mod self_powers;
 pub mod names_scores;
 pub mod circular_primes;
+pub mod triangular_pentagonal_hexagonal;
 
 pub trait Problem {
     fn solve(&self) -> String;
