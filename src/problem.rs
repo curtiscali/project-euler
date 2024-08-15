@@ -27,6 +27,7 @@ pub mod self_powers;
 pub mod names_scores;
 pub mod circular_primes;
 pub mod triangular_pentagonal_hexagonal;
+pub mod integer_right_triangles;
 
 pub trait Problem {
     fn solve(&self) -> String;

@@ -31,6 +31,7 @@ use problem::{
     summation_of_primes::SummationOfPrimes, 
     triangle_containment::TriangleContainmentProblem,
     triangular_pentagonal_hexagonal::TriangularPentagonalHexagonalNumberProblem,
+    integer_right_triangles::IntegerRightTrianglesProblem,
     Problem
 };
 
@@ -86,6 +87,7 @@ fn main() {
         (30, Box::new(DigitFifthPowersProblem {})),
         (34, Box::new(DigitFactorialsProblem {})),
         (35, Box::new(CircularPrimesProblem { upper_bound: 1_000_000 })),
+        (39, Box::new(IntegerRightTrianglesProblem { max_perimeter: 1000 })),
         (40, Box::new(ChampernownesConstantProblem {})),
         (41, Box::new(PandigitalPrimeProblem {})),
         (42, Box::new(CodedTriangleNumbersProblem {})),
