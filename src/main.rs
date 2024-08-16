@@ -32,6 +32,7 @@ use problem::{
     triangle_containment::TriangleContainmentProblem,
     triangular_pentagonal_hexagonal::TriangularPentagonalHexagonalNumberProblem,
     integer_right_triangles::IntegerRightTrianglesProblem,
+    permuted_multiples::PermutedMultiplesProblem,
     Problem
 };
 
@@ -93,6 +94,7 @@ fn main() {
         (42, Box::new(CodedTriangleNumbersProblem {})),
         (45, Box::new(TriangularPentagonalHexagonalNumberProblem {})),
         (48, Box::new(SelfPowersProblem { upper_bound: 1000 })),
+        (52, Box::new(PermutedMultiplesProblem {})),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
     ]);
