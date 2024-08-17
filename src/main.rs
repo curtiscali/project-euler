@@ -34,6 +34,7 @@ use problem::{
     integer_right_triangles::IntegerRightTrianglesProblem,
     permuted_multiples::PermutedMultiplesProblem,
     combinatoric_selections::CombinatoricSelectionsProblem,
+    lychrel_numbers::LychrelNumbersProblem,
     Problem
 };
 
@@ -98,6 +99,7 @@ fn main() {
         (48, Box::new(SelfPowersProblem { upper_bound: 1000 })),
         (52, Box::new(PermutedMultiplesProblem {})),
         (53, Box::new(CombinatoricSelectionsProblem { upper_bound: 100, combination_limit: 1_000_000 })),
+        (55, Box::new(LychrelNumbersProblem { upper_bound: 10_000 })),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
     ]);

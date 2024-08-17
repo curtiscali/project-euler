@@ -30,6 +30,7 @@ pub mod triangular_pentagonal_hexagonal;
 pub mod integer_right_triangles;
 pub mod permuted_multiples;
 pub mod combinatoric_selections;
+pub mod lychrel_numbers;
 
 pub trait Problem {
     fn solve(&self) -> String;

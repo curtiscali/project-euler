@@ -95,3 +95,20 @@ pub fn factorial(n: usize, solutions: &mut Vec<BigInt>) -> BigInt {
 
     return solutions[n - 1].clone();
 }
+
+pub fn reverse_usize(n: u128) -> u128 {
+    let mut reversed_number = 0;
+    let mut i = n;
+
+    while i > 0 {
+        reversed_number = reversed_number * 10;
+        reversed_number = reversed_number + (i % 10);
+        i = i / 10;
+    }
+    
+    return reversed_number;
+}
+
+pub fn is_usize_palindrome(n: u128) -> bool {
+    return n == reverse_usize(n);
+}
