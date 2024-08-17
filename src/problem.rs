@@ -29,6 +29,7 @@ pub mod circular_primes;
 pub mod triangular_pentagonal_hexagonal;
 pub mod integer_right_triangles;
 pub mod permuted_multiples;
+pub mod combinatoric_selections;
 
 pub trait Problem {
     fn solve(&self) -> String;

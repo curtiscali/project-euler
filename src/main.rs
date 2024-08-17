@@ -33,6 +33,7 @@ use problem::{
     triangular_pentagonal_hexagonal::TriangularPentagonalHexagonalNumberProblem,
     integer_right_triangles::IntegerRightTrianglesProblem,
     permuted_multiples::PermutedMultiplesProblem,
+    combinatoric_selections::CombinatoricSelectionsProblem,
     Problem
 };
 
@@ -40,6 +41,7 @@ pub mod problem;
 pub mod primes;
 pub mod arithmetic;
 pub mod strings;
+pub mod combinatorics;
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
@@ -95,6 +97,7 @@ fn main() {
         (45, Box::new(TriangularPentagonalHexagonalNumberProblem {})),
         (48, Box::new(SelfPowersProblem { upper_bound: 1000 })),
         (52, Box::new(PermutedMultiplesProblem {})),
+        (53, Box::new(CombinatoricSelectionsProblem { upper_bound: 100, combination_limit: 1_000_000 })),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
     ]);

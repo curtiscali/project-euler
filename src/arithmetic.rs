@@ -1,5 +1,5 @@
 use std::mem;
-use num::pow;
+use num::{pow, BigInt};
 
 const FISR_ACCURACY_LIMIT: usize = 410881;
 
@@ -80,4 +80,18 @@ pub fn from_digits(digits: Vec<usize>) -> usize {
     }
 
     return number;
+}
+
+pub fn factorial(n: usize, solutions: &mut Vec<BigInt>) -> BigInt {
+    if n <= solutions.len() {
+        return solutions[n - 1].clone();
+    }
+
+    let mut i = solutions.len();
+    while i <= n {
+        solutions.push(solutions[i - 1].clone() * i);
+        i += 1;
+    }
+
+    return solutions[n - 1].clone();
 }
