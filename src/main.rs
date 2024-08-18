@@ -35,6 +35,7 @@ use problem::{
     permuted_multiples::PermutedMultiplesProblem,
     combinatoric_selections::CombinatoricSelectionsProblem,
     lychrel_numbers::LychrelNumbersProblem,
+    powerful_digit_sum::PowerDigitSumProblem,
     Problem
 };
 
@@ -100,6 +101,7 @@ fn main() {
         (52, Box::new(PermutedMultiplesProblem {})),
         (53, Box::new(CombinatoricSelectionsProblem { upper_bound: 100, combination_limit: 1_000_000 })),
         (55, Box::new(LychrelNumbersProblem { upper_bound: 10_000 })),
+        (56, Box::new(PowerDigitSumProblem { upper_bound: 100 })),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
     ]);

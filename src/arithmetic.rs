@@ -82,6 +82,18 @@ pub fn from_digits(digits: Vec<usize>) -> usize {
     return number;
 }
 
+pub fn bigint_digit_sum(number: BigInt) -> BigInt {
+    let mut n = number.clone();
+    let mut digit_sum = BigInt::ZERO;
+
+    while n > BigInt::ZERO {
+        digit_sum = digit_sum + (n.clone() % 10);
+        n = n / 10;
+    }
+
+    return digit_sum;
+}
+
 pub fn factorial(n: usize, solutions: &mut Vec<BigInt>) -> BigInt {
     if n <= solutions.len() {
         return solutions[n - 1].clone();

@@ -31,6 +31,7 @@ pub mod integer_right_triangles;
 pub mod permuted_multiples;
 pub mod combinatoric_selections;
 pub mod lychrel_numbers;
+pub mod powerful_digit_sum;
 
 pub trait Problem {
     fn solve(&self) -> String;

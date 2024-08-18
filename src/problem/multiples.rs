@@ -1,21 +1,21 @@
+use crate::arithmetic::linear_sum;
+
 use super::Problem;
 
+fn sum_divisible_by_under(target: usize, n: usize) -> usize {
+    let p = target / n;
+    return n * linear_sum(p);
+}
+
 pub struct MultiplesProblem {
-    pub limit: i32
+    pub limit: usize
 }
 
 impl Problem for MultiplesProblem {
     fn solve(&self) -> String {
-        let mut sum: i32 = 0;
-
-        let mut i = 1;
-        while i < self.limit {
-            if i % 3 == 0 || i % 5 == 0 {
-                sum = sum + i;
-            }
-
-            i = i + 1;
-        }
+        let sum = sum_divisible_by_under(self.limit - 1, 3) +
+            sum_divisible_by_under(self.limit - 1, 5) -
+            sum_divisible_by_under(self.limit - 1, 15);
 
         return format!("{}", sum);
     }
