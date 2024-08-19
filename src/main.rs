@@ -36,6 +36,7 @@ use problem::{
     combinatoric_selections::CombinatoricSelectionsProblem,
     lychrel_numbers::LychrelNumbersProblem,
     powerful_digit_sum::PowerDigitSumProblem,
+    totient_maximum::TotientMaximumProblem,
     Problem
 };
 
@@ -102,6 +103,7 @@ fn main() {
         (53, Box::new(CombinatoricSelectionsProblem { upper_bound: 100, combination_limit: 1_000_000 })),
         (55, Box::new(LychrelNumbersProblem { upper_bound: 10_000 })),
         (56, Box::new(PowerDigitSumProblem { upper_bound: 100 })),
+        (69, Box::new(TotientMaximumProblem { upper_bound: 1_000_000 })),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
     ]);
