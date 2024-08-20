@@ -1,7 +1,5 @@
 use crate::primes::primes_below;
 use super::Problem;
-use std::f64::consts::PI;
-
 
 // Tis function based on the fourier transform: https://cp-algorithms.com/algebra/phi-function.html#etf_1_to_n
 fn totient(n: usize) -> usize {
