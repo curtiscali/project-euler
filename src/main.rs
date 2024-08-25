@@ -38,6 +38,7 @@ use problem::{
     powerful_digit_sum::PowerDigitSumProblem,
     totient_maximum::TotientMaximumProblem,
     roman_numerals::RomanNumeralsProblem,
+    coin_sums::CoinSumProblem,
     Problem
 };
 
@@ -92,6 +93,10 @@ fn main() {
         (28, Box::new(NumberPowerSpiralsProblem { spiral_size: 1001 })),
         (29, Box::new(DistinctPowersProblem { upper_bound: 100 })),
         (30, Box::new(DigitFifthPowersProblem {})),
+        (31, Box::new(CoinSumProblem {
+            total_pence: 200,
+            denominations: vec![1, 2, 5, 10, 20, 50, 100, 200]
+        })),
         (34, Box::new(DigitFactorialsProblem {})),
         (35, Box::new(CircularPrimesProblem { upper_bound: 1_000_000 })),
         (39, Box::new(IntegerRightTrianglesProblem { max_perimeter: 1000 })),

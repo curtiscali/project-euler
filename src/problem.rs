@@ -34,6 +34,7 @@ pub mod lychrel_numbers;
 pub mod powerful_digit_sum;
 pub mod totient_maximum;
 pub mod roman_numerals;
+pub mod coin_sums;
 
 pub trait Problem {
     fn solve(&self) -> String;
