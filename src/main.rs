@@ -41,6 +41,7 @@ use problem::{
     coin_sums::CoinSumProblem,
     reversible_numbers::ReversibleNumbersProblem,
     counting_rectangles::CountingRectanglesProblem,
+    square_digit_chains::SquareDigitChainsProblem,
     Problem
 };
 
@@ -114,6 +115,7 @@ fn main() {
         (69, Box::new(TotientMaximumProblem { upper_bound: 1_000_000 })),
         (85, Box::new(CountingRectanglesProblem { target_rectangle_count: 2_000_000 })),
         (89, Box::new(RomanNumeralsProblem {})),
+        (92, Box::new(SquareDigitChainsProblem { upper_bound: 10_000_000})),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
         (145, Box::new(ReversibleNumbersProblem { upper_bound: 1_000_000_000 }))
