@@ -39,6 +39,7 @@ use problem::{
     totient_maximum::TotientMaximumProblem,
     roman_numerals::RomanNumeralsProblem,
     coin_sums::CoinSumProblem,
+    reversible_numbers::ReversibleNumbersProblem,
     counting_rectangles::CountingRectanglesProblem,
     Problem
 };
@@ -115,6 +116,7 @@ fn main() {
         (89, Box::new(RomanNumeralsProblem {})),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
+        (145, Box::new(ReversibleNumbersProblem { upper_bound: 1_000_000_000 }))
     ]);
 
     if args.problem.is_some() {
