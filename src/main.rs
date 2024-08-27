@@ -42,6 +42,7 @@ use problem::{
     reversible_numbers::ReversibleNumbersProblem,
     counting_rectangles::CountingRectanglesProblem,
     square_digit_chains::SquareDigitChainsProblem,
+    laser_beam_reflections::LaserBeamReflectionsProblem,
     Problem
 };
 
@@ -50,6 +51,7 @@ pub mod primes;
 pub mod arithmetic;
 pub mod strings;
 pub mod combinatorics;
+pub mod linear_algebra;
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
@@ -118,25 +120,30 @@ fn main() {
         (92, Box::new(SquareDigitChainsProblem { upper_bound: 10_000_000})),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
+        (144, Box::new(LaserBeamReflectionsProblem {})),
         (145, Box::new(ReversibleNumbersProblem { upper_bound: 1_000_000_000 }))
     ]);
 
-    if args.problem.is_some() {
-        let problem_number = args.problem.unwrap();
-        if problems_lookup.contains_key(&problem_number) {
-            let selected_problem = problems_lookup.get(&problem_number).unwrap();
-            print_solution(problem_number, selected_problem.as_ref());
-        } else {
-            println!("Problem {} has not yet been solved", problem_number);
-        }
-    } else {
-        println!("No problem specified. Showing solutions to all solved problems");
+    match args.problem {
+        Some(problem_number) => {
+            match problems_lookup.get(&problem_number) {
+                Some(selected_problem) => {
+                    print_solution(problem_number, selected_problem.as_ref());
+                },
+                None => {
+                    println!("Problem {} has not yet been solved", problem_number);
+                }
+            }
+        },
+        None => {
+            println!("No problem specified. Showing solutions to all solved problems");
 
-        for problem_number in problems_lookup.keys() {
-            let selected_problem = problems_lookup.get(&problem_number).unwrap();
-            print_solution(*problem_number, selected_problem.as_ref());
-
-            print!("\n\n");
+            for problem_number in problems_lookup.keys() {
+                let selected_problem = problems_lookup.get(&problem_number).unwrap();
+                print_solution(*problem_number, selected_problem.as_ref());
+    
+                print!("\n\n");
+            }
         }
-    } 
+    }
 }

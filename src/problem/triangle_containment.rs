@@ -1,34 +1,20 @@
 use super::Problem;
+use crate::linear_algebra::{Vector2D, v2_sub, v2_dotprod};
 
-type Vector = (i64, i64);
-type Triangle = (Vector, Vector, Vector);
+type Triangle = (Vector2D, Vector2D, Vector2D);
 
-fn vsub(v1: Vector, v2: Vector) -> Vector {
-    let (x1, y1) = v1;
-    let (x2, y2) = v2;
-
-    return (x1 - x2, y1 - y2);
-}
-
-fn dotprod(v1: Vector, v2: Vector) -> i64 {
-    let (x1, y1) = v1;
-    let (x2, y2) = v2;
-
-    return (x1 * x2) + (y1 * y2);
-}
-
-fn contains(triangle: Triangle, point: Vector) -> bool {
+fn contains(triangle: Triangle, point: &Vector2D) -> bool {
     let (a, b, c) = triangle;
 
-    let v1 = vsub(c, a);
-    let v2 = vsub(b, a);
-    let v3 = vsub(point, a);
+    let v1 = v2_sub(&c, &a);
+    let v2 = v2_sub(&b, &a);
+    let v3 = v2_sub(&point, &a);
 
-    let dot11 = dotprod(v1, v1) as f64;
-    let dot12 = dotprod(v1, v2) as f64;
-    let dot13 = dotprod(v1, v3) as f64;
-    let dot22 = dotprod(v2, v2) as f64;
-    let dot23 = dotprod(v2, v3) as f64;
+    let dot11 = v2_dotprod(&v1, &v1);
+    let dot12 = v2_dotprod(&v1, &v2);
+    let dot13 = v2_dotprod(&v1, &v3);
+    let dot22 = v2_dotprod(&v2, &v2);
+    let dot23 = v2_dotprod(&v2, &v3);
 
     let inv_denom = 1.0 / ((dot11 * dot22) - (dot12 * dot12));
     let u = ((dot22 * dot13) - (dot12 * dot23)) * inv_denom;
@@ -45,17 +31,17 @@ impl Problem for TriangleContainmentProblem {
         let file_data = String::from_utf8_lossy(bytes);
         
         let mut contains_origin_count: u32 = 0;
-        let origin: Vector = (0, 0);
+        let origin = Vector2D { x: 0.0, y: 0.0 };
         let lines = file_data.lines();
         for line in lines {
-            let coordinates = Vec::from_iter(line.trim().split(","));
+            let coordinates = Vec::from_iter(line.trim().split(",").map(|s| s.parse::<f64>().unwrap()));
             let triangle: Triangle = (
-                (coordinates[0].parse::<i64>().unwrap(), coordinates[1].parse::<i64>().unwrap()), 
-                (coordinates[2].parse::<i64>().unwrap(), coordinates[3].parse::<i64>().unwrap()), 
-                (coordinates[4].parse::<i64>().unwrap(), coordinates[5].parse::<i64>().unwrap())
+                Vector2D { x: coordinates[0], y: coordinates[1] }, 
+                Vector2D { x: coordinates[2], y: coordinates[3] }, 
+                Vector2D { x: coordinates[4], y: coordinates[5] }
             );
 
-            if contains(triangle, origin) {
+            if contains(triangle, &origin) {
                 contains_origin_count += 1;
             }
         }
