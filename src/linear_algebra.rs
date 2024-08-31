@@ -46,6 +46,17 @@ pub fn v2_get_normal_ccw(v: &Vector2D) -> Vector2D {
 
 
 pub fn v2_get_reflection_direction(incident_direction: &Vector2D, surface_normal_direction: &Vector2D) -> Vector2D {
-    let new_vector = v2_scalar_mult(&v2_scalar_mult(surface_normal_direction, 2.0), v2_dotprod(surface_normal_direction, incident_direction));
+    // let new_vector = v2_scalar_mult(&v2_scalar_mult(surface_normal_direction, 2.0), v2_dotprod(surface_normal_direction, incident_direction));
+    // return v2_sub(incident_direction, &new_vector);
+    let new_vector = v2_scalar_mult(surface_normal_direction, 2.0 * v2_dotprod(incident_direction, surface_normal_direction));
     return v2_sub(incident_direction, &new_vector);
+}
+
+pub fn y_intercept(line: &Line2D) -> f64 {
+    let m = slope(line);
+    return line.source.y - (m * line.source.x);
+}
+
+pub fn slope(line: &Line2D) -> f64 {
+    return line.direction.y / line.direction.x;
 }

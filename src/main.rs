@@ -43,6 +43,7 @@ use problem::{
     counting_rectangles::CountingRectanglesProblem,
     square_digit_chains::SquareDigitChainsProblem,
     laser_beam_reflections::LaserBeamReflectionsProblem,
+    large_non_mersenne_prime::LargeNonMersennePrimeProblem,
     Problem
 };
 
@@ -118,6 +119,7 @@ fn main() {
         (85, Box::new(CountingRectanglesProblem { target_rectangle_count: 2_000_000 })),
         (89, Box::new(RomanNumeralsProblem {})),
         (92, Box::new(SquareDigitChainsProblem { upper_bound: 10_000_000})),
+        (97, Box::new(LargeNonMersennePrimeProblem {})),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
         (144, Box::new(LaserBeamReflectionsProblem {})),

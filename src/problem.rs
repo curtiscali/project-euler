@@ -39,6 +39,7 @@ pub mod counting_rectangles;
 pub mod reversible_numbers;
 pub mod square_digit_chains;
 pub mod laser_beam_reflections;
+pub mod large_non_mersenne_prime;
 
 pub trait Problem {
     fn solve(&self) -> String;
