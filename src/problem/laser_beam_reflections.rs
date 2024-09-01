@@ -1,10 +1,22 @@
 use crate::linear_algebra::{
-    slope, v2_get_normal_ccw, v2_get_normal_cw, v2_get_reflection_direction, y_intercept, Line2D, Vector2D
+    slope, 
+    v2_get_normal_ccw, 
+    v2_get_normal_cw,
+    v2_get_reflection_direction,
+    v2_normalize,
+    y_intercept,
+    Line2D,
+    Vector2D
 };
 
 use super::Problem;
 
-fn ellipse_intersection_points(line: &Line2D) {
+fn point_on_ellipse(x: f64) -> Vector2D {
+    let numerator = (2500.0 - (25.0 * x * x)).sqrt();
+    return Vector2D { x, y: numerator / 5.0 };
+}
+
+fn ellipse_intersection_points(line: &Line2D) -> (Vector2D, Vector2D) {
     let slope = slope(line);
     let y_intercept = y_intercept(line);
 
@@ -16,12 +28,12 @@ fn ellipse_intersection_points(line: &Line2D) {
     let x1 = (-b + root) / (2.0 * a);
     let x2 = (-b - root) / (2.0 * a);
 
-    println!("{} {}", x1, x2);
-}
+    println!("Source: {}\nm = {}\nb = {}\nSolution 1: {}\nSolution 2: {}\n", line.source, slope, y_intercept, x1, x2);
 
-fn point_on_ellipse(x: f64) -> Vector2D {
-    let numerator = (2500.0 - (25.0 * x * x)).sqrt();
-    return Vector2D { x, y: numerator / 5.0 };
+    return (
+        point_on_ellipse(x1),
+        point_on_ellipse(x2)
+    );
 }
 
 fn slope_at_point_on_ellipse(x: f64, y: f64) -> Vector2D {
@@ -49,11 +61,11 @@ impl Problem for LaserBeamReflectionsProblem {
         // This line corresponds to the initial (0, 10.1) -> (1.4, -9.6) where it strikes the mirror
         let mut laser_beam = Line2D {
             source: Vector2D { x: 1.4, y: -9.6 },
-            direction: Vector2D { x: 1.4, y: -19.7 }
+            direction: v2_normalize(&Vector2D { x: 1.4, y: -19.7 })
         };
 
         let mut num_reflections: u32 = 0;
-        //while !has_exited_the_ellipse(&laser_beam) {
+        while !has_exited_the_ellipse(&laser_beam) {
             /* ALGO:
              * calculate slope of elipse @ impact point
              * determine which quadrant the impact point is, and use that to determine the normal vector
@@ -65,7 +77,7 @@ impl Problem for LaserBeamReflectionsProblem {
              */
 
             let slope_of_ellipse_at_impact = slope_at_point_on_ellipse(laser_beam.source.x, laser_beam.source.y);
-            let mut slope_normal = Vector2D {x: 0.0, y: 0.0 };
+            let mut slope_normal: Vector2D;
 
             if slope_of_ellipse_at_impact.x >= 0.0 && slope_of_ellipse_at_impact.y >= 0.0 {
                 if laser_beam.source.y >= 0.0 {
@@ -81,16 +93,21 @@ impl Problem for LaserBeamReflectionsProblem {
                 }
             }
 
+            slope_normal = v2_normalize(&slope_normal);
             let reflected_direction = v2_get_reflection_direction(&laser_beam.direction, &slope_normal);
-            println!("{} {} {}", slope_of_ellipse_at_impact, slope_normal, reflected_direction);
-            laser_beam.direction = reflected_direction;
+            
+            let (p1, p2) = ellipse_intersection_points(&laser_beam);
 
-            ellipse_intersection_points(&laser_beam);
+            let new_source: Vector2D;
+            if p1.x.signum() != laser_beam.source.x.signum() || p1.y.signum() != laser_beam.source.y.signum() {
+                new_source = p1;
+            } else {
+                new_source = p2;
+            }
 
-            // TODO: calculate next impact point of beam with new direction
-
+            laser_beam = Line2D { source: new_source, direction: v2_normalize(&reflected_direction) };
             num_reflections += 1;
-        //}
+        }
 
         return format!("{}", num_reflections);
     }
