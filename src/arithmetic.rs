@@ -11,6 +11,10 @@ pub fn quadratic_sum(n: usize) -> usize {
     return (n * (n + 1) * ((2 * n) + 1)) / 6;
 }
 
+pub fn f64_equals(a: f64, b: f64) -> bool {
+    a - b < f64::EPSILON
+}
+
 // Algo stolen from: https://github.com/emkw/rust-fast_inv_sqrt/blob/master/src/lib.rs#L65
 // WARNING, use only for N < 410881
 pub fn fast_inverse_sqrt(n: f64) -> f64 {

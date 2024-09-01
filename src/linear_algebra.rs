@@ -1,5 +1,7 @@
 use std::fmt::Display;
 
+use crate::arithmetic::f64_equals;
+
 #[derive(Debug)]
 pub struct Vector2D {
     pub x: f64,
@@ -36,7 +38,7 @@ pub fn v2_scalar_mult(v: &Vector2D, scalar: f64) -> Vector2D {
     return Vector2D { x: scalar * v.x, y: scalar * v.y };
 }
 
-pub fn v2_normalize(v: &Vector2D) -> Vector2D {
+pub fn v2_to_unit_vector(v: &Vector2D) -> Vector2D {
     let vector_length = ((v.x * v.x) + (v.y * v.y)).sqrt();
     return Vector2D { x: v.x / vector_length, y: v.y / vector_length };
 }
@@ -50,8 +52,11 @@ pub fn v2_get_normal_ccw(v: &Vector2D) -> Vector2D {
 }
 
 pub fn v2_get_reflection_direction(incident_direction: &Vector2D, surface_normal_direction: &Vector2D) -> Vector2D {
-    let new_vector = v2_scalar_mult(surface_normal_direction, 2.0 * v2_dotprod(incident_direction, surface_normal_direction));
-    return v2_sub(incident_direction, &new_vector);
+    let incident_unit_vector = v2_to_unit_vector(incident_direction);
+    let normal_unit_vector = v2_to_unit_vector(surface_normal_direction);
+
+    let new_vector = v2_scalar_mult(&normal_unit_vector, 2.0 * v2_dotprod(&incident_unit_vector, &normal_unit_vector));
+    return v2_sub(&incident_unit_vector, &new_vector);
 }
 
 pub fn y_intercept(line: &Line2D) -> f64 {
@@ -61,4 +66,11 @@ pub fn y_intercept(line: &Line2D) -> f64 {
 
 pub fn slope(line: &Line2D) -> f64 {
     return line.direction.y / line.direction.x;
+}
+
+pub fn line_contains_v2(line: &Line2D, point: &Vector2D) -> bool {
+    let slope = slope(line);
+    let y_intercept = y_intercept(line);
+
+    return f64_equals(point.y, (slope * point.x) + y_intercept);
 }

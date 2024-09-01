@@ -1,39 +1,40 @@
 use crate::linear_algebra::{
-    slope, 
-    v2_get_normal_ccw, 
-    v2_get_normal_cw,
-    v2_get_reflection_direction,
-    v2_normalize,
-    y_intercept,
-    Line2D,
-    Vector2D
+    line_contains_v2, slope, v2_get_normal_ccw, v2_get_normal_cw, v2_get_reflection_direction, v2_to_unit_vector, y_intercept, Line2D, Vector2D
 };
 
 use super::Problem;
 
-fn point_on_ellipse(x: f64) -> Vector2D {
-    let numerator = (2500.0 - (25.0 * x * x)).sqrt();
-    return Vector2D { x, y: numerator / 5.0 };
+fn points_on_ellipse(x: f64) -> (Vector2D, Vector2D) {
+    const A: f64 = 5.0;
+    const B: f64 = 10.0;
+
+    let numerator = ((B * B) * ((A * A) - (x * x))).sqrt();
+    return (
+        Vector2D { x, y: numerator / A },
+        Vector2D { x, y: (-1.0 * numerator) / A }
+    );
 }
 
-fn ellipse_intersection_points(line: &Line2D) -> (Vector2D, Vector2D) {
+fn ellipse_intersection_points(line: &Line2D) -> (Vector2D, Vector2D, Vector2D, Vector2D) {
     let slope = slope(line);
     let y_intercept = y_intercept(line);
 
-    let a = 100.0 - (25.0 * slope * slope);
+    let a = 100.0 + (50.0 * slope * slope);
     let b = 50.0 * slope * y_intercept;
-    let c = (25.0 * y_intercept * y_intercept) - 2500.0;
-    let root = ((b * b) - (4.0 * a * c)).sqrt();
+    let c = 25.0 * ((y_intercept * y_intercept) - 100.0);
 
-    let x1 = (-b + root) / (2.0 * a);
-    let x2 = (-b - root) / (2.0 * a);
+    let discriminant = (b * b) - (4.0 * a * c);
+    let x1 = ((-1.0 * b) + discriminant.sqrt()) / (2.0 * a);
+    let x2 = ((-1.0 * b) - discriminant.sqrt()) / (2.0 * a);
 
-    println!("Source: {}\nm = {}\nb = {}\nSolution 1: {}\nSolution 2: {}\n", line.source, slope, y_intercept, x1, x2);
+    println!("Source: {}\nm = {}\nb = {}\n", line.source, slope, y_intercept);
 
-    return (
-        point_on_ellipse(x1),
-        point_on_ellipse(x2)
-    );
+    let (p1, p2) = points_on_ellipse(x1);
+    let (p3, p4) = points_on_ellipse(x2);
+
+    println!("Solution 1: {}\nSolution 2: {}\nSolution 3: {}\nSolution 4: {}\n", p1, p2, p3, p4);
+
+    return (p1, p2, p3, p4);
 }
 
 fn slope_at_point_on_ellipse(x: f64, y: f64) -> Vector2D {
@@ -61,7 +62,7 @@ impl Problem for LaserBeamReflectionsProblem {
         // This line corresponds to the initial (0, 10.1) -> (1.4, -9.6) where it strikes the mirror
         let mut laser_beam = Line2D {
             source: Vector2D { x: 1.4, y: -9.6 },
-            direction: v2_normalize(&Vector2D { x: 1.4, y: -19.7 })
+            direction: Vector2D { x: 1.4, y: -19.7 }
         };
 
         let mut num_reflections: u32 = 0;
@@ -77,7 +78,7 @@ impl Problem for LaserBeamReflectionsProblem {
              */
 
             let slope_of_ellipse_at_impact = slope_at_point_on_ellipse(laser_beam.source.x, laser_beam.source.y);
-            let mut slope_normal: Vector2D;
+            let slope_normal: Vector2D;
 
             if slope_of_ellipse_at_impact.x >= 0.0 && slope_of_ellipse_at_impact.y >= 0.0 {
                 if laser_beam.source.y >= 0.0 {
@@ -93,22 +94,27 @@ impl Problem for LaserBeamReflectionsProblem {
                 }
             }
 
-            slope_normal = v2_normalize(&slope_normal);
             let reflected_direction = v2_get_reflection_direction(&laser_beam.direction, &slope_normal);
-            
-            let (p1, p2) = ellipse_intersection_points(&laser_beam);
+            laser_beam.direction = Vector2D { x: reflected_direction.x, y: reflected_direction.y };
+
+            let (p1, p2, p3, p4) = ellipse_intersection_points(&laser_beam);
 
             let new_source: Vector2D;
-            if p1.x.signum() != laser_beam.source.x.signum() || p1.y.signum() != laser_beam.source.y.signum() {
+            // TODO: init new_source to be the first point that falls on the new line
+            if line_contains_v2(&laser_beam, &p1) {
                 new_source = p1;
-            } else {
+            } else if line_contains_v2(&laser_beam, &p2) {
                 new_source = p2;
+            } else if line_contains_v2(&laser_beam, &p3) {
+                new_source = p3;
+            } else {
+                new_source = p4;
             }
 
-            laser_beam = Line2D { source: new_source, direction: v2_normalize(&reflected_direction) };
+            laser_beam.source = new_source;
             num_reflections += 1;
         }
 
         return format!("{}", num_reflections);
-    }
+    }    
 }
