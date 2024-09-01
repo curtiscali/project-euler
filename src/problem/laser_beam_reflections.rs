@@ -1,8 +1,34 @@
 use crate::linear_algebra::{
-    line_contains_v2, slope, v2_get_normal_ccw, v2_get_normal_cw, v2_get_reflection_direction, v2_to_unit_vector, y_intercept, Line2D, Vector2D
+    line_contains_v2, 
+    slope, 
+    v2_get_normal_ccw, 
+    v2_get_normal_cw, 
+    v2_get_reflection_direction,
+    y_intercept, 
+    Line2D, 
+    Vector2D
 };
 use crate::arithmetic::f64_equals;
 use super::Problem;
+
+enum Quadrant {
+    TopLeft,
+    TopRight,
+    BottomLeft,
+    BottomRight
+}
+
+fn v2_quadrant(p: &Vector2D) -> Quadrant {
+    if p.x >= 0.0 && p.y >= 0.0 {
+        return Quadrant::TopRight;
+    } else if p.x >= 0.0 && p.y < 0.0 {
+        return Quadrant::BottomRight;
+    } else if p.x < 0.0 && p.y >= 0.0 {
+        return Quadrant::TopLeft;
+    }
+
+    return Quadrant::BottomLeft;
+}
 
 fn points_on_ellipse(x: f64) -> (Vector2D, Vector2D) {
     const A: f64 = 5.0;
@@ -27,12 +53,13 @@ fn next_ellipse_intersection_point(line: &Line2D) -> Vector2D {
     let x1 = ((-1.0 * b) + discriminant.sqrt()) / (2.0 * a);
     let x2 = ((-1.0 * b) - discriminant.sqrt()) / (2.0 * a);
 
-    println!("Source: {}\nm = {}\nb = {}\n", line.source, slope, y_intercept);
-
     let (p1, p2) = points_on_ellipse(x1);
     let (p3, p4) = points_on_ellipse(x2);
 
-    println!("Solution 1: {}\nSolution 2: {}\nSolution 3: {}\nSolution 4: {}\n", p1, p2, p3, p4);
+    let q1 = v2_quadrant(&p1);
+    let q2 = v2_quadrant(&p2);
+    let q3 = v2_quadrant(&p3);
+    let q4 = v2_quadrant(&p4);
 
     let next_intersection = if f64_equals(p1.x, line.source.x) {
         if line_contains_v2(line, &p3) {
@@ -49,10 +76,6 @@ fn next_ellipse_intersection_point(line: &Line2D) -> Vector2D {
     };
 
     return next_intersection;
-    //return f64_equals(p1.x, line.source.x) ? 
-    //   (line_contains_v2(line, &p3) ? p3 : p4) :
-    //    (line_contains_v2(line, &p1) ? p1 : p2);
-    //return (p1, p2, p3, p4);
 }
 
 fn slope_at_point_on_ellipse(x: f64, y: f64) -> Vector2D {
