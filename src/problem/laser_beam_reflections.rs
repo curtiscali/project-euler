@@ -19,7 +19,7 @@ fn ellipse_intersection_points(line: &Line2D) -> (Vector2D, Vector2D, Vector2D, 
     let slope = slope(line);
     let y_intercept = y_intercept(line);
 
-    let a = 100.0 + (50.0 * slope * slope);
+    let a = 100.0 + (25.0 * slope * slope);
     let b = 50.0 * slope * y_intercept;
     let c = 25.0 * ((y_intercept * y_intercept) - 100.0);
 
