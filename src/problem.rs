@@ -40,6 +40,7 @@ pub mod reversible_numbers;
 pub mod square_digit_chains;
 pub mod laser_beam_reflections;
 pub mod large_non_mersenne_prime;
+pub mod double_base_palindrome;
 
 pub trait Problem {
     fn solve(&self) -> String;

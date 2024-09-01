@@ -1,5 +1,5 @@
 use super::Problem;
-use num::{pow, BigInt};
+use num::BigInt;
 
 pub struct LargeNonMersennePrimeProblem {}
 

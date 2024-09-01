@@ -44,6 +44,7 @@ use problem::{
     square_digit_chains::SquareDigitChainsProblem,
     laser_beam_reflections::LaserBeamReflectionsProblem,
     large_non_mersenne_prime::LargeNonMersennePrimeProblem,
+    double_base_palindrome::DoubleBasePalindromeProblem,
     Problem
 };
 
@@ -105,6 +106,7 @@ fn main() {
         })),
         (34, Box::new(DigitFactorialsProblem {})),
         (35, Box::new(CircularPrimesProblem { upper_bound: 1_000_000 })),
+        (36, Box::new(DoubleBasePalindromeProblem { upper_bound: 1_000_000 })),
         (39, Box::new(IntegerRightTrianglesProblem { max_perimeter: 1000 })),
         (40, Box::new(ChampernownesConstantProblem {})),
         (41, Box::new(PandigitalPrimeProblem {})),
