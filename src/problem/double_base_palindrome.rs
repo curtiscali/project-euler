@@ -22,7 +22,7 @@ fn is_binary_palindrome(n: usize) -> bool {
         j -= 1;
     }
 
-    return true;//binary_digits == binary_digits_reversed;
+    return true;
 }
 
 pub struct DoubleBasePalindromeProblem {
