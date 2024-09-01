@@ -1,7 +1,7 @@
 use crate::linear_algebra::{
     line_contains_v2, slope, v2_get_normal_ccw, v2_get_normal_cw, v2_get_reflection_direction, v2_to_unit_vector, y_intercept, Line2D, Vector2D
 };
-
+use crate::arithmetic::f64_equals;
 use super::Problem;
 
 fn points_on_ellipse(x: f64) -> (Vector2D, Vector2D) {
@@ -15,7 +15,7 @@ fn points_on_ellipse(x: f64) -> (Vector2D, Vector2D) {
     );
 }
 
-fn ellipse_intersection_points(line: &Line2D) -> (Vector2D, Vector2D, Vector2D, Vector2D) {
+fn next_ellipse_intersection_point(line: &Line2D) -> Vector2D {
     let slope = slope(line);
     let y_intercept = y_intercept(line);
 
@@ -34,7 +34,25 @@ fn ellipse_intersection_points(line: &Line2D) -> (Vector2D, Vector2D, Vector2D, 
 
     println!("Solution 1: {}\nSolution 2: {}\nSolution 3: {}\nSolution 4: {}\n", p1, p2, p3, p4);
 
-    return (p1, p2, p3, p4);
+    let next_intersection = if f64_equals(p1.x, line.source.x) {
+        if line_contains_v2(line, &p3) {
+            p3
+        } else {
+            p4
+        }
+    } else {
+        if line_contains_v2(line, &p1) {
+            p1
+        } else {
+            p2
+        }
+    };
+
+    return next_intersection;
+    //return f64_equals(p1.x, line.source.x) ? 
+    //   (line_contains_v2(line, &p3) ? p3 : p4) :
+    //    (line_contains_v2(line, &p1) ? p1 : p2);
+    //return (p1, p2, p3, p4);
 }
 
 fn slope_at_point_on_ellipse(x: f64, y: f64) -> Vector2D {
@@ -96,22 +114,8 @@ impl Problem for LaserBeamReflectionsProblem {
 
             let reflected_direction = v2_get_reflection_direction(&laser_beam.direction, &slope_normal);
             laser_beam.direction = Vector2D { x: reflected_direction.x, y: reflected_direction.y };
+            laser_beam.source = next_ellipse_intersection_point(&laser_beam);    
 
-            let (p1, p2, p3, p4) = ellipse_intersection_points(&laser_beam);
-
-            let new_source: Vector2D;
-            // TODO: init new_source to be the first point that falls on the new line
-            if line_contains_v2(&laser_beam, &p1) {
-                new_source = p1;
-            } else if line_contains_v2(&laser_beam, &p2) {
-                new_source = p2;
-            } else if line_contains_v2(&laser_beam, &p3) {
-                new_source = p3;
-            } else {
-                new_source = p4;
-            }
-
-            laser_beam.source = new_source;
             num_reflections += 1;
         }
 
