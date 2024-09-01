@@ -13,7 +13,7 @@ fn is_binary_palindrome(n: usize) -> bool {
     let mut i = 0;
     let mut j = binary_digits.len() - 1;
 
-    while i < j && i < binary_digits.len() && j >= 0 {
+    while i < j && i < binary_digits.len() {
         if binary_digits[i] != binary_digits[j] {
             return false;
         }
