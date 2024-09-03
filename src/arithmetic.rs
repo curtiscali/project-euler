@@ -1,6 +1,7 @@
 use std::mem;
 use num::{pow, BigInt};
 
+const EPSILON: f64 = 1E-11;
 const FISR_ACCURACY_LIMIT: usize = 410881;
 
 pub fn linear_sum(n: usize) -> usize {
@@ -12,7 +13,7 @@ pub fn quadratic_sum(n: usize) -> usize {
 }
 
 pub fn f64_equals(a: f64, b: f64) -> bool {
-    a - b < f64::EPSILON
+    (a - b).abs() < EPSILON
 }
 
 // Algo stolen from: https://github.com/emkw/rust-fast_inv_sqrt/blob/master/src/lib.rs#L65

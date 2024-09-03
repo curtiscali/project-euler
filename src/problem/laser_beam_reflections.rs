@@ -8,26 +8,23 @@ use crate::linear_algebra::{
     Line2D, 
     Vector2D
 };
-use crate::arithmetic::f64_equals;
 use super::Problem;
 
-enum Quadrant {
-    TopLeft,
-    TopRight,
-    BottomLeft,
-    BottomRight
-}
+const QUAD_TOP_RIGHT: u8 = 0;
+const QUAD_TOP_LEFT: u8 = 1;
+const QUAD_BOTTOM_RIGHT: u8 = 2;
+const QUAD_BOTTOM_LEFT: u8 = 3;
 
-fn v2_quadrant(p: &Vector2D) -> Quadrant {
+fn v2_quadrant(p: &Vector2D) -> u8 {
     if p.x >= 0.0 && p.y >= 0.0 {
-        return Quadrant::TopRight;
+        return QUAD_TOP_RIGHT;
     } else if p.x >= 0.0 && p.y < 0.0 {
-        return Quadrant::BottomRight;
+        return QUAD_BOTTOM_RIGHT;
     } else if p.x < 0.0 && p.y >= 0.0 {
-        return Quadrant::TopLeft;
+        return QUAD_TOP_LEFT;
     }
 
-    return Quadrant::BottomLeft;
+    return QUAD_BOTTOM_LEFT;
 }
 
 fn points_on_ellipse(x: f64) -> (Vector2D, Vector2D) {
@@ -53,26 +50,16 @@ fn next_ellipse_intersection_point(line: &Line2D) -> Vector2D {
     let x1 = ((-1.0 * b) + discriminant.sqrt()) / (2.0 * a);
     let x2 = ((-1.0 * b) - discriminant.sqrt()) / (2.0 * a);
 
+    let x1_diff = (line.source.x - x1).abs();
+    let x2_diff = (line.source.x - x2).abs();
+    
     let (p1, p2) = points_on_ellipse(x1);
     let (p3, p4) = points_on_ellipse(x2);
 
-    let q1 = v2_quadrant(&p1);
-    let q2 = v2_quadrant(&p2);
-    let q3 = v2_quadrant(&p3);
-    let q4 = v2_quadrant(&p4);
-
-    let next_intersection = if f64_equals(p1.x, line.source.x) {
-        if line_contains_v2(line, &p3) {
-            p3
-        } else {
-            p4
-        }
+    let next_intersection = if x1_diff > x2_diff {
+       if line_contains_v2(line, &p1) { p1 } else { p2 } 
     } else {
-        if line_contains_v2(line, &p1) {
-            p1
-        } else {
-            p2
-        }
+        if line_contains_v2(line, &p3) { p3 } else { p4 }
     };
 
     return next_intersection;
@@ -83,7 +70,8 @@ fn slope_at_point_on_ellipse(x: f64, y: f64) -> Vector2D {
 }
 
 fn has_exited_the_ellipse(laser: &Line2D) -> bool {
-    return laser.source.y >= 10.0 && (laser.source.x >= -0.01 && laser.source.x <= 0.01);
+    const Y_AT_001: f64 = 9.99998;
+    return laser.source.y >= Y_AT_001 && laser.source.x >= -0.01 && laser.source.x <= 0.01;
 }
 
 pub struct LaserBeamReflectionsProblem {}
@@ -108,7 +96,7 @@ impl Problem for LaserBeamReflectionsProblem {
 
         let mut num_reflections: u32 = 0;
         while !has_exited_the_ellipse(&laser_beam) {
-            /* ALGO:
+            /* ALGO
              * calculate slope of elipse @ impact point
              * determine which quadrant the impact point is, and use that to determine the normal vector
              * use normal vector to calculate reflection direction vector
@@ -121,17 +109,34 @@ impl Problem for LaserBeamReflectionsProblem {
             let slope_of_ellipse_at_impact = slope_at_point_on_ellipse(laser_beam.source.x, laser_beam.source.y);
             let slope_normal: Vector2D;
 
-            if slope_of_ellipse_at_impact.x >= 0.0 && slope_of_ellipse_at_impact.y >= 0.0 {
-                if laser_beam.source.y >= 0.0 {
-                    slope_normal = v2_get_normal_cw(&slope_of_ellipse_at_impact);
-                } else {
-                    slope_normal = v2_get_normal_ccw(&slope_of_ellipse_at_impact);
-                }
-            } else {
-                if laser_beam.source.y >= 0.0 {
-                    slope_normal = v2_get_normal_ccw(&slope_of_ellipse_at_impact);
-                } else {
-                    slope_normal = v2_get_normal_cw(&slope_of_ellipse_at_impact);
+            match v2_quadrant(&slope_of_ellipse_at_impact) {
+                QUAD_TOP_LEFT => {
+                    slope_normal = if laser_beam.source.y >= 0.0 {
+                        v2_get_normal_ccw(&slope_of_ellipse_at_impact)
+                    } else {
+                        v2_get_normal_cw(&slope_of_ellipse_at_impact)
+                    };
+                },
+                QUAD_TOP_RIGHT => {
+                    slope_normal = if laser_beam.source.y >= 0.0 {
+                        v2_get_normal_cw(&slope_of_ellipse_at_impact)
+                    } else {
+                        v2_get_normal_ccw(&slope_of_ellipse_at_impact)
+                    };
+                },
+                QUAD_BOTTOM_RIGHT => {
+                    slope_normal = if laser_beam.source.y >= 0.0 {
+                        v2_get_normal_cw(&slope_of_ellipse_at_impact)
+                    } else {
+                        v2_get_normal_ccw(&slope_of_ellipse_at_impact)
+                    };
+                },
+                _ => {
+                    slope_normal = if laser_beam.source.y >= 0.0 {
+                        v2_get_normal_ccw(&slope_of_ellipse_at_impact)
+                    } else {
+                        v2_get_normal_cw(&slope_of_ellipse_at_impact)
+                    };
                 }
             }
 
