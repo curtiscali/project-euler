@@ -47,6 +47,7 @@ use problem::{
     double_base_palindrome::DoubleBasePalindromeProblem,
     smallest_multiple::SmallestMultipleProblem,
     largest_prime_factor::LargestPrimeFactorProblem,
+    thousand_digit_fibonacci_number::ThousandDigitFibonacciNumberProblem,
     Problem
 };
 
@@ -57,7 +58,7 @@ pub mod strings;
 pub mod combinatorics;
 pub mod linear_algebra;
 
-/// Simple program to greet a person
+/// Simple program to greet a person:104
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
@@ -101,6 +102,7 @@ fn main() {
         (20, Box::new(FactorialDigitSum { n: 100 })),
         (22, Box::new(NamesScoresProblem {})),
         (24, Box::new(LexicographicPermutationsProblem {})),
+        (25, Box::new(ThousandDigitFibonacciNumberProblem {})),
         (28, Box::new(NumberPowerSpiralsProblem { spiral_size: 1001 })),
         (29, Box::new(DistinctPowersProblem { upper_bound: 100 })),
         (30, Box::new(DigitFifthPowersProblem {})),

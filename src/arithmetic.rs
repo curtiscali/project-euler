@@ -64,6 +64,18 @@ pub fn num_digits(n: usize) -> usize {
     return digit_count;
 }
 
+pub fn num_digits_bigint(n: &BigInt) -> BigInt {
+    let mut digit_count = BigInt::ZERO;
+    let mut number = BigInt::from(n.clone());
+
+    while number.gt(&BigInt::ZERO) {
+        digit_count = digit_count + 1;
+        number = number / 10; 
+    }
+
+    return digit_count;
+}
+
 pub fn to_digits(n: usize) -> Vec<usize> {
     let mut digits: Vec<usize> = Vec::new();
 

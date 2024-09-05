@@ -43,6 +43,7 @@ pub mod large_non_mersenne_prime;
 pub mod double_base_palindrome;
 pub mod smallest_multiple;
 pub mod largest_prime_factor;
+pub mod thousand_digit_fibonacci_number;
 
 pub trait Problem {
     fn solve(&self) -> String;
