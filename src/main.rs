@@ -84,7 +84,7 @@ fn main() {
     let problems_lookup: BTreeMap<u16, Box<dyn Problem>> = BTreeMap::from([
         (1, Box::new(MultiplesProblem { limit: 1000 }) as Box<dyn Problem>),
         (2, Box::new(EvenFibonacciProblem { limit: 4_000_000 })),
-        (3, Box::new(LargestPrimeFactorProblem { n: 600851475143 })),
+        (3, Box::new(LargestPrimeFactorProblem { n: 600_851_475_143 })),
         (4, Box::new(LargestPalindromeProduct { limit: 1000 })),
         (5, Box::new(SmallestMultipleProblem {})),
         (6, Box::new(SumSquareDifference { count: 100 }) ),
