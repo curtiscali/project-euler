@@ -146,3 +146,36 @@ pub fn reverse_u128(n: u128) -> u128 {
 pub fn is_u128_palindrome(n: u128) -> bool {
     return n == reverse_u128(n);
 }
+
+pub fn gcd_usize(a: usize, b: usize) -> usize {
+    let mut x = a;
+    let mut y = b;
+
+    while y != 0 {
+        let tmp = y;
+        y = x % y;
+        x = tmp;
+    }
+
+    return x;
+}
+
+pub fn lcm_usize(numbers: &Vec<usize>) -> usize {
+    if numbers.len() == 0 {
+        panic!("Cannot find the LCM of an empty vec");
+    }
+
+    let mut lcm = numbers[0];
+    let mut i = 0;
+    while i < numbers.len() {
+        let n = lcm;
+        let m = numbers[i];
+
+        let gcd = gcd_usize(n, m);
+        lcm = (lcm * numbers[i]) / gcd;
+
+        i += 1;
+    }
+
+    return lcm;
+}

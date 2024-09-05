@@ -45,6 +45,7 @@ use problem::{
     laser_beam_reflections::LaserBeamReflectionsProblem,
     large_non_mersenne_prime::LargeNonMersennePrimeProblem,
     double_base_palindrome::DoubleBasePalindromeProblem,
+    smallest_multiple::SmallestMultipleProblem,
     Problem
 };
 
@@ -83,6 +84,7 @@ fn main() {
         (1, Box::new(MultiplesProblem { limit: 1000 }) as Box<dyn Problem>),
         (2, Box::new(EvenFibonacciProblem { limit: 4_000_000 })),
         (4, Box::new(LargestPalindromeProduct { limit: 1000 })),
+        (5, Box::new(SmallestMultipleProblem {})),
         (6, Box::new(SumSquareDifference { count: 100 }) ),
         (7, Box::new(NthPrimeProblem { n: 10001 })),
         (8, Box::new(LargestProductProblem {})),
