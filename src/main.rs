@@ -46,6 +46,7 @@ use problem::{
     large_non_mersenne_prime::LargeNonMersennePrimeProblem,
     double_base_palindrome::DoubleBasePalindromeProblem,
     smallest_multiple::SmallestMultipleProblem,
+    largest_prime_factor::LargestPrimeFactorProblem,
     Problem
 };
 
@@ -83,6 +84,7 @@ fn main() {
     let problems_lookup: BTreeMap<u16, Box<dyn Problem>> = BTreeMap::from([
         (1, Box::new(MultiplesProblem { limit: 1000 }) as Box<dyn Problem>),
         (2, Box::new(EvenFibonacciProblem { limit: 4_000_000 })),
+        (3, Box::new(LargestPrimeFactorProblem { n: 600851475143 })),
         (4, Box::new(LargestPalindromeProduct { limit: 1000 })),
         (5, Box::new(SmallestMultipleProblem {})),
         (6, Box::new(SumSquareDifference { count: 100 }) ),

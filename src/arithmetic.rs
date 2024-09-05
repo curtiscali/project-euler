@@ -179,3 +179,7 @@ pub fn lcm_usize(numbers: &Vec<usize>) -> usize {
 
     return lcm;
 }
+
+pub fn sqrt_usize(n: usize) -> usize {
+    ((n as f64).sqrt() + 0.5) as usize
+}
