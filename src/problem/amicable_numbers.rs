@@ -1,7 +1,3 @@
-use std::collections::HashMap;
-
-use crate::primes::sieve_of_atkin;
-
 use super::Problem;
 
 fn proper_divisors_sum(n: usize) -> usize {
