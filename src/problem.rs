@@ -44,6 +44,7 @@ pub mod double_base_palindrome;
 pub mod smallest_multiple;
 pub mod largest_prime_factor;
 pub mod thousand_digit_fibonacci_number;
+pub mod amicable_numbers;
 
 pub trait Problem {
     fn solve(&self) -> String;

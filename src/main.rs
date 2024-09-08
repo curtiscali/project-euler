@@ -48,6 +48,7 @@ use problem::{
     smallest_multiple::SmallestMultipleProblem,
     largest_prime_factor::LargestPrimeFactorProblem,
     thousand_digit_fibonacci_number::ThousandDigitFibonacciNumberProblem,
+    amicable_numbers::AmicableNumbersProblem,
     Problem
 };
 
@@ -100,6 +101,7 @@ fn main() {
         (16, Box::new(PowerDigitSum {})),
         (17, Box::new(NumberLetterCountsProblem {})),
         (20, Box::new(FactorialDigitSum { n: 100 })),
+        (21, Box::new(AmicableNumbersProblem { limit: 10_000 })),
         (22, Box::new(NamesScoresProblem {})),
         (24, Box::new(LexicographicPermutationsProblem {})),
         (25, Box::new(ThousandDigitFibonacciNumberProblem {})),

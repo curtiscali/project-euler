@@ -18,3 +18,57 @@ pub fn primes_below(n: usize) -> Vec<bool> {
 
     return primes;
 }
+
+pub fn sieve_of_atkin(n: usize) -> Vec<bool> {
+    let mut primes = vec![false; n + 1];
+
+    if n > 2 {
+        primes[2] = true;
+    }
+
+    if n > 3 {
+        primes[3] = true;
+    }
+
+    let mut x = 1;
+    while x * x <= n {
+        let mut y = 1;
+        while y * y <= n {
+            let mut m = (4 * x * x) + (y * y);
+            if m <= n && (m % 12 == 1 || m % 12 == 5) {
+                primes[m] ^= true;
+            }
+
+            m = (3 * x * x) + (y * y);
+            if m <= n && m % 12 == 7 {
+                primes[m] ^= true;
+            }
+
+            if x > y {
+                m = (3 * x * x) - (y * y);
+                if m <= n && m % 12 == 11 {
+                    primes[m] ^= true;
+                }
+            }
+
+            y += 1;
+        }
+
+        x += 1;
+    }
+
+    let mut r = 5;
+    while r * r <= n {
+        if primes[r] {
+            let mut i = r * r;
+            while i <= n {
+                primes[i] = false;
+                i += r * r;
+            }
+        }
+
+        r += 1;
+    }
+
+    return primes;
+}
