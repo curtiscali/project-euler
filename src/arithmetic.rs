@@ -88,6 +88,18 @@ pub fn to_digits(n: usize) -> Vec<usize> {
     return digits;
 }
 
+pub fn u64_to_digits(n: u64) -> Vec<u8> {
+    let mut digits: Vec<u8> = Vec::new();
+
+    let mut i = n;
+    while i > 0 {
+        digits.insert(0, (i % 10) as u8);
+        i /= 10;
+    }
+
+    return digits;
+}
+
 pub fn from_digits(digits: Vec<usize>) -> usize {
     let mut number: usize = 0;
     let mut i = 0;
@@ -194,4 +206,29 @@ pub fn lcm_usize(numbers: &Vec<usize>) -> usize {
 
 pub fn sqrt_usize(n: usize) -> usize {
     ((n as f64).sqrt() + 0.5) as usize
+}
+
+// Tis function based on the fourier transform: https://cp-algorithms.com/algebra/phi-function.html#etf_1_to_n
+pub fn totient(n: u64) -> u64 {
+    let mut totient = n;
+    let mut i = 2;
+
+    let mut x = n;
+    while i * i < x {
+        if x % i  == 0 {
+            while x % i == 0 {
+                x /= i;
+            }
+
+            totient -= totient / i;
+        }
+
+        i += 1;
+    }
+
+    if x > 1 {
+        totient -= totient / x;
+    }
+
+    return totient;
 }

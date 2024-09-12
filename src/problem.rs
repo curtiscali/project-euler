@@ -45,6 +45,7 @@ pub mod smallest_multiple;
 pub mod largest_prime_factor;
 pub mod thousand_digit_fibonacci_number;
 pub mod amicable_numbers;
+pub mod totient_permutation;
 
 pub trait Problem {
     fn solve(&self) -> String;

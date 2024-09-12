@@ -49,6 +49,7 @@ use problem::{
     largest_prime_factor::LargestPrimeFactorProblem,
     thousand_digit_fibonacci_number::ThousandDigitFibonacciNumberProblem,
     amicable_numbers::AmicableNumbersProblem,
+    totient_permutation::TotientPermutationProblem,
     Problem
 };
 
@@ -126,6 +127,7 @@ fn main() {
         (55, Box::new(LychrelNumbersProblem { upper_bound: 10_000 })),
         (56, Box::new(PowerDigitSumProblem { upper_bound: 100 })),
         (69, Box::new(TotientMaximumProblem { upper_bound: 1_000_000 })),
+        (70, Box::new(TotientPermutationProblem { upper_bound: 10_000_000 })),
         (85, Box::new(CountingRectanglesProblem { target_rectangle_count: 2_000_000 })),
         (89, Box::new(RomanNumeralsProblem {})),
         (92, Box::new(SquareDigitChainsProblem { upper_bound: 10_000_000})),
