@@ -1,10 +1,10 @@
-use crate::combinatorics::combinations_usize;
+use crate::combinatorics::combinations;
 use super::Problem;
 
 pub struct LatticePathsProblem { }
 
 impl Problem for LatticePathsProblem {
     fn solve(&self) -> String {
-        return format!("{}", combinations_usize(40, 20));
+            return format!("{}", combinations(40u64, 20u64));
     }
 }

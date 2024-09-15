@@ -1,25 +1,13 @@
-use num::BigInt;
+use num::Num;
 
-pub fn combinations_bigint(n: BigInt, r: BigInt) -> BigInt {
-    let mut num_combos = BigInt::from(1);
+pub fn combinations<T: Num + Clone + PartialOrd>(n: T, r: T) -> T {
+    let mut num_combos = T::one();
 
-    let mut i = BigInt::ZERO;
+    let mut i = T::zero();
     while i < r {
-        num_combos = num_combos * ((n.clone() - i.clone()) / (i.clone() + BigInt::from(1)));
-        i = i + 1;
+        num_combos = num_combos * ((n.clone() - i.clone()) / (i.clone() + T::one()));
+        i = i + T::one();
     }
 
     return num_combos;
-}
-
-pub fn combinations_usize(n: usize, r: usize) -> usize {
-    let mut combos = 1;
-
-    let mut i = 0;
-    while i < r {
-        combos *= (n - i) / (i + 1);
-        i += 1;
-    }
-
-    return combos;
 }
