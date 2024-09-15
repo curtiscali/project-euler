@@ -1,3 +1,5 @@
+use num::Num;
+
 pub fn primes_below(n: usize) -> Vec<bool> {
     let vec_len = n - 2;
     let mut primes = vec![true; vec_len];
@@ -71,4 +73,32 @@ pub fn sieve_of_atkin(n: usize) -> Vec<bool> {
     }
 
     return primes;
+}
+
+pub fn prime_factors<T: Num + Copy + PartialOrd>(number: T) -> Vec<T> {
+    let two = T::one() + T::one();
+
+    let mut factors: Vec<T> = vec![];
+    let mut n = number;
+
+    while n % two == T::zero() {
+        factors.push(two);
+        n = n / two;
+    }
+
+    let mut i = T::one() + T::one() + T::one();
+    while i * i <= n {   
+        while n % i == T::zero() {
+            factors.push(i);
+            n = n / i;
+        }
+
+        i = i + two;
+    }
+
+    if n > two {
+        factors.push(n);
+    }
+
+    return factors;
 }

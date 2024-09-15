@@ -1,5 +1,5 @@
 use std::mem;
-use num::{pow, BigInt};
+use num::{pow, BigInt, Num, Unsigned};
 
 const EPSILON: f64 = 1E-11;
 const FISR_ACCURACY_LIMIT: usize = 410881;
@@ -53,48 +53,47 @@ pub fn is_triangular(n: usize) -> bool {
     return is_perfect_square((8 * n) + 1);
 }
 
-pub fn num_digits(n: usize) -> usize {
-    let mut digit_count = 0;
+pub fn num_digits<T: Num + Clone + PartialOrd>(n: T) -> T {
+    let ten = T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one();
+
+    let mut digit_count = T::zero();
     let mut number = n;
-    while number > 0 {
-        digit_count += 1;
-        number /= 10;
+    while number > T::zero() {
+        digit_count = digit_count + T::one();
+        number = number / ten.clone();
     }
 
     return digit_count;
 }
 
-pub fn num_digits_bigint(n: &BigInt) -> BigInt {
-    let mut digit_count = BigInt::ZERO;
-    let mut number = BigInt::from(n.clone());
 
-    while number.gt(&BigInt::ZERO) {
-        digit_count = digit_count + 1;
-        number = number / 10; 
-    }
+pub fn to_digits<T: Unsigned + Copy + PartialOrd>(n: T) -> Vec<T> {
+    let ten = T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one();
 
-    return digit_count;
-}
-
-pub fn to_digits(n: usize) -> Vec<usize> {
-    let mut digits: Vec<usize> = Vec::new();
-
-    let mut i = n;
-    while i > 0 {
-        digits.insert(0, i % 10);
-        i /= 10;
-    }
-
-    return digits;
-}
-
-pub fn u64_to_digits(n: u64) -> Vec<u8> {
-    let mut digits: Vec<u8> = Vec::new();
+    let mut digits: Vec<T> = Vec::new();
 
     let mut i = n;
-    while i > 0 {
-        digits.insert(0, (i % 10) as u8);
-        i /= 10;
+    while i > T::zero() {
+        digits.insert(0, i % ten);
+        i = i / ten;
     }
 
     return digits;
@@ -111,13 +110,24 @@ pub fn from_digits(digits: Vec<usize>) -> usize {
     return number;
 }
 
-pub fn bigint_digit_sum(number: BigInt) -> BigInt {
-    let mut n = number.clone();
-    let mut digit_sum = BigInt::ZERO;
+pub fn digit_sum<T: Num + Clone + PartialOrd>(number: T) -> T {
+    let ten = T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one();
 
-    while n > BigInt::ZERO {
-        digit_sum = digit_sum + (n.clone() % 10);
-        n = n / 10;
+    let mut n = number;
+    let mut digit_sum = T::zero();
+
+    while n > T::zero() {
+        digit_sum = digit_sum + (n.clone() % ten.clone());
+        n = n / ten.clone();
     }
 
     return digit_sum;
@@ -137,46 +147,42 @@ pub fn factorial(n: usize, solutions: &mut Vec<BigInt>) -> BigInt {
     return solutions[n - 1].clone();
 }
 
-pub fn reverse_usize(n: usize) -> usize {
-    let mut reversed_number = 0;
+pub fn reverse<T: Unsigned + Copy + PartialOrd>(n: T) -> T {
+    let ten = T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one();
+
+
+    let mut reversed_number = T::zero();
     let mut i = n;
 
-    while i > 0 {
-        reversed_number = reversed_number * 10;
-        reversed_number = reversed_number + (i % 10);
-        i = i / 10;
+    while i > T::zero() {
+        reversed_number = reversed_number * ten;
+        reversed_number = reversed_number + (i % ten);
+        i = i / ten;
     }
     
     return reversed_number;
+
 }
 
-pub fn is_usize_palindrome(n: usize) -> bool {
-    return n == reverse_usize(n);
+pub fn is_palindrome<T: Unsigned + Copy + PartialOrd>(n: T) -> bool {
+    n == reverse(n)
 }
 
-pub fn reverse_u128(n: u128) -> u128 {
-    let mut reversed_number = 0;
-    let mut i = n;
-
-    while i > 0 {
-        reversed_number = reversed_number * 10;
-        reversed_number = reversed_number + (i % 10);
-        i = i / 10;
-    }
-    
-    return reversed_number;
-}
-
-pub fn is_u128_palindrome(n: u128) -> bool {
-    return n == reverse_u128(n);
-}
-
-pub fn gcd_usize(a: usize, b: usize) -> usize {
+pub fn gcd<T: Unsigned + Copy>(a: T, b: T) -> T {
     let mut x = a;
     let mut y = b;
 
-    while y != 0 {
-        let tmp = y;
+    while y != T::zero() {
+        let tmp = y.clone();
         y = x % y;
         x = tmp;
     }
@@ -184,7 +190,7 @@ pub fn gcd_usize(a: usize, b: usize) -> usize {
     return x;
 }
 
-pub fn lcm_usize(numbers: &Vec<usize>) -> usize {
+pub fn lcm<T: Unsigned + Copy>(numbers: &Vec<T>) -> T {
     if numbers.len() == 0 {
         panic!("Cannot find the LCM of an empty vec");
     }
@@ -195,7 +201,7 @@ pub fn lcm_usize(numbers: &Vec<usize>) -> usize {
         let n = lcm;
         let m = numbers[i];
 
-        let gcd = gcd_usize(n, m);
+        let gcd = gcd(n, m);
         lcm = (lcm * numbers[i]) / gcd;
 
         i += 1;
@@ -209,26 +215,45 @@ pub fn sqrt_usize(n: usize) -> usize {
 }
 
 // Tis function based on the fourier transform: https://cp-algorithms.com/algebra/phi-function.html#etf_1_to_n
-pub fn totient(n: u64) -> u64 {
+pub fn totient<T: Unsigned + Copy + PartialOrd>(n: T) -> T {
     let mut totient = n;
-    let mut i = 2;
+    let mut i = T::one() + T::one();
 
     let mut x = n;
     while i * i < x {
-        if x % i  == 0 {
-            while x % i == 0 {
-                x /= i;
+        if x % i  == T::zero() {
+            while x % i == T::zero() {
+                x = x / i;
             }
 
-            totient -= totient / i;
+            totient = totient - (totient / i);
         }
 
-        i += 1;
+        i = i + T::one();
     }
 
-    if x > 1 {
-        totient -= totient / x;
+    if x > T::one() {
+        totient = totient - (totient / x);
     }
 
     return totient;
+}
+
+pub fn factors<T: Unsigned + Copy + PartialEq + PartialOrd>(n: T) -> Vec<T> {
+    let mut i = T::one() + T::one();
+    let mut factors: Vec<T> = vec![];
+
+    while i * i <= n {
+        if n % i == T::zero() {
+            let factor_1 = i;
+            let factor_2 = n / i;
+
+            factors.push(factor_1);
+            factors.push(factor_2);
+        }
+
+        i = i + T::one();
+    }
+
+    return factors;
 }

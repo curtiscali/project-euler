@@ -1,6 +1,6 @@
 use num::BigInt;
 
-use crate::arithmetic::bigint_digit_sum;
+use crate::arithmetic::digit_sum;
 
 use super::Problem;
 
@@ -22,7 +22,7 @@ impl Problem for PowerDigitSumProblem {
             let mut j = 1;
             while j <= self.upper_bound {
                 let evaluated = BigInt::from(i).pow(j as u32);
-                let digit_sum = bigint_digit_sum(evaluated);
+                let digit_sum = digit_sum(evaluated.clone());
 
                 if digit_sum > max_digit_sum {
                     max_digit_sum = digit_sum.clone();

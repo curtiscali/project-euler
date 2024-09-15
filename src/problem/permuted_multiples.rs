@@ -5,7 +5,7 @@ pub struct PermutedMultiplesProblem {}
 
 impl Problem for PermutedMultiplesProblem {
     fn solve(&self) -> String {
-        let mut i = 125_875;
+        let mut i: u64 = 125_875;
         let mut found_number = false;
         let mut matching_number = 125_874;
 

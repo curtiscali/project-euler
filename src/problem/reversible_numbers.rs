@@ -1,4 +1,4 @@
-use crate::arithmetic::reverse_usize;
+use crate::arithmetic::reverse;
 
 use super::Problem;
 
@@ -28,7 +28,7 @@ impl Problem for ReversibleNumbersProblem {
         let mut i = 1;
         while i < self.upper_bound {
             if i % 10 != 0 {
-                let rev = reverse_usize(i);
+                let rev = reverse(i);
                 let rev_sum = i + rev;
 
                 if are_all_digits_odd(rev_sum) {

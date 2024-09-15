@@ -2,55 +2,7 @@ use std::time::Instant;
 use std::collections::BTreeMap;
 use clap::Parser;
 use problem::{
-    champernownes_constant::ChampernownesConstantProblem, 
-    circular_primes::CircularPrimesProblem, 
-    coded_triangle_numbers::CodedTriangleNumbersProblem, 
-    digit_factorials::DigitFactorialsProblem, 
-    digit_fifth_powers::DigitFifthPowersProblem, 
-    distinct_powers::DistinctPowersProblem,
-    even_fibonacci::EvenFibonacciProblem, 
-    factorial_digit_sum::FactorialDigitSum, 
-    highly_divisible_triangle_number::HighlyDivisibleTriangleNumber,
-    large_sum::LargeSumProblem, 
-    largest_exponential::LargestExponentialProblem, 
-    largest_palindrome_product::LargestPalindromeProduct, 
-    largest_product::LargestProductProblem, 
-    lattice_paths::LatticePathsProblem, 
-    lexicographic_permutations::LexicographicPermutationsProblem, 
-    longest_collatz_sequence::LongestCollatzSequenceProblem, 
-    multiples::MultiplesProblem, 
-    names_scores::NamesScoresProblem,
-    number_letter_counts::NumberLetterCountsProblem, 
-    number_power_spirals::NumberPowerSpiralsProblem, 
-    pandigital_prime::PandigitalPrimeProblem, 
-    power_digit_sum::PowerDigitSum, 
-    prime_10001::NthPrimeProblem, 
-    self_powers::SelfPowersProblem, 
-    special_pythagorean_triplet::SpecialPythagoreanTripletProblem, 
-    sum_square_difference::SumSquareDifference, 
-    summation_of_primes::SummationOfPrimes, 
-    triangle_containment::TriangleContainmentProblem,
-    triangular_pentagonal_hexagonal::TriangularPentagonalHexagonalNumberProblem,
-    integer_right_triangles::IntegerRightTrianglesProblem,
-    permuted_multiples::PermutedMultiplesProblem,
-    combinatoric_selections::CombinatoricSelectionsProblem,
-    lychrel_numbers::LychrelNumbersProblem,
-    powerful_digit_sum::PowerDigitSumProblem,
-    totient_maximum::TotientMaximumProblem,
-    roman_numerals::RomanNumeralsProblem,
-    coin_sums::CoinSumProblem,
-    reversible_numbers::ReversibleNumbersProblem,
-    counting_rectangles::CountingRectanglesProblem,
-    square_digit_chains::SquareDigitChainsProblem,
-    laser_beam_reflections::LaserBeamReflectionsProblem,
-    large_non_mersenne_prime::LargeNonMersennePrimeProblem,
-    double_base_palindrome::DoubleBasePalindromeProblem,
-    smallest_multiple::SmallestMultipleProblem,
-    largest_prime_factor::LargestPrimeFactorProblem,
-    thousand_digit_fibonacci_number::ThousandDigitFibonacciNumberProblem,
-    amicable_numbers::AmicableNumbersProblem,
-    totient_permutation::TotientPermutationProblem,
-    Problem
+    amicable_numbers::AmicableNumbersProblem, champernownes_constant::ChampernownesConstantProblem, circular_primes::CircularPrimesProblem, coded_triangle_numbers::CodedTriangleNumbersProblem, coin_sums::CoinSumProblem, combinatoric_selections::CombinatoricSelectionsProblem, counting_rectangles::CountingRectanglesProblem, digit_factorials::DigitFactorialsProblem, digit_fifth_powers::DigitFifthPowersProblem, distinct_powers::DistinctPowersProblem, double_base_palindrome::DoubleBasePalindromeProblem, even_fibonacci::EvenFibonacciProblem, factorial_digit_sum::FactorialDigitSum, highly_divisible_triangle_number::HighlyDivisibleTriangleNumber, integer_right_triangles::IntegerRightTrianglesProblem, large_non_mersenne_prime::LargeNonMersennePrimeProblem, large_sum::LargeSumProblem, largest_exponential::LargestExponentialProblem, largest_palindrome_product::LargestPalindromeProduct, largest_prime_factor::LargestPrimeFactorProblem, largest_product::LargestProductProblem, laser_beam_reflections::LaserBeamReflectionsProblem, lattice_paths::LatticePathsProblem, lexicographic_permutations::LexicographicPermutationsProblem, longest_collatz_sequence::LongestCollatzSequenceProblem, lychrel_numbers::LychrelNumbersProblem, multiples::MultiplesProblem, names_scores::NamesScoresProblem, number_letter_counts::NumberLetterCountsProblem, number_power_spirals::NumberPowerSpiralsProblem, ordered_fractions::OrderedFractionsProblem, pandigital_prime::PandigitalPrimeProblem, permuted_multiples::PermutedMultiplesProblem, power_digit_sum::PowerDigitSum, powerful_digit_sum::PowerDigitSumProblem, prime_10001::NthPrimeProblem, reversible_numbers::ReversibleNumbersProblem, roman_numerals::RomanNumeralsProblem, self_powers::SelfPowersProblem, smallest_multiple::SmallestMultipleProblem, special_pythagorean_triplet::SpecialPythagoreanTripletProblem, square_digit_chains::SquareDigitChainsProblem, sum_square_difference::SumSquareDifference, summation_of_primes::SummationOfPrimes, thousand_digit_fibonacci_number::ThousandDigitFibonacciNumberProblem, totient_maximum::TotientMaximumProblem, totient_permutation::TotientPermutationProblem, triangle_containment::TriangleContainmentProblem, triangular_pentagonal_hexagonal::TriangularPentagonalHexagonalNumberProblem, Problem
 };
 
 pub mod problem;
@@ -128,6 +80,7 @@ fn main() {
         (56, Box::new(PowerDigitSumProblem { upper_bound: 100 })),
         (69, Box::new(TotientMaximumProblem { upper_bound: 1_000_000 })),
         (70, Box::new(TotientPermutationProblem { upper_bound: 10_000_000 })),
+        (71, Box::new(OrderedFractionsProblem { denom_limit: 1_000_000 })),
         (85, Box::new(CountingRectanglesProblem { target_rectangle_count: 2_000_000 })),
         (89, Box::new(RomanNumeralsProblem {})),
         (92, Box::new(SquareDigitChainsProblem { upper_bound: 10_000_000})),
@@ -143,7 +96,7 @@ fn main() {
             match problems_lookup.get(&problem_number) {
                 Some(selected_problem) => {
                     print_solution(problem_number, selected_problem.as_ref());
-                },
+                }
                 None => {
                     println!("Problem {} has not yet been solved", problem_number);
                 }

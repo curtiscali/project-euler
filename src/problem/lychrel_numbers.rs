@@ -1,4 +1,4 @@
-use crate::arithmetic::{reverse_u128, is_u128_palindrome};
+use crate::arithmetic::{reverse, is_palindrome};
 use super::Problem;
 
 fn is_lychrel_number(n: u128) -> bool {
@@ -7,8 +7,8 @@ fn is_lychrel_number(n: u128) -> bool {
     let mut i = 0;
     let mut x = n;
     while i < MAX_LYCHREL_ITERATIONS {
-        let number = x + reverse_u128(x);
-        if is_u128_palindrome(number) {
+        let number = x + reverse(x);
+        if is_palindrome(number) {
             return false;
         }
 

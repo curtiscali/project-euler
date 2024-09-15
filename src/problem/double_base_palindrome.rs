@@ -1,5 +1,5 @@
 use super::Problem;
-use crate::arithmetic::is_usize_palindrome;
+use crate::arithmetic::is_palindrome;
 
 fn is_binary_palindrome(n: usize) -> bool {
     let mut binary_digits: Vec<usize> = vec![];
@@ -35,7 +35,7 @@ impl Problem for DoubleBasePalindromeProblem {
         let mut i: usize = 1;
 
         while i < self.upper_bound {
-            if is_usize_palindrome(i) && is_binary_palindrome(i) {
+            if is_palindrome(i) && is_binary_palindrome(i) {
                 palindrome_sum += i;
             }
 
