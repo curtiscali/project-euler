@@ -5,6 +5,4 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "4.5.13", features = ["derive"] }
-fraction = "0.15.3"
 num = "0.4.3"
-regex = { version = "1.10.6", features = ["std"] }
