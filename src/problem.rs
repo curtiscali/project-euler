@@ -47,6 +47,7 @@ pub mod thousand_digit_fibonacci_number;
 pub mod amicable_numbers;
 pub mod totient_permutation;
 pub mod ordered_fractions;
+pub mod counting_fractions_in_a_range;
 
 pub trait Problem {
     fn solve(&self) -> String;

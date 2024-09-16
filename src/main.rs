@@ -51,6 +51,7 @@ use problem::{
     totient_permutation::TotientPermutationProblem,
     triangle_containment::TriangleContainmentProblem,
     triangular_pentagonal_hexagonal::TriangularPentagonalHexagonalNumberProblem,
+    counting_fractions_in_a_range::CountingFractionsInARangeProblem,
     Problem
 };
 
@@ -60,6 +61,7 @@ pub mod arithmetic;
 pub mod strings;
 pub mod combinatorics;
 pub mod linear_algebra;
+pub mod fractions;
 
 /// Simple program to greet a person:104
 #[derive(Parser, Debug)]
@@ -130,6 +132,7 @@ fn main() {
         (69, Box::new(TotientMaximumProblem { upper_bound: 1_000_000 })),
         (70, Box::new(TotientPermutationProblem { upper_bound: 10_000_000 })),
         (71, Box::new(OrderedFractionsProblem { denom_limit: 1_000_000 })),
+        (73, Box::new(CountingFractionsInARangeProblem { denom_limit: 12_000 })),
         (85, Box::new(CountingRectanglesProblem { target_rectangle_count: 2_000_000 })),
         (89, Box::new(RomanNumeralsProblem {})),
         (92, Box::new(SquareDigitChainsProblem { upper_bound: 10_000_000})),
