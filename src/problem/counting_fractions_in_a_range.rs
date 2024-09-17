@@ -1,7 +1,36 @@
-use std::collections::BTreeSet;
-
 use super::Problem;
-use crate::{arithmetic::factors, fractions::Fraction};
+use crate::primes::sieve_of_atkin;
+
+// F(limit) = sum(((n - 1) / 2) - (n / 3)) 
+fn fraction_count(limit: usize) -> usize {
+    let mut fraction_count = 0;
+    let mut n = 1;
+    while n <= limit {
+        fraction_count += ((n - 1) / 2) - (n / 3);
+        n += 1;
+    }
+
+    fraction_count
+}
+
+// Use the inclusion-exclusion principle to count fractions in a range
+fn inclusion_exclusion(limit: usize, index: usize, primes: &Vec<usize>) -> usize {
+    // count of all discrete fractions with d <= limit
+    let mut count = fraction_count(limit);
+
+    // For each computed prime:
+    // find the new limit = 5 * primes[i]
+    // subtract all the fractions that divide that prime from the total & do that in the next
+    // index
+    let mut i = index;
+    while i < primes.len() && (5 * primes[i] <= limit) {
+        let new_limit = limit / primes[i];
+        count -= inclusion_exclusion(new_limit, i + 1, primes);
+        i += 1;
+    }
+
+    return count;
+}
 
 pub struct CountingFractionsInARangeProblem {
     pub denom_limit: usize
@@ -9,47 +38,21 @@ pub struct CountingFractionsInARangeProblem {
 
 impl Problem for CountingFractionsInARangeProblem {
     fn solve(&self) -> String {
-        let mut denoms_to_examine = vec![true; self.denom_limit + 1];
-        denoms_to_examine[0] = false;
-        denoms_to_examine[1] = false;
-
-        let mut i = denoms_to_examine.len() - 1;
-        while i > 1 {
-            if denoms_to_examine[i] {
-                for factor in factors(i) {
-                    denoms_to_examine[factor] = false;
-                }
+        // The largest primes needed for inclusion/exclusion principle are the limit / 5
+        // This reduces the needed computations
+        // Fractions aren't reduced if a prime divides the numerator AND denominator]
+        // That's what the primes are used for
+        let primes_below_limit_lookup = sieve_of_atkin((self.denom_limit / 5) + 1);
+        let mut primes_below_limit: Vec<usize> = vec![];
+        let mut i = 0; 
+        while i < primes_below_limit_lookup.len() {
+            if primes_below_limit_lookup[i] {
+                primes_below_limit.push(i);
             }
 
-
-            i -= 1;
+            i += 1;
         }
 
-        let mut discovered_fractions: BTreeSet<Fraction> = BTreeSet::new();
-        let mut d = denoms_to_examine.len() - 1;
-        while denoms_to_examine[d] {
-            let mut n = d - 1;
-            while n > 0 {
-                let reduced_frac = Fraction::reduced(n as u32, d as u32);
-
-                if !discovered_fractions.contains(&reduced_frac) {
-                    discovered_fractions.insert(reduced_frac);
-                }
-
-                n -= 1;
-            }
-
-            d -= 1;
-        }
-
-        let one_third = Fraction::new(1, 3);
-        let one_half = Fraction::new(1, 2);
-
-        let ordered_fractions_list: Vec<Fraction> = discovered_fractions.into_iter().collect();
-
-        let one_third_index = ordered_fractions_list.binary_search(&one_third).ok().unwrap();
-        let one_half_index = ordered_fractions_list.binary_search(&one_half).ok().unwrap();
-
-        return format!("{}", one_half_index - one_third_index - 1);
+        return format!("{}", inclusion_exclusion(self.denom_limit, 0, &primes_below_limit));
     }
 }
