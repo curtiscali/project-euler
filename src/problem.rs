@@ -48,6 +48,7 @@ pub mod amicable_numbers;
 pub mod totient_permutation;
 pub mod ordered_fractions;
 pub mod counting_fractions_in_a_range;
+pub mod counting_fractions;
 
 pub trait Problem {
     fn solve(&self) -> String;
