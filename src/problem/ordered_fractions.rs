@@ -1,58 +1,41 @@
-use crate::arithmetic::{factors, gcd};
+use std::collections::{BTreeSet, VecDeque};
 use super::Problem;
 use crate::fractions::Fraction;
 
+struct SternBrocotParameters {
+    left: Fraction,
+    right: Fraction
+}
+
 pub struct OrderedFractionsProblem {
-    pub denom_limit: usize
+    pub denom_limit: u32
 }
 
 impl Problem for OrderedFractionsProblem {
     fn solve(&self) -> String {
-        let mut denoms_to_examine = vec![true; self.denom_limit + 1];
-        denoms_to_examine[0] = false;
-        denoms_to_examine[1] = false;
+        let source_fraction = Fraction::new(1, 3);
+        let target_fraction = Fraction::new(1, 2);
+        let mut generated_fractions: BTreeSet<Fraction> = BTreeSet::new();
 
-        let mut i = denoms_to_examine.len() - 1;
-        while i > 1 {
-            if denoms_to_examine[i] {
-                for factor in factors(i) {
-                    denoms_to_examine[factor] = false;
-                }
+        let mut stack: VecDeque<SternBrocotParameters> = VecDeque::with_capacity(self.denom_limit as usize);
+        stack.push_front(SternBrocotParameters { left: source_fraction, right: target_fraction });
+
+        while !stack.is_empty() {
+            let SternBrocotParameters { left, right } = stack.pop_front().unwrap();
+
+            let middle_fraction = Fraction::new(left.numerator + right.numerator, left.denominator + right.denominator);
+            if middle_fraction.denominator <= self.denom_limit {
+                generated_fractions.insert(middle_fraction);
+
+                stack.push_front(SternBrocotParameters { left, right: middle_fraction });
+                stack.push_front(SternBrocotParameters { left: middle_fraction, right });
             }
-
-
-            i -= 1;
         }
 
-        let mut discovered_fractions: Vec<Fraction> = vec![];
-        let mut d = denoms_to_examine.len() - 1;
-        while denoms_to_examine[d] {
-            let mut n = d - 1;
-            while n > 0 {
-                let reduced_frac = Fraction::reduced(n as u32, d as u32);
-
-                match discovered_fractions.binary_search(&reduced_frac) {
-                    Ok(_) => {}, // if we've added it we don't need to do anything
-                    Err(insert_index) => {
-                        discovered_fractions.insert(insert_index, reduced_frac);
-                    }
-                }
-
-                n -= 1;
-            }
-
-            d -= 1;
-        }
-
-        let three_sevenths = Fraction::new(3, 7);
-        let found_fraction = match discovered_fractions.binary_search(&three_sevenths) {
-            Ok(index_of_three_sevenths) => Some(discovered_fractions[index_of_three_sevenths - 1]),
-            Err(_) => None
-        };
-
-        match found_fraction {
-            Some(frac) => format!("{}", frac),
-            None => String::from("No fraciton found")
+        let sorted_fractions: Vec<Fraction> = generated_fractions.into_iter().collect();
+        match sorted_fractions.binary_search(&Fraction::new(3, 7)) {
+            Ok(index_of_three_sevenths) => format!("{}", sorted_fractions[index_of_three_sevenths - 1]),
+            Err(_) => String::from("No fraction was found")
         }
     }
 }

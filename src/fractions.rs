@@ -1,7 +1,7 @@
 use std::{cmp::Ordering, fmt::Display};
 use crate::arithmetic::{factors, gcd};
 
-#[derive(PartialOrd, Copy, Clone)]
+#[derive(PartialOrd, Copy, Clone, Debug)]
 pub struct Fraction {
     pub numerator: u32,
     pub denominator: u32
@@ -32,8 +32,17 @@ impl Ord for Fraction {
         if self.eq(other) {
             Ordering::Equal
         } else {
-            let this_as_f64 = (self.numerator as f64) / (self.denominator as f64);
-            let other_as_f64 = (other.numerator as f64) / (other.denominator as f64);
+            let this_as_f64 = if self.denominator == 0 {
+                f64::INFINITY
+            } else {
+                (self.numerator as f64) / (self.denominator as f64)
+            };
+
+            let other_as_f64 = if other.denominator == 0 {
+                f64::INFINITY
+            } else {
+                (other.numerator as f64) / (other.denominator as f64)
+            };
 
             if this_as_f64 > other_as_f64 {
                 Ordering::Greater

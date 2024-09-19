@@ -2,15 +2,8 @@ use super::Problem;
 use crate::primes::sieve_of_atkin;
 
 fn fraction_count(limit: u32) -> u128 {
-    let mut fraction_count = 0u128;
-    let mut i = 2;
-    while i <= limit {
-        let n = i as u128;
-        fraction_count += n - 1;
-        i += 1;
-    }
-
-    fraction_count
+    let n = limit as u128;
+    ((n * (n + 1)) / 2) - n
 }
 
 // Use the inclusion-exclusion principle to count fractions in a range
