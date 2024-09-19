@@ -53,6 +53,7 @@ use problem::{
     triangular_pentagonal_hexagonal::TriangularPentagonalHexagonalNumberProblem,
     counting_fractions_in_a_range::CountingFractionsInARangeProblem,
     counting_fractions::CountingFractionsProblem,
+    prime_permutations::PrimePermutationsProblem,
     Problem
 };
 
@@ -126,6 +127,7 @@ fn main() {
         (42, Box::new(CodedTriangleNumbersProblem {})),
         (45, Box::new(TriangularPentagonalHexagonalNumberProblem {})),
         (48, Box::new(SelfPowersProblem { upper_bound: 1000 })),
+        (49, Box::new(PrimePermutationsProblem {})),
         (52, Box::new(PermutedMultiplesProblem {})),
         (53, Box::new(CombinatoricSelectionsProblem { upper_bound: 100, combination_limit: 1_000_000 })),
         (55, Box::new(LychrelNumbersProblem { upper_bound: 10_000 })),
