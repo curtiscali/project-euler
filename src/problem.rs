@@ -50,6 +50,7 @@ pub mod ordered_fractions;
 pub mod counting_fractions_in_a_range;
 pub mod counting_fractions;
 pub mod prime_permutations;
+pub mod sum_of_squares_of_divisors;
 
 pub trait Problem {
     fn solve(&self) -> String;

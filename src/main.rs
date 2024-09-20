@@ -54,6 +54,7 @@ use problem::{
     counting_fractions_in_a_range::CountingFractionsInARangeProblem,
     counting_fractions::CountingFractionsProblem,
     prime_permutations::PrimePermutationsProblem,
+    sum_of_squares_of_divisors::SumOfSquaresOfDivisorsProblem,
     Problem
 };
 
@@ -144,7 +145,11 @@ fn main() {
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
         (144, Box::new(LaserBeamReflectionsProblem {})),
-        (145, Box::new(ReversibleNumbersProblem { upper_bound: 1_000_000_000 }))
+        (145, Box::new(ReversibleNumbersProblem { upper_bound: 1_000_000_000 })),
+        (401, Box::new(SumOfSquaresOfDivisorsProblem {
+            limit: 10,//1_000_000_000_000_000,
+            divisor: 1
+        }))
     ]);
 
     match args.problem {
