@@ -55,6 +55,7 @@ use problem::{
     counting_fractions::CountingFractionsProblem,
     prime_permutations::PrimePermutationsProblem,
     sum_of_squares_of_divisors::SumOfSquaresOfDivisorsProblem,
+    bouncy_numbers::BouncyNumbersProblem,
     Problem
 };
 
@@ -144,6 +145,7 @@ fn main() {
         (97, Box::new(LargeNonMersennePrimeProblem {})),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
+        (112, Box::new(BouncyNumbersProblem { target_bouncy_percentage: 0.99 })),
         (144, Box::new(LaserBeamReflectionsProblem {})),
         (145, Box::new(ReversibleNumbersProblem { upper_bound: 1_000_000_000 })),
         (401, Box::new(SumOfSquaresOfDivisorsProblem {
