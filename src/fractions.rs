@@ -1,5 +1,5 @@
 use std::{cmp::Ordering, fmt::Display};
-use crate::arithmetic::{factors, gcd};
+use crate::arithmetic::gcd;
 
 #[derive(PartialOrd, Copy, Clone, Debug)]
 pub struct Fraction {

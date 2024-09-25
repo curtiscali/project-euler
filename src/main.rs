@@ -147,8 +147,8 @@ fn main() {
         (144, Box::new(LaserBeamReflectionsProblem {})),
         (145, Box::new(ReversibleNumbersProblem { upper_bound: 1_000_000_000 })),
         (401, Box::new(SumOfSquaresOfDivisorsProblem {
-            limit: 10,//1_000_000_000_000_000,
-            divisor: 1
+            n: 1_000_000_000_000_000,
+            divisor: 1_000_000_000
         }))
     ]);
 

@@ -1,80 +1,32 @@
-use crate::primes::{prime_factors, sieve_of_atkin};
-
+use num::{BigInt, One};
+use crate::arithmetic::bigint_quadratic_sum;
 use super::Problem;
 
-fn sum_1(n: u128) -> u128 {
-    let n_sqrt = (n as f64).sqrt().floor() as u128;
-    let mut sum = 0;
+// This function based on an algorithm from: https://www.ivl-projecteuler.com/overview-of-problems/25-difficulty/problem-401
+// SIGMA2(n) = sum(f(n/k) + (k^2 * n/k))(k = 1 to sqrt(n)) - sqrt(n) * f(sqrt(n))
+// f(n) = (n * (n + 1) * (2n + 1)) / 6
+fn sigma2_sum(n: u64) -> BigInt {
+    let mut sigma2_sum = BigInt::ZERO;
+    let n_sqrt = BigInt::from(n).sqrt();
+    let rhs = &n_sqrt * bigint_quadratic_sum(&n_sqrt);
 
-    let mut x = 1;
-    while x <= n_sqrt {
-        sum += n * n;
-
-        let mut y = 1;
-        while y <= (n / x) {
-            sum += 1;
-            y += 1;
-        }
-
-        x += 1;
-    }
-    
-    sum
-}
-
-fn sum_2(n: u128) -> u128 {
-    let n_sqrt = (n as f64).sqrt().floor() as u128;
-    let mut sum = 0;
-
-    let mut y = 1;
-    while y < n_sqrt {
-        sum += 1;
-
-        let mut x = 1;
-        while x <= (n / y) {
-            sum += n * n;
-            x += 1;
-        }
-
-        y += 1;
+    let mut i = BigInt::one();
+    while i <= n_sqrt {
+        let ratio = n / &i;
+        sigma2_sum += (&i * &i * &ratio) + bigint_quadratic_sum(&ratio);
+        i += 1;
     }
 
-    sum
-}
-
-fn sum_3(n: u128) -> u128 {
-    let n_sqrt = (n as f64).sqrt().floor() as u128;
-    let mut sum = 0;
-
-    let mut x = 1;
-    while x <= n_sqrt {
-        sum += n * n;
-
-        let mut y = 1;
-        while y <= n_sqrt {
-            sum += 1;
-            y += 1;
-        }
-
-        x += 1;
-    }
-
-    sum
+    sigma2_sum - rhs
 }
 
 pub struct SumOfSquaresOfDivisorsProblem {
-    pub limit: u128,
-    pub divisor: u128
+    pub n: u64,
+    pub divisor: u64
 }
 
 impl Problem for SumOfSquaresOfDivisorsProblem {
     fn solve(&self) -> String {
-        // Dirichlet Convolution for sigma2(n) = sum(d^2)(d|n)
-        // g(x) = x^2
-        // h(y) = 1
-        // x = y = sqrt(n)
-
-        let sigma2_sum = sum_1(self.limit) + sum_2(self.limit) - sum_3(self.limit);
-        format!("{}", sigma2_sum)
+        format!("{}", sigma2_sum(self.n) % self.divisor)
     }
 }

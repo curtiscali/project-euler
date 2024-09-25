@@ -4,12 +4,21 @@ use num::{pow, BigInt, Num, Unsigned};
 const EPSILON: f64 = 1E-11;
 const FISR_ACCURACY_LIMIT: usize = 410881;
 
-pub fn linear_sum(n: usize) -> usize {
-    return (n * (n + 1)) / 2;
+pub fn linear_sum<T: Unsigned + Copy>(n: T) -> T {
+    let two = T::one() + T::one();
+
+    return (n * (n + T::one())) / two;
 }
 
-pub fn quadratic_sum(n: usize) -> usize {
-    return (n * (n + 1) * ((2 * n) + 1)) / 6;
+pub fn quadratic_sum<T: Unsigned + Copy>(n: T) -> T {
+    let two = T::one() + T::one();
+    let six = T::one() + T::one() + T::one() + T::one() + T::one() + T::one();
+
+    return (n * (n + T::one()) * ((two * n) + T::one())) / six;
+}
+
+pub fn bigint_quadratic_sum(n: &BigInt) -> BigInt {
+    (n * (n + 1) * ((2 * n) + 1)) / 6 
 }
 
 pub fn f64_equals(a: f64, b: f64) -> bool {
