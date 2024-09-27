@@ -62,7 +62,7 @@ pub fn is_triangular(n: usize) -> bool {
     return is_perfect_square((8 * n) + 1);
 }
 
-pub fn num_digits<T: Num + Clone + PartialOrd>(n: T) -> T {
+pub fn num_digits<T: Num + Copy + PartialOrd>(n: T) -> T {
     let ten = T::one()
         + T::one()
         + T::one()
@@ -84,6 +84,17 @@ pub fn num_digits<T: Num + Clone + PartialOrd>(n: T) -> T {
     return digit_count;
 }
 
+pub fn bigint_num_digits(b: &BigInt) -> BigInt {
+    let mut digit_count = BigInt::ZERO;
+    let mut n = b.clone();
+
+    while n > BigInt::ZERO {
+        digit_count += 1;
+        n /= 10;
+    }
+
+    digit_count
+}
 
 pub fn to_digits<T: Unsigned + Copy + PartialOrd>(n: T) -> Vec<T> {
     let ten = T::one()
@@ -119,7 +130,7 @@ pub fn from_digits(digits: Vec<usize>) -> usize {
     return number;
 }
 
-pub fn digit_sum<T: Num + Clone + PartialOrd>(number: T) -> T {
+pub fn digit_sum<T: Unsigned + Copy + PartialOrd>(number: T) -> T {
     let ten = T::one()
         + T::one()
         + T::one()
@@ -135,11 +146,23 @@ pub fn digit_sum<T: Num + Clone + PartialOrd>(number: T) -> T {
     let mut digit_sum = T::zero();
 
     while n > T::zero() {
-        digit_sum = digit_sum + (n.clone() % ten.clone());
-        n = n / ten.clone();
+        digit_sum = digit_sum + (n % ten);
+        n = n / ten;
     }
 
     return digit_sum;
+}
+
+pub fn bigint_digit_sum(number: &BigInt) -> BigInt {
+    let mut digit_sum = BigInt::ZERO;
+    let mut n = number.clone();
+
+    while n > BigInt::ZERO {
+        digit_sum += &n % 10;
+        n /= 10;
+    }
+
+    digit_sum
 }
 
 pub fn factorial(n: usize, solutions: &mut Vec<BigInt>) -> BigInt {

@@ -56,7 +56,6 @@ use problem::{
     prime_permutations::PrimePermutationsProblem,
     sum_of_squares_of_divisors::SumOfSquaresOfDivisorsProblem,
     bouncy_numbers::BouncyNumbersProblem,
-    chocolate_covered_candy::ChocolateCoveredCandyProblem,
     Problem
 };
 

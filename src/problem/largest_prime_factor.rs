@@ -1,4 +1,4 @@
-use crate::{arithmetic::sqrt_usize, primes::primes_below};
+use crate::{arithmetic::sqrt_usize, primes::sieve_of_atkin};
 
 use super::Problem;
 
@@ -9,19 +9,17 @@ pub struct LargestPrimeFactorProblem {
 impl Problem for LargestPrimeFactorProblem {
     fn solve(&self) -> String {
         let largest_factor = sqrt_usize(self.n);
-        let primes_under_largest_factor = primes_below(largest_factor);
+        let primes_under_largest_factor = sieve_of_atkin(largest_factor);
         let mut largest_prime_factor = 2;
 
-        let mut i = primes_under_largest_factor.len() - 1;
-        while i >= 0 {
-            let n = i + 2;
-
-            if primes_under_largest_factor[i] && self.n % n == 0 {
+        let mut n = primes_under_largest_factor.len() - 1;
+        while n >= 2 {
+            if primes_under_largest_factor[n] && self.n % n == 0 {
                 largest_prime_factor = n;
                 break;
             }
 
-            i -= 1; 
+            n -= 1; 
         }
 
         return format!("{}", largest_prime_factor);
