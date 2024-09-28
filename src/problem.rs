@@ -52,6 +52,8 @@ pub mod counting_fractions;
 pub mod prime_permutations;
 pub mod sum_of_squares_of_divisors;
 pub mod bouncy_numbers;
+pub mod hyperexponentiation;
+pub mod the_ackermann_function;
 
 pub trait Problem {
     fn solve(&self) -> String;
