@@ -1,11 +1,5 @@
-use std::collections::{BTreeSet, VecDeque};
 use super::Problem;
 use crate::fractions::Fraction;
-
-struct SternBrocotParameters {
-    left: Fraction,
-    right: Fraction
-}
 
 pub struct OrderedFractionsProblem {
     pub denom_limit: u32
@@ -13,29 +7,17 @@ pub struct OrderedFractionsProblem {
 
 impl Problem for OrderedFractionsProblem {
     fn solve(&self) -> String {
-        let source_fraction = Fraction::new(1, 3);
-        let target_fraction = Fraction::new(1, 2);
-        let mut generated_fractions: BTreeSet<Fraction> = BTreeSet::new();
+        let target_fraction = Fraction::new(3, 7);
 
-        let mut stack: VecDeque<SternBrocotParameters> = VecDeque::with_capacity(self.denom_limit as usize);
-        stack.push_front(SternBrocotParameters { left: source_fraction, right: target_fraction });
+        // Fundamentally this, problem involves neighboring fractions in a Farey sequence: https://en.wikipedia.org/wiki/Farey_sequence#Farey_neighbours
+        // if two fractions, a/b & c/d are neighbors in a Farey sequence, then bc - ad = 1
+        // we are given in the problem that c/d = 3/7 and the maximum possible denominator in this
+        // sequence is 1,000,000.
+        // if we set b = 1,000,000, we end up with the equation a = (bc - 1) / d
+        // solving for that gives us our solution in O(1) time and memory
+        let numerator = ((target_fraction.numerator * self.denom_limit) / target_fraction.denominator) - 1;
+        let fraction = Fraction::new(numerator, self.denom_limit);
 
-        while !stack.is_empty() {
-            let SternBrocotParameters { left, right } = stack.pop_front().unwrap();
-
-            let middle_fraction = Fraction::new(left.numerator + right.numerator, left.denominator + right.denominator);
-            if middle_fraction.denominator <= self.denom_limit {
-                generated_fractions.insert(middle_fraction);
-
-                stack.push_front(SternBrocotParameters { left, right: middle_fraction });
-                stack.push_front(SternBrocotParameters { left: middle_fraction, right });
-            }
-        }
-
-        let sorted_fractions: Vec<Fraction> = generated_fractions.into_iter().collect();
-        match sorted_fractions.binary_search(&Fraction::new(3, 7)) {
-            Ok(index_of_three_sevenths) => format!("{}", sorted_fractions[index_of_three_sevenths - 1]),
-            Err(_) => String::from("No fraction was found")
-        }
+        format!("{}", fraction)
     }
 }

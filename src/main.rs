@@ -136,7 +136,7 @@ fn main() {
         (56, Box::new(PowerDigitSumProblem { upper_bound: 100 })),
         (69, Box::new(TotientMaximumProblem { upper_bound: 1_000_000 })),
         (70, Box::new(TotientPermutationProblem { upper_bound: 10_000_000 })),
-        (71, Box::new(OrderedFractionsProblem { denom_limit: 12_000 })),
+        (71, Box::new(OrderedFractionsProblem { denom_limit: 1_000_000 })),
         (72, Box::new(CountingFractionsProblem { denom_limit: 1_000_000 })),
         (73, Box::new(CountingFractionsInARangeProblem { denom_limit: 12_000 })),
         (85, Box::new(CountingRectanglesProblem { target_rectangle_count: 2_000_000 })),
