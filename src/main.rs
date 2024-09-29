@@ -57,7 +57,6 @@ use problem::{
     sum_of_squares_of_divisors::SumOfSquaresOfDivisorsProblem,
     bouncy_numbers::BouncyNumbersProblem,
     hyperexponentiation::HyperexponentiationProblem,
-    the_ackermann_function::TheAckermannFunctionProblem,
     Problem
 };
 
@@ -152,7 +151,6 @@ fn main() {
         (144, Box::new(LaserBeamReflectionsProblem {})),
         (145, Box::new(ReversibleNumbersProblem { upper_bound: 1_000_000_000 })),
         (188, Box::new(HyperexponentiationProblem { a: 1777, b: 1855 })),
-        (282, Box::new(TheAckermannFunctionProblem {})),
         (401, Box::new(SumOfSquaresOfDivisorsProblem {
             n: 1_000_000_000_000_000,
             divisor: 1_000_000_000
