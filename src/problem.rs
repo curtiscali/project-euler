@@ -53,6 +53,7 @@ pub mod prime_permutations;
 pub mod sum_of_squares_of_divisors;
 pub mod bouncy_numbers;
 pub mod hyperexponentiation;
+pub mod passcode_derivation;
 
 pub trait Problem {
     fn solve(&self) -> String;

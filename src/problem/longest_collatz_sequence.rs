@@ -9,21 +9,23 @@ fn chain_length(n: u64, solutions: &mut HashMap<u64, u64>) -> u64 {
     while m > 1 {
         if m % 2 == 0 {
             let half = m / 2;
-            let existing_solution = solutions.get(&half);
-            if existing_solution.is_some() {
-                length += existing_solution.unwrap();
-                break;
-            } else {
-                m /= 2;
+
+            match solutions.get(&half) {
+                Some(existing_solution) => {
+                    length += *existing_solution;
+                    break;
+                },
+                _ => m /= 2
             }
         } else {
             let mult = (3 * m) + 1;
-            let existing_solution = solutions.get(&mult);
-            if existing_solution.is_some() {
-                length += existing_solution.unwrap();
-                break;
-            } else {
-                m = mult;
+
+            match solutions.get(&mult) {
+                Some(existing_solution) => {
+                    length += *existing_solution;
+                    break;
+                },
+                _ => m = mult
             }
         }
 
@@ -44,8 +46,8 @@ impl Problem for LongestCollatzSequenceProblem {
         let mut longest_path = 1;
         let mut longest_path_num = 1;
 
-        let mut i = 2;
-        while i <= self.limit {
+        let mut i = self.limit / 2;
+        while i < self.limit {
             let chain_length = chain_length(i as u64, &mut solutions);
 
             if chain_length > longest_path {

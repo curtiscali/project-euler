@@ -1,49 +1,45 @@
+use crate::arithmetic::is_palindrome;
 use super::Problem;
 
-fn reverse(n: i32) -> i32 {
-    let mut rev: i32 = 0;
-    let mut i = n;
-
-    while i > 0 {
-        rev = rev * 10;
-        rev = rev + (i % 10);
-        i = i / 10;
-    }
-    
-
-    return rev;
-}
-
-fn is_palindrome(n: i32) -> bool {
-    return n == reverse(n);
-}
-
 pub struct LargestPalindromeProduct {
-    pub limit: i32
+    pub limit: u32
 }
 
 impl Problem for LargestPalindromeProduct {
     fn solve(&self) -> String {
-        let mut largest_palindrome: i32 = 0;
-        let mut products: (i32, i32) = (0, 0);
+        let mut largest_palindrome = 0;
+        let mut products: (u32, u32) = (0, 0);
 
         // We can start at half the limit, since the largest palindrome is likely to be
         // towards the top of the range rather than the bottom. This allows us to cut our problem set in half
-        let mut i: i32 = self.limit / 2;
-        while i < self.limit {
-            let mut j: i32 = self.limit / 2;
-            while j < self.limit {
-                if i * j > largest_palindrome && is_palindrome(i * j) {
-                    products.0 = i;
-                    products.1 = j;
+        let mut i = self.limit;
+        while i >= 100 {
+            let mut j = if i % 11 == 0 {
+                999
+            } else {
+                990
+            };
 
+            let delta_j = if i % 11 == 0 {
+                1
+            } else {
+                11
+            };
+
+            while j >= i {
+                if i * j <= largest_palindrome {
+                    break;
+                }
+
+                if is_palindrome(i * j) {
+                    products = (i, j);
                     largest_palindrome = i * j;
                 }
 
-                j = j + 1
+                j -= delta_j;
             }
 
-            i = i + 1;
+            i -= 1;
         }
 
         return format!("{} * {} = {}", products.0, products.1, largest_palindrome);

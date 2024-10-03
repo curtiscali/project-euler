@@ -57,6 +57,7 @@ use problem::{
     sum_of_squares_of_divisors::SumOfSquaresOfDivisorsProblem,
     bouncy_numbers::BouncyNumbersProblem,
     hyperexponentiation::HyperexponentiationProblem,
+    passcode_derivation::PasscodeDerivationProblem,
     Problem
 };
 
@@ -141,6 +142,7 @@ fn main() {
         (71, Box::new(OrderedFractionsProblem { denom_limit: 1_000_000 })),
         (72, Box::new(CountingFractionsProblem { denom_limit: 1_000_000 })),
         (73, Box::new(CountingFractionsInARangeProblem { denom_limit: 12_000 })),
+//        (79, Box::new(PasscodeDerivationProblem {})),
         (85, Box::new(CountingRectanglesProblem { target_rectangle_count: 2_000_000 })),
         (89, Box::new(RomanNumeralsProblem {})),
         (92, Box::new(SquareDigitChainsProblem { upper_bound: 10_000_000})),
