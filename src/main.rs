@@ -108,7 +108,7 @@ fn main() {
         (12, Box::new(HighlyDivisibleTriangleNumber { num_divisors: 500 })),
         (13, Box::new(LargeSumProblem {})),
         (14, Box::new(LongestCollatzSequenceProblem { limit: 1_000_000 })),
-        (15, Box::new(LatticePathsProblem {})),
+        (15, Box::new(LatticePathsProblem { grid_dim: 20 })),
         (16, Box::new(PowerDigitSum {})),
         (17, Box::new(NumberLetterCountsProblem {})),
         (20, Box::new(FactorialDigitSum { n: 100 })),
