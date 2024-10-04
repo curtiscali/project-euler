@@ -22,7 +22,7 @@ impl Problem for DistinctPrimeFactorsProblem {
         const TARGET_FACTORS_COUNT: usize = 4;
 
         let mut found_numbers: Vec<u32> = vec![];
-        let mut n = 1;
+        let mut n = 647;
 
         while found_numbers.len() < TARGET_FACTORS_COUNT {
             let distinct_prime_factors = distinct_prime_factors(n);
