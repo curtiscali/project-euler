@@ -60,6 +60,7 @@ use problem::{
     hyperexponentiation::HyperexponentiationProblem,
     passcode_derivation::PasscodeDerivationProblem,
     consecutive_prime_sum::ConsecutivePrimeSumProblem,
+    distinct_prime_factors::DistinctPrimeFactorsProblem,
     Problem
 };
 
@@ -133,6 +134,7 @@ fn main() {
         (41, Box::new(PandigitalPrimeProblem {})),
         (42, Box::new(CodedTriangleNumbersProblem {})),
         (45, Box::new(TriangularPentagonalHexagonalNumberProblem {})),
+        (47, Box::new(DistinctPrimeFactorsProblem {})),
         (48, Box::new(SelfPowersProblem { upper_bound: 1000 })),
         (49, Box::new(PrimePermutationsProblem {})),
         (50, Box::new(ConsecutivePrimeSumProblem { limit: 1_000_000 })),
