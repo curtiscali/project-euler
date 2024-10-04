@@ -54,6 +54,7 @@ pub mod sum_of_squares_of_divisors;
 pub mod bouncy_numbers;
 pub mod hyperexponentiation;
 pub mod passcode_derivation;
+pub mod consecutive_prime_sum;
 
 pub trait Problem {
     fn solve(&self) -> String;

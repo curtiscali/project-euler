@@ -27,6 +27,7 @@ use problem::{
     lattice_paths::LatticePathsProblem,
     lexicographic_permutations::LexicographicPermutationsProblem,
     longest_collatz_sequence::LongestCollatzSequenceProblem,
+                //"(.*) - YouTube — Mozilla Firefox": "  $1",
     lychrel_numbers::LychrelNumbersProblem,
     multiples::MultiplesProblem,
     names_scores::NamesScoresProblem,
@@ -58,6 +59,7 @@ use problem::{
     bouncy_numbers::BouncyNumbersProblem,
     hyperexponentiation::HyperexponentiationProblem,
     passcode_derivation::PasscodeDerivationProblem,
+    consecutive_prime_sum::ConsecutivePrimeSumProblem,
     Problem
 };
 
@@ -133,6 +135,7 @@ fn main() {
         (45, Box::new(TriangularPentagonalHexagonalNumberProblem {})),
         (48, Box::new(SelfPowersProblem { upper_bound: 1000 })),
         (49, Box::new(PrimePermutationsProblem {})),
+        (50, Box::new(ConsecutivePrimeSumProblem { limit: 1_000_000 })),
         (52, Box::new(PermutedMultiplesProblem {})),
         (53, Box::new(CombinatoricSelectionsProblem { upper_bound: 100, combination_limit: 1_000_000 })),
         (55, Box::new(LychrelNumbersProblem { upper_bound: 10_000 })),
