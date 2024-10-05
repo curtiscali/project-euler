@@ -61,6 +61,7 @@ use problem::{
     consecutive_prime_sum::ConsecutivePrimeSumProblem,
     distinct_prime_factors::DistinctPrimeFactorsProblem,
     goldbachs_other_conjecture::GoldbachsOtherConjectureProblem,
+    largest_product_in_a_grid::LargestProductInAGridProblem,
     Problem
 };
 
@@ -108,6 +109,7 @@ fn main() {
         (8, Box::new(LargestProductProblem {})),
         (9, Box::new(SpecialPythagoreanTripletProblem { target_sum: 1000 })),
         (10, Box::new(SummationOfPrimes { upper_bound: 2_000_000 })),
+        (11, Box::new(LargestProductInAGridProblem {})),
         (12, Box::new(HighlyDivisibleTriangleNumber { num_divisors: 500 })),
         (13, Box::new(LargeSumProblem {})),
         (14, Box::new(LongestCollatzSequenceProblem { limit: 1_000_000 })),

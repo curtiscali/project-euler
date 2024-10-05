@@ -57,6 +57,7 @@ pub mod passcode_derivation;
 pub mod consecutive_prime_sum;
 pub mod distinct_prime_factors;
 pub mod goldbachs_other_conjecture;
+pub mod largest_product_in_a_grid;
 
 pub trait Problem {
     fn solve(&self) -> String;
