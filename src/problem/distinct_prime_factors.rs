@@ -11,9 +11,9 @@ impl Problem for DistinctPrimeFactorsProblem {
         let mut n = 647;
 
         while found_numbers.len() < TARGET_FACTORS_COUNT {
-            let distinct_prime_factors = prime_factors(n).into_keys().collect::<Vec<u32>>();
+            let distinct_prime_factors_count = prime_factors(n).into_keys().count();
 
-            if distinct_prime_factors.len() == TARGET_FACTORS_COUNT {
+            if distinct_prime_factors_count == TARGET_FACTORS_COUNT {
                 if found_numbers.len() == 0 {
                     found_numbers.push(n);
                 } else {
