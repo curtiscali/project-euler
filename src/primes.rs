@@ -1,3 +1,5 @@
+use std::{collections::HashMap, hash::Hash};
+
 use num::Num;
 
 pub fn primes_below(n: usize) -> Vec<bool> {
@@ -75,21 +77,26 @@ pub fn sieve_of_atkin(n: usize) -> Vec<bool> {
     return primes;
 }
 
-pub fn prime_factors<T: Num + Copy + PartialOrd>(number: T) -> Vec<T> {
+pub fn prime_factors<T: Num + Copy + PartialOrd + Hash + Eq>(number: T) -> HashMap<T, T> {
     let two = T::one() + T::one();
 
-    let mut factors: Vec<T> = vec![];
+    let mut factors: HashMap<T, T> = HashMap::new();
     let mut n = number;
 
     while n % two == T::zero() {
-        factors.push(two);
+        factors.entry(two)
+            .and_modify(|x| *x = *x + T::one())
+            .or_insert(T::one());
+
         n = n / two;
     }
 
     let mut i = T::one() + T::one() + T::one();
     while i * i <= n {   
         while n % i == T::zero() {
-            factors.push(i);
+            factors.entry(i)
+                .and_modify(|x| *x = *x + T::one())
+                .or_insert(T::one());
             n = n / i;
         }
 
@@ -97,7 +104,9 @@ pub fn prime_factors<T: Num + Copy + PartialOrd>(number: T) -> Vec<T> {
     }
 
     if n > two {
-        factors.push(n);
+        factors.entry(n)
+            .and_modify(|x| *x = *x + T::one())
+            .or_insert(T::one());
     }
 
     return factors;

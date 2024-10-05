@@ -1,19 +1,5 @@
-use std::collections::HashMap;
 use crate::primes::prime_factors;
 use super::Problem;
-
-fn distinct_prime_factors(n: u32) -> Vec<u32> {
-    let all_prime_factors = prime_factors(n);
-    let mut factors_hash: HashMap<u32, bool> = HashMap::new();
-
-    for factor in all_prime_factors {
-        factors_hash.entry(factor)
-            .and_modify(|x| *x = true)
-            .or_insert(true);
-    }
-
-    return factors_hash.into_keys().into_iter().collect::<Vec<u32>>();
-}
 
 pub struct DistinctPrimeFactorsProblem {}
 
@@ -25,7 +11,7 @@ impl Problem for DistinctPrimeFactorsProblem {
         let mut n = 647;
 
         while found_numbers.len() < TARGET_FACTORS_COUNT {
-            let distinct_prime_factors = distinct_prime_factors(n);
+            let distinct_prime_factors = prime_factors(n).into_keys().collect::<Vec<u32>>();
 
             if distinct_prime_factors.len() == TARGET_FACTORS_COUNT {
                 if found_numbers.len() == 0 {
