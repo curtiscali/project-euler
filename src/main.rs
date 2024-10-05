@@ -27,7 +27,6 @@ use problem::{
     lattice_paths::LatticePathsProblem,
     lexicographic_permutations::LexicographicPermutationsProblem,
     longest_collatz_sequence::LongestCollatzSequenceProblem,
-                //"(.*) - YouTube — Mozilla Firefox": "  $1",
     lychrel_numbers::LychrelNumbersProblem,
     multiples::MultiplesProblem,
     names_scores::NamesScoresProblem,
@@ -61,6 +60,7 @@ use problem::{
     passcode_derivation::PasscodeDerivationProblem,
     consecutive_prime_sum::ConsecutivePrimeSumProblem,
     distinct_prime_factors::DistinctPrimeFactorsProblem,
+    goldbachs_other_conjecture::GoldbachsOtherConjectureProblem,
     Problem
 };
 
@@ -134,6 +134,7 @@ fn main() {
         (41, Box::new(PandigitalPrimeProblem {})),
         (42, Box::new(CodedTriangleNumbersProblem {})),
         (45, Box::new(TriangularPentagonalHexagonalNumberProblem {})),
+        (46, Box::new(GoldbachsOtherConjectureProblem {})),
         (47, Box::new(DistinctPrimeFactorsProblem {})),
         (48, Box::new(SelfPowersProblem { upper_bound: 1000 })),
         (49, Box::new(PrimePermutationsProblem {})),
