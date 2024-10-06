@@ -289,3 +289,20 @@ pub fn factors<T: Unsigned + Copy + PartialEq + PartialOrd>(n: T) -> Vec<T> {
 
     return factors;
 }
+
+pub fn fast_pow<T: Num + Copy + PartialEq + PartialOrd>(a: T, b: T) -> T {
+    let two = T::one() + T::one();
+
+    let mut result = T::one();
+    let (mut base, mut power) = (a, b);
+    while power > T::zero() {
+        if power % two == T::one() {
+            result = result * base;
+        }
+
+        base = base * base;
+        power = power / two;
+    }
+
+    result
+}

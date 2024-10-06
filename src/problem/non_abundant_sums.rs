@@ -1,5 +1,5 @@
 use std::collections::BTreeSet;
-use crate::primes::prime_factors;
+use crate::{arithmetic::fast_pow, primes::prime_factors};
 use super::Problem;
 
 const MAX_NON_ABUNDANT: usize = 28123;
@@ -13,7 +13,7 @@ fn sigma(n: usize) -> usize {
     let mut divisors_sum = 1;
 
     for (factor, power) in prime_factors {
-        divisors_sum *= (factor.pow(power as u32 + 1) - 1) / (factor - 1);
+        divisors_sum *= (fast_pow(factor, power + 1) - 1) / (factor - 1);
     }
 
     divisors_sum
