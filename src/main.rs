@@ -62,6 +62,7 @@ use problem::{
     distinct_prime_factors::DistinctPrimeFactorsProblem,
     goldbachs_other_conjecture::GoldbachsOtherConjectureProblem,
     largest_product_in_a_grid::LargestProductInAGridProblem,
+    non_abundant_sums::NonAbundantSumsProblem,
     Problem
 };
 
@@ -119,6 +120,7 @@ fn main() {
         (20, Box::new(FactorialDigitSum { n: 100 })),
         (21, Box::new(AmicableNumbersProblem { limit: 10_000 })),
         (22, Box::new(NamesScoresProblem {})),
+        (23, Box::new(NonAbundantSumsProblem {})),
         (24, Box::new(LexicographicPermutationsProblem {})),
         (25, Box::new(ThousandDigitFibonacciNumberProblem {})),
         (28, Box::new(NumberPowerSpiralsProblem { spiral_size: 1001 })),
