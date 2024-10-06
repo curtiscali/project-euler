@@ -3,6 +3,9 @@ use crate::primes::prime_factors;
 use super::Problem;
 
 const MAX_NON_ABUNDANT: usize = 28123;
+
+// This constant is based on the wikipedia article: https://en.wikipedia.org/wiki/Abundant_number
+// all numbers greater than this CAN be written as the sum of two abundant numbers
 const MAX_NON_ABUNDANT_SUM: usize = 20161;
 
 fn sigma(n: usize) -> usize {
