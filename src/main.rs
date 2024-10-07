@@ -63,6 +63,7 @@ use problem::{
     goldbachs_other_conjecture::GoldbachsOtherConjectureProblem,
     largest_product_in_a_grid::LargestProductInAGridProblem,
     non_abundant_sums::NonAbundantSumsProblem,
+    reciprocal_cycles::ReciprocalCyclesProblem,
     Problem
 };
 
@@ -123,6 +124,7 @@ fn main() {
         (23, Box::new(NonAbundantSumsProblem {})),
         (24, Box::new(LexicographicPermutationsProblem {})),
         (25, Box::new(ThousandDigitFibonacciNumberProblem {})),
+        (26, Box::new(ReciprocalCyclesProblem { max_denominator: 1000 })),
         (28, Box::new(NumberPowerSpiralsProblem { spiral_size: 1001 })),
         (29, Box::new(DistinctPowersProblem { upper_bound: 100 })),
         (30, Box::new(DigitFifthPowersProblem {})),

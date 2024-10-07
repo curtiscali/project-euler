@@ -59,6 +59,7 @@ pub mod distinct_prime_factors;
 pub mod goldbachs_other_conjecture;
 pub mod largest_product_in_a_grid;
 pub mod non_abundant_sums;
+pub mod reciprocal_cycles;
 
 pub trait Problem {
     fn solve(&self) -> String;
