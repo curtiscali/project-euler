@@ -1,5 +1,4 @@
 use crate::primes::sieve_of_atkin;
-
 use super::Problem;
 
 fn spf_sieve(n: usize) -> Vec<usize> {
