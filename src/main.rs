@@ -165,7 +165,7 @@ fn main() {
         (112, Box::new(BouncyNumbersProblem { target_bouncy_percentage: 0.99 })),
         (144, Box::new(LaserBeamReflectionsProblem {})),
         (145, Box::new(ReversibleNumbersProblem { upper_bound: 1_000_000_000 })),
-        (187, Box::new(SemiprimesProblem { upper_bound: 100_000_000 })),
+        (187, Box::new(SemiprimesProblem { n: 100_000_000 })),
         (188, Box::new(HyperexponentiationProblem { a: 1777, b: 1855 })),
         (401, Box::new(SumOfSquaresOfDivisorsProblem {
             n: 1_000_000_000_000_000,
