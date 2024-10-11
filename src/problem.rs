@@ -61,6 +61,7 @@ pub mod largest_product_in_a_grid;
 pub mod non_abundant_sums;
 pub mod reciprocal_cycles;
 pub mod semiprimes;
+pub mod consecutive_positive_divisors;
 
 pub trait Problem {
     fn solve(&self) -> String;
