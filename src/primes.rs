@@ -1,6 +1,6 @@
 use std::{collections::HashMap, hash::Hash};
-
 use num::{Num, PrimInt, Unsigned};
+use crate::arithmetic::fast_modpow;
 
 pub fn sieve_of_eratosthenes(n: usize) -> Vec<bool> {
     let vec_len = n - 2;
@@ -123,4 +123,19 @@ pub fn primes_below<T: Unsigned + PrimInt>(n: usize) -> Vec<T> {
     }
 
     primes
+}
+
+pub fn fermat_primality_test<T: Num + Copy + PartialOrd + Eq >(n: T, tests: T) -> bool {
+    let two = T::one() + T::one();
+
+    let mut x = T::zero();
+    while x < tests {
+        if fast_modpow(two * (x + two), n - T::one(), n) != T::one() {
+            return false;
+        }
+
+        x = x + T::one();
+    }
+
+    true
 }

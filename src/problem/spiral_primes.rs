@@ -1,4 +1,4 @@
-use crate::primes::sieve_of_atkin;
+use crate::primes::fermat_primality_test;
 use super::Problem;
 
 // # of numbers along both diagonals = 2n - 1
@@ -8,9 +8,8 @@ pub struct SpiralPrimesProblem {}
 
 impl Problem for SpiralPrimesProblem {
     fn solve(&self) -> String {
-        const MAX_SPIRAL_SIZE: usize = 26243;
-
-        let spiral_primes_lookup = sieve_of_atkin(MAX_SPIRAL_SIZE * MAX_SPIRAL_SIZE);
+        const MAX_SPIRAL_SIZE: usize = 30_000;
+        const NUM_TESTS: usize = 20;
 
         let mut current_spiral_dim = 9;
         let mut found_primes = 8u32;
@@ -24,19 +23,19 @@ impl Problem for SpiralPrimesProblem {
             let right_up = (4 * x * x) - (2 * x) + 1;
             let left_up = (4 * x * x) + 1;
 
-            if spiral_primes_lookup[right_down] {
+            if fermat_primality_test(right_down, NUM_TESTS) {
                 found_primes += 1;
             }
 
-            if spiral_primes_lookup[left_down] {
+            if fermat_primality_test(left_down, NUM_TESTS) {
                 found_primes += 1;
             }
             
-            if spiral_primes_lookup[right_up] {
+            if fermat_primality_test(right_up, NUM_TESTS) {
                 found_primes += 1;
             }
             
-            if spiral_primes_lookup[left_up] {
+            if fermat_primality_test(left_up, NUM_TESTS) {
                 found_primes += 1;
             }
 

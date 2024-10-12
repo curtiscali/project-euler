@@ -306,3 +306,20 @@ pub fn fast_pow<T: Num + Copy + PartialEq + PartialOrd>(a: T, b: T) -> T {
 
     result
 }
+
+pub fn fast_modpow<T: Num + Copy + PartialEq + PartialOrd>(a: T, b: T, m: T) -> T {
+    let two = T::one() + T::one();
+
+    let mut result = T::one();
+    let (mut base, mut power) = (a, b);
+    while power > T::zero() {
+        if power % two == T::one() {
+            result = (result * base) % m;
+        }
+
+        base = (base * base) % m;
+        power = power / two;
+    }
+
+    result
+}
