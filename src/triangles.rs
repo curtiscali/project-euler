@@ -1,10 +1,8 @@
-use std::cmp::max;
-
-pub fn from_string(data: &str) -> Vec<Vec<i32>> {
+pub fn from_string(data: &str) -> Vec<Vec<u32>> {
     let mut triangle = vec![];
     for line in data.lines() {
         let numbers = Vec::from_iter(
-            line.trim().split(" ").map(|s| s.parse::<i32>().unwrap())
+            line.trim().split(" ").map(|s| s.parse::<u32>().unwrap())
         );
 
         triangle.push(numbers);
@@ -22,23 +20,17 @@ pub fn from_string(data: &str) -> Vec<Vec<i32>> {
     triangle
 }
 
-pub fn max_path_sum(triangle: &Vec<Vec<i32>>, i: usize, j: usize, row: usize, col: usize, dp: &mut Vec<Vec<i32>>) -> i32 {
-    if j == col {
-        return 0;
+// This function makes use of a dynamic programming algo from https://www.geeksforgeeks.org/maximum-path-sum-triangle/
+pub fn max_path_sum(triangle: &mut Vec<Vec<u32>>, m: usize) -> u32 {
+    for i in (0..=m-1).rev() {
+        for j in 0..=i {
+            triangle[i][j] += if triangle[i + 1][j] > triangle[i + 1][j + 1] {
+                triangle[i + 1][j]
+            } else {
+                triangle[i + 1][j + 1]
+            };
+        }
     }
 
-    if i == row - 1 {
-        return triangle[i][j];
-    }
-
-    if dp[i][j] != -1 {
-        return dp[i][j];
-    }
-
-    dp[i][j] = triangle[i][j] + max(
-        max_path_sum(triangle, i + 1, j, row, col, dp),
-        max_path_sum(triangle, i + 1, j + 1, row, col, dp)
-    );
-
-    dp[i][j]
+    triangle[0][0]
 }
