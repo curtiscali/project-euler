@@ -66,6 +66,8 @@ use problem::{
     reciprocal_cycles::ReciprocalCyclesProblem,
     semiprimes::SemiprimesProblem,
     consecutive_positive_divisors::ConsecutivePositiveDivisorsProblem,
+    maximum_path_sum_one::MaximumPathSumOneProblem,
+    maximum_path_sum_two::MaximumPathSumTwoProblem,
     Problem
 };
 
@@ -77,6 +79,7 @@ pub mod combinatorics;
 pub mod linear_algebra;
 pub mod fractions;
 pub mod hyperops;
+pub mod triangles;
 
 /// Simple program to greet a person:104
 #[derive(Parser, Debug)]
@@ -120,6 +123,7 @@ fn main() {
         (15, Box::new(LatticePathsProblem { grid_dim: 20 })),
         (16, Box::new(PowerDigitSum {})),
         (17, Box::new(NumberLetterCountsProblem {})),
+        (18, Box::new(MaximumPathSumOneProblem {})),
         (20, Box::new(FactorialDigitSum { n: 100 })),
         (21, Box::new(AmicableNumbersProblem { limit: 10_000 })),
         (22, Box::new(NamesScoresProblem {})),
@@ -151,6 +155,7 @@ fn main() {
         (53, Box::new(CombinatoricSelectionsProblem { upper_bound: 100, combination_limit: 1_000_000 })),
         (55, Box::new(LychrelNumbersProblem { upper_bound: 10_000 })),
         (56, Box::new(PowerDigitSumProblem { upper_bound: 100 })),
+        (67, Box::new(MaximumPathSumTwoProblem {})),
         (69, Box::new(TotientMaximumProblem { upper_bound: 1_000_000 })),
         (70, Box::new(TotientPermutationProblem { upper_bound: 10_000_000 })),
         (71, Box::new(OrderedFractionsProblem { denom_limit: 1_000_000 })),
