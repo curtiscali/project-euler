@@ -4,7 +4,7 @@ use crate::{
         num_digits, 
         to_digits
     }, 
-    primes::primes_below
+    primes::sieve_of_eratosthenes
 };
 use super::Problem;
 
@@ -36,7 +36,7 @@ pub struct CircularPrimesProblem {
 
 impl Problem for CircularPrimesProblem {
     fn solve(&self) -> String {
-        let primes_below_bound = primes_below(self.upper_bound as usize);
+        let primes_below_bound = sieve_of_eratosthenes(self.upper_bound as usize);
 
         let mut circular_primes_count = 0;
         let mut i = 0; // 13 primes below 100, 98 = 100 - 2

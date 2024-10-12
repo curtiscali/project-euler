@@ -1,7 +1,6 @@
 use num::pow;
-
 use super::Problem;
-use crate::primes::primes_below;
+use crate::primes::sieve_of_eratosthenes;
 
 fn eval(arr: &[u8; 7]) -> usize {
     let mut number = 0;
@@ -53,7 +52,7 @@ pub struct PandigitalPrimeProblem {}
 
 impl Problem for PandigitalPrimeProblem {
     fn solve(&self) -> String {
-        let primes = primes_below(7_654_322);
+        let primes = sieve_of_eratosthenes(7_654_322);
         let mut pandigital: [u8; 7] = [7, 1, 2, 3, 4, 5, 6];
 
         let mut largest_pandigital_prime = 0;

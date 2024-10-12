@@ -1,4 +1,4 @@
-use crate::{primes::primes_below, Problem};
+use crate::{primes::sieve_of_eratosthenes, Problem};
 
 pub struct SummationOfPrimes {
     pub upper_bound: usize
@@ -6,7 +6,7 @@ pub struct SummationOfPrimes {
 
 impl Problem for SummationOfPrimes {
     fn solve(&self) -> String {
-        let primes_below_bound = primes_below(self.upper_bound);
+        let primes_below_bound = sieve_of_eratosthenes(self.upper_bound);
         let mut prime_sum = 0;
 
         let mut i = 0;

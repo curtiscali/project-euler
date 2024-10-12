@@ -1,4 +1,4 @@
-use crate::primes::primes_below;
+use crate::primes::sieve_of_eratosthenes;
 use crate::arithmetic::totient;
 use super::Problem;
 
@@ -8,7 +8,7 @@ pub struct TotientMaximumProblem {
 
 impl Problem for TotientMaximumProblem {
     fn solve(&self) -> String {
-        let primes_below_bound = primes_below(self.upper_bound as usize + 1);
+        let primes_below_bound = sieve_of_eratosthenes(self.upper_bound as usize + 1);
 
         let mut max_totient_n = 2;
         let mut max_totient_ratio = 0.0;

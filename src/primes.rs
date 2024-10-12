@@ -1,8 +1,8 @@
 use std::{collections::HashMap, hash::Hash};
 
-use num::Num;
+use num::{Num, PrimInt, Unsigned};
 
-pub fn primes_below(n: usize) -> Vec<bool> {
+pub fn sieve_of_eratosthenes(n: usize) -> Vec<bool> {
     let vec_len = n - 2;
     let mut primes = vec![true; vec_len];
 
@@ -110,4 +110,17 @@ pub fn prime_factors<T: Num + Copy + PartialOrd + Hash + Eq>(number: T) -> HashM
     }
 
     return factors;
+}
+
+pub fn primes_below<T: Unsigned + PrimInt>(n: usize) -> Vec<T> {
+    let sieve_lookup = sieve_of_atkin(n);
+    let mut primes: Vec<T> = vec![];
+
+    for i in 0..sieve_lookup.len() {
+        if sieve_lookup[i] {
+            primes.push(T::from(i).unwrap());
+        }
+    }
+
+    primes
 }

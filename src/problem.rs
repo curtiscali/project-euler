@@ -64,6 +64,7 @@ pub mod semiprimes;
 pub mod consecutive_positive_divisors;
 pub mod maximum_path_sum_one;
 pub mod maximum_path_sum_two;
+pub mod spiral_primes;
 
 pub trait Problem {
     fn solve(&self) -> String;
