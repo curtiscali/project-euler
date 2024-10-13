@@ -116,7 +116,7 @@ fn main() {
         (7, Box::new(NthPrimeProblem { n: 10001 })),
         (8, Box::new(LargestProductProblem {})),
         (9, Box::new(SpecialPythagoreanTripletProblem { target_sum: 1000 })),
-        (10, Box::new(SummationOfPrimes { upper_bound: 2_000_000 })),
+        (10, Box::new(SummationOfPrimes { n: 2_000_000 })),
         (11, Box::new(LargestProductInAGridProblem {})),
         (12, Box::new(HighlyDivisibleTriangleNumber { num_divisors: 500 })),
         (13, Box::new(LargeSumProblem {})),
