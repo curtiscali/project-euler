@@ -46,6 +46,6 @@ pub struct SummationOfPrimes {
 
 impl Problem for SummationOfPrimes {
     fn solve(&self) -> String {
-        return format!("{}", primes_sum(self.n));
+        format!("{}", primes_sum(self.n))
     }
 }
