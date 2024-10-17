@@ -1,4 +1,4 @@
-use crate::primes::sieve_of_eratosthenes;
+use crate::primes::primes_below;
 use super::Problem;
 
 pub struct NthPrimeProblem {
@@ -15,24 +15,8 @@ impl Problem for NthPrimeProblem {
         let float_upper_bound = (float_n * ln) + (float_n * ln.ln());
         let upper_bound = float_upper_bound as usize;
 
-        let primes = sieve_of_eratosthenes(upper_bound);
+        let primes = primes_below::<u32>(upper_bound);//sieve_of_eratosthenes(upper_bound);
 
-        let mut nth_prime = 2;
-        let mut prime_count = 0;
-        let mut i = 0;
-        while i < primes.len() {
-            if primes[i] {
-                nth_prime = i + 2;
-                prime_count = prime_count + 1;
-
-                if prime_count >= self.n {
-                    break;
-                }
-            }
-
-            i = i + 1;
-        }
-        
-        return format!("{}", nth_prime);
+        return format!("{}", primes[(self.n - 1) as usize]);
     }
 }
