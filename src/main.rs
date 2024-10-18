@@ -69,6 +69,7 @@ use problem::{
     maximum_path_sum_one::MaximumPathSumOneProblem,
     maximum_path_sum_two::MaximumPathSumTwoProblem,
     spiral_primes::SpiralPrimesProblem,
+    counting_sundays::CountingSundaysProblem,
     Problem
 };
 
@@ -125,6 +126,7 @@ fn main() {
         (16, Box::new(PowerDigitSum {})),
         (17, Box::new(NumberLetterCountsProblem {})),
         (18, Box::new(MaximumPathSumOneProblem {})),
+        (19, Box::new(CountingSundaysProblem {})),
         (20, Box::new(FactorialDigitSum { n: 100 })),
         (21, Box::new(AmicableNumbersProblem { limit: 10_000 })),
         (22, Box::new(NamesScoresProblem {})),
