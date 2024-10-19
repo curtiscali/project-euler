@@ -1,5 +1,6 @@
-use std::{cmp::Ordering, fmt::Display};
-use crate::arithmetic::gcd;
+use std::{cmp::Ordering, fmt::Display, ops::Add};
+
+use crate::arithmetic::{gcd, lcm};
 
 #[derive(PartialOrd, Copy, Clone, Debug)]
 pub struct Fraction {
@@ -56,5 +57,20 @@ impl Ord for Fraction {
 impl Display for Fraction {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "({} / {})", self.numerator, self.denominator)    
+    }
+}
+
+impl Add for Fraction {
+    type Output = Self;
+
+    fn add(self, rhs: Self) -> Self {
+        let lcm = lcm(&vec![self.denominator, rhs.denominator]);
+
+        let self_factor = lcm / self.denominator;
+        let rhs_factor = lcm / rhs.denominator;
+
+        let new_numerator = (self.numerator * self_factor) + (rhs.numerator * rhs_factor);
+
+        Fraction { numerator: new_numerator, denominator: lcm }
     }
 }

@@ -70,6 +70,7 @@ use problem::{
     maximum_path_sum_two::MaximumPathSumTwoProblem,
     spiral_primes::SpiralPrimesProblem,
     counting_sundays::CountingSundaysProblem,
+    square_root_convergents::SquareRootConvergentsProblem,
     Problem
 };
 
@@ -158,6 +159,7 @@ fn main() {
         (53, Box::new(CombinatoricSelectionsProblem { upper_bound: 100, combination_limit: 1_000_000 })),
         (55, Box::new(LychrelNumbersProblem { upper_bound: 10_000 })),
         (56, Box::new(PowerDigitSumProblem { upper_bound: 100 })),
+        (57, Box::new(SquareRootConvergentsProblem {})),
         (58, Box::new(SpiralPrimesProblem {})),
         (67, Box::new(MaximumPathSumTwoProblem {})),
         (69, Box::new(TotientMaximumProblem { upper_bound: 1_000_000 })),

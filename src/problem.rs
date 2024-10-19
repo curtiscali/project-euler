@@ -66,6 +66,7 @@ pub mod maximum_path_sum_one;
 pub mod maximum_path_sum_two;
 pub mod spiral_primes;
 pub mod counting_sundays;
+pub mod square_root_convergents;
 
 pub trait Problem {
     fn solve(&self) -> String;
