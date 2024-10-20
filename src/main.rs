@@ -71,6 +71,7 @@ use problem::{
     spiral_primes::SpiralPrimesProblem,
     counting_sundays::CountingSundaysProblem,
     square_root_convergents::SquareRootConvergentsProblem,
+    convergents_of_e::ConvergentsOfEProblem,
     Problem
 };
 
@@ -161,6 +162,7 @@ fn main() {
         (56, Box::new(PowerDigitSumProblem { upper_bound: 100 })),
         (57, Box::new(SquareRootConvergentsProblem {})),
         (58, Box::new(SpiralPrimesProblem {})),
+        (65, Box::new(ConvergentsOfEProblem {})),
         (67, Box::new(MaximumPathSumTwoProblem {})),
         (69, Box::new(TotientMaximumProblem { upper_bound: 1_000_000 })),
         (70, Box::new(TotientPermutationProblem { upper_bound: 10_000_000 })),
