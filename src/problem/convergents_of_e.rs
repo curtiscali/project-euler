@@ -24,7 +24,7 @@ impl Problem for ConvergentsOfEProblem {
 
         for i in 2..102 {
             let ai = a(i);
-            let new_p = (&ai * &prev_ps[1]) + &prev_ps[0];
+            let new_p = (ai * &prev_ps[1]) + &prev_ps[0];
 
             prev_ps[0] = prev_ps[1].clone();
             prev_ps[1] = new_p.clone();
