@@ -101,9 +101,16 @@ fn print_solution(problem_number: u16, problem: &dyn Problem) {
 
     let result = problem.solve();
     let milliseconds = now.elapsed().as_millis();
+    let microseconds = now.elapsed().as_micros();
+
+    let time_string = if milliseconds == 0 {
+        format!("{}μs", microseconds)
+    } else {
+        format!("{}ms", milliseconds)
+    };
 
     println!("Solution: {}", result);
-    println!("Time taken to solve the problem: {}ms", milliseconds);
+    println!("Time taken to solve the problem: {}", time_string);
 }
 
 fn main() {
