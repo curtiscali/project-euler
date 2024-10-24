@@ -72,6 +72,7 @@ use problem::{
     counting_sundays::CountingSundaysProblem,
     square_root_convergents::SquareRootConvergentsProblem,
     convergents_of_e::ConvergentsOfEProblem,
+    efficient_exponentiation::EfficientExponentiationProblem,
     Problem
 };
 
@@ -184,6 +185,7 @@ fn main() {
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
         (112, Box::new(BouncyNumbersProblem { target_bouncy_percentage: 0.99 })),
+        (122, Box::new(EfficientExponentiationProblem {})),
         (144, Box::new(LaserBeamReflectionsProblem {})),
         (145, Box::new(ReversibleNumbersProblem { upper_bound: 1_000_000_000 })),
         (179, Box::new(ConsecutivePositiveDivisorsProblem { upper_bound: 10_000_000 })),
