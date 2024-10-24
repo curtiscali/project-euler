@@ -73,6 +73,7 @@ use problem::{
     square_root_convergents::SquareRootConvergentsProblem,
     convergents_of_e::ConvergentsOfEProblem,
     efficient_exponentiation::EfficientExponentiationProblem,
+    pandigital_products::PandigitalProductsProblem,
     Problem
 };
 
@@ -151,6 +152,7 @@ fn main() {
             total_pence: 200,
             denominations: vec![1, 2, 5, 10, 20, 50, 100, 200]
         })),
+        (32, Box::new(PandigitalProductsProblem {})),
         (34, Box::new(DigitFactorialsProblem {})),
         (35, Box::new(CircularPrimesProblem { upper_bound: 1_000_000 })),
         (36, Box::new(DoubleBasePalindromeProblem { upper_bound: 1_000_000 })),
