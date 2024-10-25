@@ -22,7 +22,7 @@ fn get_rotations(n: usize) -> Vec<usize> {
         d.remove(0);
         d.push(first);
 
-        rotations.push(from_digits(d.to_vec()));
+        rotations.push(from_digits(&d.to_vec()));
 
         i += 1;
     }

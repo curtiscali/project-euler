@@ -70,6 +70,7 @@ pub mod square_root_convergents;
 pub mod convergents_of_e;
 pub mod efficient_exponentiation;
 pub mod pandigital_products;
+pub mod pandigital_multiples;
 
 pub trait Problem {
     fn solve(&self) -> String;

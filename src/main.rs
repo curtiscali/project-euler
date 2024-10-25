@@ -74,6 +74,7 @@ use problem::{
     convergents_of_e::ConvergentsOfEProblem,
     efficient_exponentiation::EfficientExponentiationProblem,
     pandigital_products::PandigitalProductsProblem,
+    pandigital_multiples::PandigitalMultiplesProblem,
     Problem
 };
 
@@ -97,18 +98,25 @@ struct Args {
 }
 
 fn print_solution(problem_number: u16, problem: &dyn Problem) {
+    const NS_TO_US: u128 = 1000;
+    const NS_TO_MS: u128 = 1_000_000;
+    const NS_TO_S: u128 = 1_000_000_000;
+
     println!("Selected Problem: {}", problem_number);
 
     let now = Instant::now();
 
     let result = problem.solve();
-    let milliseconds = now.elapsed().as_millis();
-    let microseconds = now.elapsed().as_micros();
+    let nanoseconds = now.elapsed().as_nanos();
 
-    let time_string = if milliseconds == 0 {
-        format!("{}μs", microseconds)
+    let time_string = if nanoseconds < NS_TO_US {
+        format!("{}ns", nanoseconds)
+    } else if nanoseconds < NS_TO_MS {
+        format!("{}μs", nanoseconds / NS_TO_US)
+    } else if nanoseconds < NS_TO_S {
+        format!("{}ms", nanoseconds / NS_TO_MS)
     } else {
-        format!("{}ms", milliseconds)
+        format!("{}s", nanoseconds / NS_TO_S)
     };
 
     println!("Solution: {}", result);
@@ -156,6 +164,7 @@ fn main() {
         (34, Box::new(DigitFactorialsProblem {})),
         (35, Box::new(CircularPrimesProblem { upper_bound: 1_000_000 })),
         (36, Box::new(DoubleBasePalindromeProblem { upper_bound: 1_000_000 })),
+        (38, Box::new(PandigitalMultiplesProblem {})),
         (39, Box::new(IntegerRightTrianglesProblem { max_perimeter: 1000 })),
         (40, Box::new(ChampernownesConstantProblem {})),
         (41, Box::new(PandigitalPrimeProblem {})),

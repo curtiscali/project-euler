@@ -119,7 +119,7 @@ pub fn to_digits<T: Unsigned + Copy + PartialOrd>(n: T) -> Vec<T> {
     return digits;
 }
 
-pub fn from_digits(digits: Vec<usize>) -> usize {
+pub fn from_digits(digits: &Vec<usize>) -> usize {
     let mut number: usize = 0;
     let mut i = 0;
     while i < digits.len() {
