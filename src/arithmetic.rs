@@ -1,4 +1,4 @@
-use std::mem;
+use std::{mem, ops::Mul};
 use num::{pow, BigInt, Num, Unsigned};
 
 const EPSILON: f64 = 1E-11;
@@ -119,12 +119,21 @@ pub fn to_digits<T: Unsigned + Copy + PartialOrd>(n: T) -> Vec<T> {
     return digits;
 }
 
-pub fn from_digits(digits: &Vec<usize>) -> usize {
-    let mut number: usize = 0;
-    let mut i = 0;
-    while i < digits.len() {
-        number += (digits[i]) * pow(10, digits.len() - i - 1);
-        i += 1;
+pub fn from_digits<T: Unsigned + Copy + PartialOrd + Mul<Output = T>>(digits: &Vec<T>) -> T {
+    let ten = T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one()
+        + T::one();
+
+    let mut number = T::zero();
+    for i in 0..digits.len() {
+        number = number + (digits[i]) * pow(ten, digits.len() - i - 1);
     }
 
     return number;
