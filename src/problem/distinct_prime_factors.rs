@@ -1,26 +1,5 @@
+use crate::primes::spf_sieve;
 use super::Problem;
-
-fn spf_sieve(n: usize) -> Vec<usize> {
-    let mut smallest_prime_factors = vec![1; n + 1];
-
-    let mut i = 2;
-    while i <= n {
-        if smallest_prime_factors[i] == 1 {
-            let mut j = i;
-            while j <= n {
-                if smallest_prime_factors[j] == 1 {
-                    smallest_prime_factors[j] = i;
-                }
-
-                j += i;
-            }
-        }
-
-        i += 1;
-    }
-
-    return smallest_prime_factors;
-}
 
 fn distinct_prime_factors_count(n: usize, smallest_prime_factors: &Vec<usize>) -> usize {
     let mut factors_count = 0;

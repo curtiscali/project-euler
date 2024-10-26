@@ -77,6 +77,22 @@ pub fn sieve_of_atkin(n: usize) -> Vec<bool> {
     return primes;
 }
 
+pub fn spf_sieve<T: Unsigned + PrimInt>(n: usize) -> Vec<T> {
+    let mut smallest_prime_factors = vec![T::one(); n + 1];
+
+    for i in 2..=n {
+        if smallest_prime_factors[i] == T::one() {
+            for j in (i..=n).step_by(i) {
+                if smallest_prime_factors[j] == T::one() {
+                    smallest_prime_factors[j] = T::from(i).unwrap();
+                }
+            }
+        }
+    }
+
+    smallest_prime_factors
+}
+
 pub fn prime_factors<T: Num + Copy + PartialOrd + Hash + Eq>(number: T) -> HashMap<T, T> {
     let two = T::one() + T::one();
 

@@ -75,6 +75,7 @@ use problem::{
     efficient_exponentiation::EfficientExponentiationProblem,
     pandigital_products::PandigitalProductsProblem,
     pandigital_multiples::PandigitalMultiplesProblem,
+    ordered_radicals::OrderedRadicalsProblem,
     Problem
 };
 
@@ -197,6 +198,7 @@ fn main() {
         (102, Box::new(TriangleContainmentProblem {})),
         (112, Box::new(BouncyNumbersProblem { target_bouncy_percentage: 0.99 })),
         (122, Box::new(EfficientExponentiationProblem {})),
+        (124, Box::new(OrderedRadicalsProblem {})),
         (144, Box::new(LaserBeamReflectionsProblem {})),
         (145, Box::new(ReversibleNumbersProblem { upper_bound: 1_000_000_000 })),
         (179, Box::new(ConsecutivePositiveDivisorsProblem { upper_bound: 10_000_000 })),
