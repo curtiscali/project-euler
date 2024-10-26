@@ -20,28 +20,22 @@ fn distinct_prime_factors_product(n: u32, smallest_prime_factors: &Vec<u32>) -> 
     factors_product
 }
 
-struct Radical {
-    pub n: u32,
-    pub rad_n: u32
-}
-
 pub struct OrderedRadicalsProblem {}
 
 impl Problem for OrderedRadicalsProblem {
     fn solve(&self) -> String {
         let smallest_prime_factors = spf_sieve::<u32>(100_000);
-        let mut rad_data: Vec<Radical> = vec![];
+        let mut rad_data: Vec<(u32, u32)> = vec![];
 
         for n in 1..=100_000 {
-            rad_data.push(Radical {
-                n,
-                rad_n: distinct_prime_factors_product(n, &smallest_prime_factors)
-            });
+            rad_data.push(
+                (n, distinct_prime_factors_product(n, &smallest_prime_factors))
+            );
         }
 
-        rad_data.sort_by(|a, b| a.rad_n.cmp(&b.rad_n));
-        let ten_kth_elem = &rad_data[9999]; // 0-based indexing means the 10kth element is 9999
+        rad_data.sort_by(|(_, rad_a), (_, rad_b)| rad_a.cmp(rad_b));
+        let (n, _) = &rad_data[9999]; // 0-based indexing means the 10kth element is 9999
 
-        format!("{}", ten_kth_elem.n)
+        format!("{}", n)
     }
 }
