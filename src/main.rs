@@ -77,6 +77,7 @@ use problem::{
     pandigital_multiples::PandigitalMultiplesProblem,
     ordered_radicals::OrderedRadicalsProblem,
     powerful_digit_counts::PowerfulDigitCountsProblem,
+    odd_period_square_roots::OddPeriodSquareRootsProblem,
     Problem
 };
 
@@ -184,6 +185,7 @@ fn main() {
         (57, Box::new(SquareRootConvergentsProblem {})),
         (58, Box::new(SpiralPrimesProblem {})),
         (63, Box::new(PowerfulDigitCountsProblem {})),
+        (64, Box::new(OddPeriodSquareRootsProblem {})),
         (65, Box::new(ConvergentsOfEProblem {})),
         (67, Box::new(MaximumPathSumTwoProblem {})),
         (69, Box::new(TotientMaximumProblem { upper_bound: 1_000_000 })),

@@ -1,8 +1,7 @@
 use std::{mem, ops::Mul};
-use num::{pow, BigInt, Num, Unsigned};
+use num::{integer::Roots, pow, BigInt, Num, Unsigned};
 
 const EPSILON: f64 = 1E-11;
-const FISR_ACCURACY_LIMIT: usize = 410881;
 
 pub fn linear_sum<T: Unsigned + Copy>(n: T) -> T {
     let two = T::one() + T::one();
@@ -37,25 +36,18 @@ pub fn fast_inverse_sqrt(n: f64) -> f64 {
     }
 
     // Magic number based on Chris Lomont work:
-    const MAGIC_U64: usize = 0x5fe6ec85e7de30da;
+    const MAGIC_U64: u64 = 0x5fe6ec85e7de30da;
     const THREEHALFS: f64 = 1.5;
     let x2 = n * 0.5;
-    let i = MAGIC_U64 - ( unsafe { mem::transmute::<_, usize>(n) } >> 1);
+    let i = MAGIC_U64 - ( unsafe { mem::transmute::<_, u64>(n) } >> 1);
     let y: f64 = unsafe { mem::transmute(i) };
 
     return y * (THREEHALFS - (x2 * y * y));
 }
 
-pub fn is_perfect_square(n: usize) -> bool {
-    let root: usize;
-    if n < FISR_ACCURACY_LIMIT {
-        let n_f64 = n as f64;
-        root = ((fast_inverse_sqrt(n_f64) * n_f64) + 0.5) as usize;
-    } else {
-        root = ((n as f64).sqrt() + 0.5) as usize;
-    }
-
-    return root * root == n; 
+pub fn is_perfect_square<T: Unsigned + Copy + PartialEq + Roots>(n: T) -> bool {
+    let root = n.sqrt();
+    root * root == n
 }
 
 pub fn is_triangular(n: usize) -> bool {

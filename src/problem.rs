@@ -73,6 +73,7 @@ pub mod pandigital_products;
 pub mod pandigital_multiples;
 pub mod ordered_radicals;
 pub mod powerful_digit_counts;
+pub mod odd_period_square_roots;
 
 pub trait Problem {
     fn solve(&self) -> String;
