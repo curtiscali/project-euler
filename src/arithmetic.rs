@@ -299,6 +299,23 @@ pub fn factors<T: Unsigned + Copy + PartialEq + PartialOrd>(n: T) -> Vec<T> {
     return factors;
 }
 
+pub fn bigint_fast_pow(a: &BigInt, b: &BigInt) -> BigInt {
+    let two = BigInt::from(2);
+
+    let mut result = BigInt::from(1);
+    let (mut base, mut power) = (a.clone(), b.clone());
+    while &power > &BigInt::ZERO {
+        if &power % 2 == BigInt::from(1) {
+            result = &result * &base;
+        }
+
+        base *= base.clone();
+        power /= two.clone();
+    }
+
+    result
+}
+
 pub fn fast_pow<T: Num + Copy + PartialEq + PartialOrd>(a: T, b: T) -> T {
     let two = T::one() + T::one();
 

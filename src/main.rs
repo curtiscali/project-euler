@@ -76,6 +76,7 @@ use problem::{
     pandigital_products::PandigitalProductsProblem,
     pandigital_multiples::PandigitalMultiplesProblem,
     ordered_radicals::OrderedRadicalsProblem,
+    powerful_digit_counts::PowerfulDigitCountsProblem,
     Problem
 };
 
@@ -117,7 +118,7 @@ fn print_solution(problem_number: u16, problem: &dyn Problem) {
     } else if nanoseconds < NS_TO_S {
         format!("{}ms", nanoseconds / NS_TO_MS)
     } else {
-        format!("{}s", nanoseconds / NS_TO_S)
+        format!("{:.3}s", (nanoseconds as f64) / (NS_TO_S as f64))
     };
 
     println!("Solution: {}", result);
@@ -182,6 +183,7 @@ fn main() {
         (56, Box::new(PowerDigitSumProblem { upper_bound: 100 })),
         (57, Box::new(SquareRootConvergentsProblem {})),
         (58, Box::new(SpiralPrimesProblem {})),
+        (63, Box::new(PowerfulDigitCountsProblem {})),
         (65, Box::new(ConvergentsOfEProblem {})),
         (67, Box::new(MaximumPathSumTwoProblem {})),
         (69, Box::new(TotientMaximumProblem { upper_bound: 1_000_000 })),

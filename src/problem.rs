@@ -72,6 +72,7 @@ pub mod efficient_exponentiation;
 pub mod pandigital_products;
 pub mod pandigital_multiples;
 pub mod ordered_radicals;
+pub mod powerful_digit_counts;
 
 pub trait Problem {
     fn solve(&self) -> String;
