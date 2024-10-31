@@ -75,6 +75,7 @@ pub mod ordered_radicals;
 pub mod powerful_digit_counts;
 pub mod odd_period_square_roots;
 pub mod counting_summations;
+pub mod prime_summations;
 
 pub trait Problem {
     fn solve(&self) -> String;
