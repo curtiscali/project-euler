@@ -5,7 +5,7 @@ pub struct PrimeSummationsProblem {}
 
 impl Problem for PrimeSummationsProblem {
     fn solve(&self) -> String {
-        let mut n = 5u64;
+        let mut n = 15u64;
         let mut primes_below_n = primes_below::<u64>((n - 1) as usize);
 
         while partitions_count(n, &primes_below_n) <= 5000 {
