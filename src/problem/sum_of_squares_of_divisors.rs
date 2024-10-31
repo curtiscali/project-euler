@@ -20,13 +20,13 @@ fn sigma2_sum(n: u64) -> BigInt {
     sigma2_sum - rhs
 }
 
-pub struct SumOfSquaresOfDivisorsProblem {
-    pub n: u64,
-    pub divisor: u64
-}
+pub struct SumOfSquaresOfDivisorsProblem {}
 
 impl Problem for SumOfSquaresOfDivisorsProblem {
     fn solve(&self) -> String {
-        format!("{}", sigma2_sum(self.n) % self.divisor)
+        const N: u64 = 1_000_000_000_000_000;
+        const MOD: u64 = 1_000_000_000;
+
+        format!("{}", sigma2_sum(N) % MOD)
     }
 }

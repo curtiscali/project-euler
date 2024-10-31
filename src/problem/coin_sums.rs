@@ -1,24 +1,14 @@
+use crate::combinatorics::partitions_count;
+
 use super::Problem;
 
-pub struct CoinSumProblem {
-    pub total_pence: usize,
-    pub denominations: Vec<usize>
-}
+pub struct CoinSumProblem {}
 
 impl Problem for CoinSumProblem {
     fn solve(&self) -> String {
-        let mut solutions: Vec<usize> = vec![0; self.total_pence + 1];
-        solutions[0] = 1;
+        const TOTAL_PENCE: u64 = 200;
+        let denominations = vec![1u64, 2, 5, 10, 20, 50, 100, 200];
 
-        let denominations = self.denominations.clone();
-        for k in denominations {
-            let mut i = 0;
-            while i <= self.total_pence - k {
-                solutions[i + k] = solutions[i + k] + solutions[i];
-                i += 1;
-            }
-        }
-
-        return format!("{}", solutions[self.total_pence]);
+        return format!("{}", partitions_count(TOTAL_PENCE, &denominations));
     }
 }

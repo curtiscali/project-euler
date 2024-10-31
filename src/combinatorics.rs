@@ -31,3 +31,19 @@ pub fn combinations<T: Num + Clone + Ord>(n: T, r: T) -> T {
 
     return numerator / denominator;
 }
+
+pub fn partitions_count(target: u64, partitions: &Vec<u64>) -> u64 {
+    let n = target as usize;
+
+    let mut solutions: Vec<u64> = vec![0; n + 1];
+    solutions[0] = 1;
+
+    for k in partitions {
+        let k_idx = *k as usize;
+        for i in 0..=(n - k_idx) {
+            solutions[i + k_idx] = solutions[i + k_idx] + solutions[i];
+        }
+    }
+
+    solutions[n]
+}
