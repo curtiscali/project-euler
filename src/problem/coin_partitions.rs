@@ -13,6 +13,8 @@ impl Problem for CoinPartitionsProblem {
 
         let mut partitions = vec![1i64];
 
+        // This algorithm implements a modular version of the pentagonal number theorem:
+        // https://en.wikipedia.org/wiki/Pentagonal_number_theorem
         for n in 1..=N {
             let mut sum = 0;
 
