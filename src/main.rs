@@ -197,7 +197,7 @@ fn main() {
         (77, Box::new(PrimeSummationsProblem {})),
         (78, Box::new(CoinPartitionsProblem {})),
         (79, Box::new(PasscodeDerivationProblem {})),
-        (85, Box::new(CountingRectanglesProblem { target_rectangle_count: 2_000_000 })),
+        (85, Box::new(CountingRectanglesProblem {})),
         (89, Box::new(RomanNumeralsProblem {})),
         (92, Box::new(SquareDigitChainsProblem { upper_bound: 10_000_000})),
         (97, Box::new(LargeNonMersennePrimeProblem {})),
