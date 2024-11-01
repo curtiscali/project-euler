@@ -77,6 +77,7 @@ pub mod odd_period_square_roots;
 pub mod counting_summations;
 pub mod prime_summations;
 pub mod coin_partitions;
+pub mod path_sum_two_ways;
 
 pub trait Problem {
     fn solve(&self) -> String;
