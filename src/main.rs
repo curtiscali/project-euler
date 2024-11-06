@@ -206,7 +206,7 @@ fn main() {
         (97, Box::new(LargeNonMersennePrimeProblem {})),
         (99, Box::new(LargestExponentialProblem {})),
         (102, Box::new(TriangleContainmentProblem {})),
-        (112, Box::new(BouncyNumbersProblem { target_bouncy_percentage: 0.99 })),
+        (112, Box::new(BouncyNumbersProblem {})),
         (113, Box::new(NonBouncyNumbersProblem {})),
         (122, Box::new(EfficientExponentiationProblem {})),
         (124, Box::new(OrderedRadicalsProblem {})),

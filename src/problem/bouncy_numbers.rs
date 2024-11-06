@@ -38,16 +38,14 @@ fn is_bouncy(n: u32) -> bool {
     return !is_increasing(n) && !is_decreasing(n);
 }
 
-pub struct BouncyNumbersProblem {
-    pub target_bouncy_percentage: f64
-}
+pub struct BouncyNumbersProblem {}
 
 impl Problem for BouncyNumbersProblem {
     fn solve(&self) -> String {
         let mut total_numbers_count = 21780u32;
         let mut bouncy_numbers_count = 19602u32; // 90% of 21780 is 19602
 
-        while (bouncy_numbers_count as f64 / total_numbers_count as f64) < self.target_bouncy_percentage {
+        while (bouncy_numbers_count as f64 / total_numbers_count as f64) < 0.99 {
             if is_bouncy(total_numbers_count) {
                 bouncy_numbers_count += 1;
             }
