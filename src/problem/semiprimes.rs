@@ -34,20 +34,20 @@ fn pi(n: u32) -> u32 {
     phi(n, a, &primes) + a - 1
 }
 
-pub struct SemiprimesProblem {
-    pub n: u32
-}
+pub struct SemiprimesProblem {}
 
 impl Problem for SemiprimesProblem {
     fn solve(&self) -> String {
+        const N: u32 = 100_000_000;
+
         // This function implements the Semiprime counting function https://en.wikipedia.org/wiki/Semiprime#Formula_for_number_of_semiprimes
-        let root = self.n.sqrt();
+        let root = N.sqrt();
         let primes = primes_below::<u32>(root as usize);
 
         let mut num_semiprimes = 0u32;
         for k in 1..=primes.len() {
             let p = primes[k - 1];
-            num_semiprimes += pi(self.n / p) - (k as u32) + 1;
+            num_semiprimes += pi(N / p) - (k as u32) + 1;
         }
 
         format!("{}", num_semiprimes)
