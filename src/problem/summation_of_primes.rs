@@ -40,12 +40,10 @@ fn primes_sum(n: u64) -> u64 {
     s[&n]
 }
 
-pub struct SummationOfPrimes {
-    pub n: u64
-}
+pub struct SummationOfPrimes {}
 
 impl Problem for SummationOfPrimes {
     fn solve(&self) -> String {
-        format!("{}", primes_sum(self.n))
+        format!("{}", primes_sum(2_000_000))
     }
 }

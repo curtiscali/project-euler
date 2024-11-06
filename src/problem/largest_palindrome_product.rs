@@ -1,9 +1,7 @@
 use crate::arithmetic::is_palindrome;
 use super::Problem;
 
-pub struct LargestPalindromeProduct {
-    pub limit: u32
-}
+pub struct LargestPalindromeProduct {}
 
 impl Problem for LargestPalindromeProduct {
     fn solve(&self) -> String {
@@ -12,7 +10,7 @@ impl Problem for LargestPalindromeProduct {
 
         // We can start at half the limit, since the largest palindrome is likely to be
         // towards the top of the range rather than the bottom. This allows us to cut our problem set in half
-        let mut i = self.limit;
+        let mut i = 1000;
         while i >= 100 {
             let mut j = if i % 11 == 0 {
                 999

@@ -1,5 +1,4 @@
 use num::integer::Roots;
-
 use super::Problem;
 
 fn get_factor_pairs(n: u32) -> Vec<(u32, u32)> {
@@ -28,24 +27,21 @@ fn get_pythagorean_triple(factor_pair: (u32, u32)) -> (u32, u32, u32) {
     return (m2.abs_diff(n2), 2 * m * n, m2 + n2);
 }
 
-pub struct SpecialPythagoreanTripletProblem {
-    pub target_sum: u32
-}
+pub struct SpecialPythagoreanTripletProblem {}
 
 impl Problem for SpecialPythagoreanTripletProblem {
     fn solve(&self) -> String {
-        let mut i = self.target_sum / 10;
+        const TARGET_SUM: u32 = 1000;
+
+        let mut i = TARGET_SUM / 10;
         let mut special_triple: (u32, u32, u32) = (0, 0, 0);
         let mut found_triple = false;
-        while i <= self.target_sum / 2 {
+        while i <= TARGET_SUM / 2 {
             for factor_pair in get_factor_pairs(i / 2) {
-                let pythagorean_triple = get_pythagorean_triple(factor_pair);
-                let a = pythagorean_triple.0;
-                let b = pythagorean_triple.1;
-                let c = pythagorean_triple.2;
+                let (a, b, c) = get_pythagorean_triple(factor_pair);
 
-                if a + b + c == self.target_sum {
-                    special_triple = pythagorean_triple;
+                if a + b + c == TARGET_SUM {
+                    special_triple = (a, b, c);
                     found_triple = true;
                     break;
                 }

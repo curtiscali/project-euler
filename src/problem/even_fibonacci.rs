@@ -1,16 +1,16 @@
 use super::Problem;
 
-pub struct EvenFibonacciProblem {
-    pub limit: i32
-}
+pub struct EvenFibonacciProblem {}
 
 impl Problem for EvenFibonacciProblem {
     fn solve(&self) -> String {
-        let mut sum: i32 = 0;
-        let mut fib1: i32 = 0;
-        let mut fib2: i32 = 1;
+        const LIMIT: u32 = 4_000_000;
 
-        while fib2 <= self.limit {
+        let mut sum = 0;
+        let mut fib1 = 0;
+        let mut fib2 = 1;
+
+        while fib2 <= LIMIT {
             let new_fib = fib1 + fib2;
             fib1 = fib2;
             fib2 = new_fib;

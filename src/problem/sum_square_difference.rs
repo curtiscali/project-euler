@@ -1,18 +1,15 @@
 use super::Problem;
 use crate::arithmetic::{linear_sum, quadratic_sum};
 
-pub struct SumSquareDifference {
-    pub count: u32
-}
+pub struct SumSquareDifference {}
 
 impl Problem for SumSquareDifference {
     fn solve(&self) -> String {
-        // this is derived from squaring the formula n(n + 1)/2
-        let square_of_sum = linear_sum(self.count).pow(2);
+        const N: u32 = 100;
 
-        // sum of squares = n(n+1)(2n+1)/6
-        let sum_of_squares = quadratic_sum(self.count);
+        let linear_sum = linear_sum(N);
+        let sum_of_squares = quadratic_sum(N);
 
-        return format!("{}", square_of_sum - sum_of_squares);
+        return format!("{}", (linear_sum * linear_sum) - sum_of_squares);
     }
 }
