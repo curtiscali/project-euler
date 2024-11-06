@@ -14,8 +14,7 @@ impl Problem for NonBouncyNumbersProblem {
         // TL;DR - we can look at numbers as a set of digits, and therefore we can select combinations that are increasing
         // or decreasing
 
-        // For an even better explanation: Aryabhata (https://math.stackexchange.com/users/1102/aryabhata), 
-        // Combinatorial counting, URL (version: 2010-11-18): https://math.stackexchange.com/q/10849
+        // For an even better explanation: https://math.stackexchange.com/a/10849
 
         // exponent of 10 for which we want to find the number of non-bouncy numbers
         // In this case, 10^100, so k = 100
