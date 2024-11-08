@@ -36,18 +36,18 @@ fn chain_length(n: u64, solutions: &mut HashMap<u64, u64>) -> u64 {
     return length;
 }
 
-pub struct LongestCollatzSequenceProblem {
-    pub limit: u32
-}
+pub struct LongestCollatzSequenceProblem {}
 
 impl Problem for LongestCollatzSequenceProblem {
     fn solve(&self) -> String {
+        const LIMIT: u64 = 1_000_000;
+
         let mut solutions: HashMap<u64, u64> = HashMap::from([(1, 1)]);
         let mut longest_path = 1;
         let mut longest_path_num = 1;
 
-        let mut i = self.limit / 2;
-        while i < self.limit {
+        let mut i = LIMIT / 2;
+        while i < LIMIT {
             let chain_length = chain_length(i as u64, &mut solutions);
 
             if chain_length > longest_path {

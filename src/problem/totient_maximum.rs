@@ -1,14 +1,12 @@
-use crate::primes::sieve_of_eratosthenes;
+use crate::primes::sieve_of_atkin;
 use crate::arithmetic::totient;
 use super::Problem;
 
-pub struct TotientMaximumProblem {
-    pub upper_bound: u64
-}
+pub struct TotientMaximumProblem {}
 
 impl Problem for TotientMaximumProblem {
     fn solve(&self) -> String {
-        let primes_below_bound = sieve_of_eratosthenes(self.upper_bound as usize + 1);
+        let primes_below_bound = sieve_of_atkin(1_000_000);
 
         let mut max_totient_n = 2;
         let mut max_totient_ratio = 0.0;

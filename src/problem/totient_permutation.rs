@@ -12,17 +12,14 @@ fn is_permutation(a: u64, b: u64) -> bool {
     a_digits == b_digits
 }
 
-pub struct TotientPermutationProblem {
-    pub upper_bound: u64
-}
+pub struct TotientPermutationProblem {}
 
 impl Problem for TotientPermutationProblem {
     fn solve(&self) -> String {
-        let mut n = 2;
         let mut min_totient_n = u64::MAX;
         let mut min_totient_ratio = f64::INFINITY;
 
-        while n < self.upper_bound {
+        for n in 2..10_000_000 {
             let totient = totient(n);
 
             if is_permutation(n, totient) {
@@ -32,8 +29,6 @@ impl Problem for TotientPermutationProblem {
                     min_totient_n = n;
                 }
             }
-
-            n += 1;
         }
 
         return format!("{}", min_totient_n);

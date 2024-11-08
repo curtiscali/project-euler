@@ -1,12 +1,11 @@
 use super::Problem;
 
-pub struct NumberPowerSpiralsProblem {
-    pub spiral_size: u128
-}
+pub struct NumberPowerSpiralsProblem {}
 
 impl Problem for NumberPowerSpiralsProblem {
     fn solve(&self) -> String {
-        let n = self.spiral_size / 2;
+        const SPIRAL_SIZE: u128 = 1001;
+        let n = SPIRAL_SIZE / 2;
 
         // This formula is based on numerical analysis stemming from the formula for the sum at each level of the
         // spiral being 1 + sum((2n^2 + 1) + (2n^2 + 1) - 2n + (2n^2 + 1) - 4n + (2n^2 + 1) - 6n)

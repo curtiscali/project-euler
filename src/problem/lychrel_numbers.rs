@@ -19,16 +19,14 @@ fn is_lychrel_number(n: u128) -> bool {
     return true;
 }
 
-pub struct LychrelNumbersProblem {
-    pub upper_bound: usize
-}
+pub struct LychrelNumbersProblem {}
 
 impl Problem for LychrelNumbersProblem {
     fn solve(&self) -> String {
         let mut lychrel_numbers_count = 0;
 
         let mut i = 1;
-        while i <= self.upper_bound {
+        while i <= 10_000 {
             if is_lychrel_number(i as u128) {
                 lychrel_numbers_count += 1;
             }

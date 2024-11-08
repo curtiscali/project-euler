@@ -2,12 +2,12 @@ use std::collections::HashMap;
 use super::Problem;
 
 struct CoprimeTreeNode {
-    pub pair: Option<(usize, usize)>,
+    pub pair: Option<(u32, u32)>,
     pub children: Vec<CoprimeTreeNode>
 }
 
 impl CoprimeTreeNode {
-    fn from_tuple(pair: (usize, usize)) -> CoprimeTreeNode {
+    fn from_tuple(pair: (u32, u32)) -> CoprimeTreeNode {
         CoprimeTreeNode {
             pair: Some(pair),
             children: vec![]
@@ -15,7 +15,7 @@ impl CoprimeTreeNode {
     }
 }
 
-fn init_to_depth_rec(root: &mut CoprimeTreeNode, depth: usize, current_depth: usize) {
+fn init_to_depth_rec(root: &mut CoprimeTreeNode, depth: u32, current_depth: u32) {
     if current_depth >= depth {
         return;
     }
@@ -39,11 +39,11 @@ fn init_to_depth_rec(root: &mut CoprimeTreeNode, depth: usize, current_depth: us
     }
 }
 
-fn init_to_depth(root: &mut CoprimeTreeNode, depth: usize) {
+fn init_to_depth(root: &mut CoprimeTreeNode, depth: u32) {
     init_to_depth_rec(root, depth, 0);
 }
 
-fn calculate_solutions(root: &CoprimeTreeNode, solutions: &mut HashMap<usize, usize>) {
+fn calculate_solutions(root: &CoprimeTreeNode, solutions: &mut HashMap<u32, u32>) {
     if root.children.len() == 0 {
         return;
     }
@@ -67,21 +67,20 @@ fn calculate_solutions(root: &CoprimeTreeNode, solutions: &mut HashMap<usize, us
     }
 }
 
-fn get_pythagorean_triple(m: usize, n: usize) -> (usize, usize, usize) {
+fn get_pythagorean_triple(m: u32, n: u32) -> (u32, u32, u32) {
     ((m*m) - (n*n), 2*m*n,(m*m) + (n*n))
 }
 
-fn perimeter(triangle: (usize, usize, usize)) -> usize {
+fn perimeter(triangle: (u32, u32, u32)) -> u32 {
     triangle.0 + triangle.1 + triangle.2
 }
 
-pub struct IntegerRightTrianglesProblem {
-    pub max_perimeter: usize
-}
+pub struct IntegerRightTrianglesProblem {}
 
 impl Problem for IntegerRightTrianglesProblem {
     fn solve(&self) -> String {
-        let mut solutions: HashMap<usize, usize> = HashMap::new();
+        const MAX_PERIMETER: u32 = 1000;
+        let mut solutions: HashMap<u32, u32> = HashMap::new();
 
         let mut root = CoprimeTreeNode {
             pair: None,
@@ -91,7 +90,7 @@ impl Problem for IntegerRightTrianglesProblem {
             ]
         };
 
-        init_to_depth(&mut root, 11usize);
+        init_to_depth(&mut root, 11u32);
 
         calculate_solutions(&root, &mut solutions);
 
@@ -100,7 +99,7 @@ impl Problem for IntegerRightTrianglesProblem {
         for perimeter in solutions.keys() {
             let solution_count = solutions[perimeter];
 
-            if solution_count > max_solutions && *perimeter <= self.max_perimeter {
+            if solution_count > max_solutions && *perimeter <= MAX_PERIMETER {
                 max_solutions = solution_count;
                 perimeter_with_most_tris = *perimeter;
             }

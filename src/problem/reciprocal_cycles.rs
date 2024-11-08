@@ -18,18 +18,18 @@ fn multiplicative_order(n: u32) -> u32 {
     0
 }
 
-pub struct ReciprocalCyclesProblem {
-    pub max_denominator: u32
-}
+pub struct ReciprocalCyclesProblem {}
 
 impl Problem for ReciprocalCyclesProblem {
     fn solve(&self) -> String {
-        let prime_denoms_lookup = sieve_of_atkin(self.max_denominator as usize);
+        const MAX_DENOMINATOR: u32 = 1000;
+
+        let prime_denoms_lookup = sieve_of_atkin(MAX_DENOMINATOR as usize);
 
         let mut max_repeat_length = 0;
         let mut max_repeat_denominator = 0;
 
-        let mut d = self.max_denominator as usize - 1;
+        let mut d = MAX_DENOMINATOR as usize - 1;
         while d > 2 {
             // Primes will have the longest repeating periods, so to optimize we can only check
             // primes

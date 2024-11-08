@@ -1,6 +1,6 @@
 use super::Problem;
 
-fn proper_divisors_sum(n: usize) -> usize {
+fn proper_divisors_sum(n: u32) -> u32 {
     let mut factor_sum = 1;
 
     let mut i = 2;
@@ -15,16 +15,14 @@ fn proper_divisors_sum(n: usize) -> usize {
     return factor_sum;
 }
 
-pub struct AmicableNumbersProblem {
-    pub limit: usize
-}
+pub struct AmicableNumbersProblem {}
 
 impl Problem for AmicableNumbersProblem {
     fn solve(&self) -> String {
         let mut amicable_numbers_sum = 0;
 
         let mut i = 2;
-        while i < self.limit {
+        while i < 10_000 {
             let j = proper_divisors_sum(i);
 
             if j > i && proper_divisors_sum(j) == i {

@@ -4,7 +4,7 @@ use crate::{
         num_digits, 
         to_digits
     }, 
-    primes::sieve_of_eratosthenes
+    primes::sieve_of_atkin
 };
 use super::Problem;
 
@@ -30,23 +30,19 @@ fn get_rotations(n: usize) -> Vec<usize> {
     return rotations;
 }
 
-pub struct CircularPrimesProblem {
-    pub upper_bound: u32
-}
+pub struct CircularPrimesProblem {}
 
 impl Problem for CircularPrimesProblem {
     fn solve(&self) -> String {
-        let primes_below_bound = sieve_of_eratosthenes(self.upper_bound as usize);
+        let primes_below_bound_lookup = sieve_of_atkin(1_000_000);
 
         let mut circular_primes_count = 0;
-        let mut i = 0; // 13 primes below 100, 98 = 100 - 2
-        while i < primes_below_bound.len() {
-            let n = i + 2;
-            if primes_below_bound[i] {
+        for n in 2..primes_below_bound_lookup.len() {
+            if primes_below_bound_lookup[n] {
                 let rotations = get_rotations(n);
                 let mut are_all_rotations_prime = true;
                 for x in rotations {
-                    if !primes_below_bound[x - 2] {
+                    if !primes_below_bound_lookup[x] {
                         are_all_rotations_prime = false;
                         break;
                     }
@@ -56,8 +52,6 @@ impl Problem for CircularPrimesProblem {
                     circular_primes_count += 1;
                 }
             }
-
-            i += 1;
         }
 
         return format!("{}", circular_primes_count);

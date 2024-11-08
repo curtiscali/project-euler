@@ -23,15 +23,15 @@ fn inclusion_exclusion(limit: u32, index: usize, primes: &Vec<u32>) -> u128 {
     return count;
 }
 
-pub struct CountingFractionsProblem {
-    pub denom_limit: u32
-}
+pub struct CountingFractionsProblem {}
 
 impl Problem for CountingFractionsProblem {
     fn solve(&self) -> String {
+        const DENOM_LIMIT: u32 = 1_000_000;
+
         // Fractions aren't reduced if a prime divides the numerator AND denominator]
         // That's what the primes are used for
-        let primes_below_limit_lookup = sieve_of_atkin((self.denom_limit as usize) / 2);
+        let primes_below_limit_lookup = sieve_of_atkin((DENOM_LIMIT as usize) / 2);
         let mut primes_below_limit: Vec<u32> = vec![];
         let mut i = 0; 
         while i < primes_below_limit_lookup.len() {
@@ -42,6 +42,6 @@ impl Problem for CountingFractionsProblem {
             i += 1;
         }
 
-        return format!("{}", inclusion_exclusion(self.denom_limit, 0, &primes_below_limit));
+        return format!("{}", inclusion_exclusion(DENOM_LIMIT, 0, &primes_below_limit));
     }
 }

@@ -2,13 +2,13 @@ use crate::primes::sieve_of_atkin;
 
 use super::Problem;
 
-pub struct ConsecutivePrimeSumProblem {
-    pub limit: usize
-}
+pub struct ConsecutivePrimeSumProblem {}
 
 impl Problem for ConsecutivePrimeSumProblem {
     fn solve(&self) -> String {
-        let sieve_results = sieve_of_atkin(self.limit);
+        const LIMIT: usize = 1_000_000;
+
+        let sieve_results = sieve_of_atkin(LIMIT);
 
         let mut primes_below_bound: Vec<usize> = vec![];
         let mut i = 2;
@@ -22,7 +22,7 @@ impl Problem for ConsecutivePrimeSumProblem {
 
         let mut prime_sum = 0;
         i = 0;
-        while prime_sum < self.limit {
+        while prime_sum < LIMIT {
             prime_sum += primes_below_bound[i];
             i += 1;
         }
@@ -43,7 +43,7 @@ impl Problem for ConsecutivePrimeSumProblem {
                 j += 1;
             }
 
-            if sieve_results[sum] && sum <= self.limit && addends_count > largest_addend_count {
+            if sieve_results[sum] && sum <= LIMIT && addends_count > largest_addend_count {
                 largest_prime = sum;
                 largest_addend_count = addends_count;
             }

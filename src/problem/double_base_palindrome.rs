@@ -1,45 +1,31 @@
 use super::Problem;
-use crate::arithmetic::is_palindrome;
 
-fn is_binary_palindrome(n: usize) -> bool {
-    let mut binary_digits: Vec<usize> = vec![];
-    let mut x = n;
+fn reverse(n: u32, base: u32) -> u32 {
+    let (mut reversed, mut i) = (0, n);
 
-    while x > 0 {
-        binary_digits.push(x % 2);
-        x /= 2;
+    while i > 0 {
+        reversed *= base;
+        reversed += i % base;
+        i /= base;
     }
 
-    let mut i = 0;
-    let mut j = binary_digits.len() - 1;
-
-    while i < j && i < binary_digits.len() {
-        if binary_digits[i] != binary_digits[j] {
-            return false;
-        }
-
-        i += 1;
-        j -= 1;
-    }
-
-    return true;
+    reversed
 }
 
-pub struct DoubleBasePalindromeProblem {
-    pub upper_bound: usize
+fn is_palindrome(n: u32, base: u32) -> bool {
+    n == reverse(n, base)
 }
+
+pub struct DoubleBasePalindromeProblem {}
 
 impl Problem for DoubleBasePalindromeProblem {
     fn solve(&self) -> String {
         let mut palindrome_sum = 0;
-        let mut i: usize = 1;
 
-        while i < self.upper_bound {
-            if is_palindrome(i) && is_binary_palindrome(i) {
+        for i in 1..1_000_000 {
+            if is_palindrome(i, 10) && is_palindrome(i, 2) {
                 palindrome_sum += i;
             }
-
-            i += 1;
         }
 
         return format!("{}", palindrome_sum);

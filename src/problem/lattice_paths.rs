@@ -1,12 +1,11 @@
 use crate::combinatorics::combinations;
 use super::Problem;
 
-pub struct LatticePathsProblem {
-    pub grid_dim: u128,
-}
+pub struct LatticePathsProblem {}
 
 impl Problem for LatticePathsProblem {
     fn solve(&self) -> String {
-        return format!("{}", combinations(self.grid_dim * 2, self.grid_dim));
+        const GRID_DIM: u128 = 20;
+        return format!("{}", combinations(GRID_DIM * 2, GRID_DIM));
     }
 }
