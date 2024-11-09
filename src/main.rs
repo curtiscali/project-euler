@@ -58,7 +58,9 @@ use problem::{
     pandigital_products::PandigitalProductsProblem, 
     passcode_derivation::PasscodeDerivationProblem, 
     path_sum_two_ways::PathSumTwoWaysProblem,
-    permuted_multiples::PermutedMultiplesProblem, 
+    path_sum_three_ways::PathSumThreeWaysProblem,
+    path_sum_four_ways::PathSumFourWaysProblem,
+    permuted_multiples::PermutedMultiplesProblem,
     power_digit_sum::PowerDigitSum, 
     powerful_digit_counts::PowerfulDigitCountsProblem, 
     powerful_digit_sum::PowerDigitSumProblem, 
@@ -82,7 +84,7 @@ use problem::{
     totient_maximum::TotientMaximumProblem, 
     totient_permutation::TotientPermutationProblem, 
     triangle_containment::TriangleContainmentProblem, 
-    triangular_pentagonal_hexagonal::TriangularPentagonalHexagonalNumberProblem, 
+    triangular_pentagonal_hexagonal::TriangularPentagonalHexagonalNumberProblem,
     Problem
 };
 
@@ -200,6 +202,8 @@ fn main() {
         (78, Box::new(CoinPartitionsProblem {})),
         (79, Box::new(PasscodeDerivationProblem {})),
         (81, Box::new(PathSumTwoWaysProblem {})),
+        (82, Box::new(PathSumThreeWaysProblem {})),
+        (83, Box::new(PathSumFourWaysProblem {})),
         (85, Box::new(CountingRectanglesProblem {})),
         (89, Box::new(RomanNumeralsProblem {})),
         (92, Box::new(SquareDigitChainsProblem {})),

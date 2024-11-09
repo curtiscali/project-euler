@@ -22,11 +22,15 @@ impl PartialOrd for Cell {
     }
 }
 
-fn min_path_sum(dest: (usize, usize), grid: &Vec<Vec<i32>>) -> i32 {
-    let (target_row, target_column) = dest;
+fn min_path_sum(target_column: usize, grid: &Vec<Vec<i32>>) -> i32 {
     let mut visited = [[false; GRID_DIM]; GRID_DIM];
 
-    let mut priority_queue = BinaryHeap::from([Cell { row: 0, col: 0, weight: grid[0][0] }]);
+    let mut priority_queue = BinaryHeap::new();
+
+    for i in 0..grid.len() {
+        priority_queue.push(Cell { row: i, col: 0, weight: grid[i][0] });
+    }
+
     while !priority_queue.is_empty() {
         let Cell { row, col, weight } = priority_queue.pop().unwrap();
 
@@ -36,12 +40,16 @@ fn min_path_sum(dest: (usize, usize), grid: &Vec<Vec<i32>>) -> i32 {
 
         visited[row][col] = true;
 
-        if target_row == row && target_column == col {
+        if target_column == col {
             return weight;
         }
 
         if row + 1 < GRID_DIM {
             priority_queue.push(Cell { row: row + 1, col, weight: weight + grid[row + 1][col]});
+        }
+
+        if row >= 1 {
+            priority_queue.push(Cell { row: row - 1, col, weight: weight + grid[row - 1][col] });
         }
 
         if col + 1 < GRID_DIM {
@@ -52,13 +60,15 @@ fn min_path_sum(dest: (usize, usize), grid: &Vec<Vec<i32>>) -> i32 {
     -1
 }
 
-pub struct PathSumTwoWaysProblem {}
+pub struct PathSumThreeWaysProblem {}
 
-impl Problem for PathSumTwoWaysProblem {
+impl Problem for PathSumThreeWaysProblem {
     fn solve(&self) -> String {
+        const GRID_DIM: usize = 80;
+
         let mut grid = vec![];
 
-        let bytes = include_bytes!("../data_files/0081_matrix.txt");
+        let bytes = include_bytes!("../data_files/0082_matrix.txt");
         let file_data = String::from_utf8_lossy(bytes);
 
         for line in file_data.lines() {
@@ -67,7 +77,6 @@ impl Problem for PathSumTwoWaysProblem {
             );
         }
 
-
-        format!("{}", min_path_sum((GRID_DIM - 1, GRID_DIM - 1), &grid))
+        format!("{}", min_path_sum(GRID_DIM - 1, &grid))
     }
 }

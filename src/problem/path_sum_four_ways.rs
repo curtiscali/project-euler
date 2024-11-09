@@ -1,5 +1,5 @@
-use std::{collections::BinaryHeap, i32};
 use super::Problem;
+use std::{collections::BinaryHeap, i32};
 
 const GRID_DIM: usize = 80;
 
@@ -43,22 +43,30 @@ fn min_path_sum(dest: (usize, usize), grid: &Vec<Vec<i32>>) -> i32 {
         if row + 1 < GRID_DIM {
             priority_queue.push(Cell { row: row + 1, col, weight: weight + grid[row + 1][col]});
         }
+        
+        if row >= 1 {
+            priority_queue.push(Cell { row: row - 1, col, weight: weight + grid[row - 1][col] });
+        }
 
         if col + 1 < GRID_DIM {
             priority_queue.push(Cell { row, col: col + 1, weight: weight + grid[row][col + 1] });
+        }
+
+        if col >= 1 {
+            priority_queue.push(Cell { row, col: col - 1, weight: weight + grid[row][col - 1] });
         }
     }
 
     -1
 }
 
-pub struct PathSumTwoWaysProblem {}
+pub struct PathSumFourWaysProblem {}
 
-impl Problem for PathSumTwoWaysProblem {
+impl Problem for PathSumFourWaysProblem {
     fn solve(&self) -> String {
         let mut grid = vec![];
 
-        let bytes = include_bytes!("../data_files/0081_matrix.txt");
+        let bytes = include_bytes!("../data_files/0083_matrix.txt");
         let file_data = String::from_utf8_lossy(bytes);
 
         for line in file_data.lines() {
