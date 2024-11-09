@@ -5,7 +5,7 @@ pub struct MaximumPathSumOneProblem {}
 
 impl Problem for MaximumPathSumOneProblem {
     fn solve(&self) -> String {
-        let bytes = include_bytes!("../data_files/0016_triangle.txt");
+        let bytes = include_bytes!("../data_files/0018_triangle.txt");
         let file_data = String::from_utf8_lossy(bytes);
         
         let mut triangle = triangles::from_string(&file_data);
