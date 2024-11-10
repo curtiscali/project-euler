@@ -90,7 +90,7 @@ use problem::{
 
 pub mod problem;
 pub mod primes;
-pub mod arithmetic;
+pub mod number_theory;
 pub mod strings;
 pub mod combinatorics;
 pub mod linear_algebra;

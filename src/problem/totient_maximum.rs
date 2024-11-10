@@ -1,5 +1,4 @@
-use crate::primes::sieve_of_atkin;
-use crate::arithmetic::totient;
+use crate::primes::{sieve_of_atkin, totient};
 use super::Problem;
 
 pub struct TotientMaximumProblem {}

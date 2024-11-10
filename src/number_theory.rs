@@ -247,31 +247,6 @@ pub fn sqrt_usize(n: usize) -> usize {
     ((n as f64).sqrt() + 0.5) as usize
 }
 
-// Tis function based on the fourier transform: https://cp-algorithms.com/algebra/phi-function.html#etf_1_to_n
-pub fn totient<T: Unsigned + Copy + PartialOrd>(n: T) -> T {
-    let mut totient = n;
-    let mut i = T::one() + T::one();
-
-    let mut x = n;
-    while i * i < x {
-        if x % i  == T::zero() {
-            while x % i == T::zero() {
-                x = x / i;
-            }
-
-            totient = totient - (totient / i);
-        }
-
-        i = i + T::one();
-    }
-
-    if x > T::one() {
-        totient = totient - (totient / x);
-    }
-
-    return totient;
-}
-
 pub fn factors<T: Unsigned + Copy + PartialEq + PartialOrd>(n: T) -> Vec<T> {
     let mut i = T::one() + T::one();
     let mut factors: Vec<T> = vec![];

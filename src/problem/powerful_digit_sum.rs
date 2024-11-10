@@ -1,5 +1,5 @@
 use num::BigInt;
-use crate::arithmetic::bigint_digit_sum;
+use crate::number_theory::bigint_digit_sum;
 use super::Problem;
 
 pub struct PowerDigitSumProblem {}
@@ -13,8 +13,8 @@ impl Problem for PowerDigitSumProblem {
                 continue;
             }
 
-            for j in 1..=100 {
-                let evaluated = BigInt::from(i).pow(j as u32);
+            for j in 1u32..=100 {
+                let evaluated = BigInt::from(i).pow(j);
                 let digit_sum = bigint_digit_sum(&evaluated);
 
                 if digit_sum > max_digit_sum {

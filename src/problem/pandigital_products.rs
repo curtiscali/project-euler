@@ -1,5 +1,5 @@
 use std::collections::BTreeSet;
-use crate::arithmetic::to_digits;
+use crate::number_theory::to_digits;
 use super::Problem;
 
 fn is_product_pandigital(a: u32, b: u32) -> bool {

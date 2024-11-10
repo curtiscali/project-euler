@@ -1,5 +1,4 @@
-use crate::arithmetic::lcm;
-
+use crate::number_theory::lcm;
 use super::Problem;
 
 pub struct SmallestMultipleProblem {}

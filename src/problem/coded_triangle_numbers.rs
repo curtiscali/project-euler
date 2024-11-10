@@ -1,5 +1,5 @@
 use super::Problem;
-use crate::arithmetic::is_triangular;
+use crate::number_theory::is_triangular;
 use crate::strings::{normalized_list, word_value};
 
 pub struct CodedTriangleNumbersProblem {}

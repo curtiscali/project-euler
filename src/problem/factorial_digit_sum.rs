@@ -1,5 +1,5 @@
 use num::BigInt;
-use crate::arithmetic::bigint_digit_sum;
+use crate::number_theory::bigint_digit_sum;
 use super::Problem;
 
 fn factorial(n: u32) -> BigInt {

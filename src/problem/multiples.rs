@@ -1,4 +1,4 @@
-use crate::arithmetic::linear_sum;
+use crate::number_theory::linear_sum;
 use super::Problem;
 
 fn sum_divisible_by_under(target: u32, n: u32) -> u32 {

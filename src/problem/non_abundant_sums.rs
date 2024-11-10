@@ -1,5 +1,5 @@
 use std::collections::BTreeSet;
-use crate::{arithmetic::fast_pow, primes::prime_factors};
+use crate::{number_theory::fast_pow, primes::prime_factors};
 use super::Problem;
 
 const MAX_NON_ABUNDANT: usize = 28123;

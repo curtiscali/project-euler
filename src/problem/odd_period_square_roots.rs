@@ -1,5 +1,5 @@
 use num::integer::Roots;
-use crate::arithmetic::is_perfect_square;
+use crate::number_theory::is_perfect_square;
 use super::Problem;
 
 // Algorithm based on https://en.wikipedia.org/wiki/Periodic_continued_fraction#Canonical_form_and_repetend

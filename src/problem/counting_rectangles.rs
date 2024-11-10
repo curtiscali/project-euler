@@ -1,5 +1,4 @@
-use crate::arithmetic::linear_sum;
-
+use crate::number_theory::linear_sum;
 use super::Problem;
 
 fn num_rectangles_in_grid(m: u32, n: u32) -> u32 {

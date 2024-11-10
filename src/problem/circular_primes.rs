@@ -1,5 +1,5 @@
 use crate::{
-    arithmetic::{
+    number_theory::{
         from_digits, 
         num_digits, 
         to_digits

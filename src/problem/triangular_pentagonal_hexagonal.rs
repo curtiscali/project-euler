@@ -1,4 +1,4 @@
-use crate::arithmetic::linear_sum;
+use crate::number_theory::linear_sum;
 use super::Problem;
 
 fn is_pentagonal(n: usize) -> bool {

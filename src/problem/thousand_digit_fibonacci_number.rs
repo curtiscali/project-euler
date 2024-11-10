@@ -1,13 +1,12 @@
-use crate::arithmetic::bigint_num_digits;
-
+use crate::number_theory::bigint_num_digits;
 use super::Problem;
-use num::{BigInt, FromPrimitive};
+use num::BigInt;
 
 pub struct ThousandDigitFibonacciNumberProblem {}
 
 impl Problem for ThousandDigitFibonacciNumberProblem {
     fn solve(&self) -> String {
-        let one_thousand = BigInt::from_u16(1000).unwrap();
+        let one_thousand = BigInt::from(1000);
         let mut fib1 = BigInt::from(1);
         let mut fib2 = BigInt::from(1);
         let mut fib_index = 2;

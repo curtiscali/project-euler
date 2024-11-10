@@ -1,4 +1,4 @@
-use crate::arithmetic::{fast_pow, from_digits, to_digits};
+use crate::number_theory::{fast_pow, from_digits, to_digits};
 use super::Problem;
 
 pub struct PandigitalMultiplesProblem {}

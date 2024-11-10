@@ -1,5 +1,5 @@
 use super::Problem;
-use crate::arithmetic::{linear_sum, quadratic_sum};
+use crate::number_theory::{linear_sum, quadratic_sum};
 
 pub struct SumSquareDifference {}
 

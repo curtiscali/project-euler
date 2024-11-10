@@ -1,5 +1,5 @@
 use num::BigInt;
-use crate::arithmetic::bigint_num_digits;
+use crate::number_theory::bigint_num_digits;
 use super::Problem;
 
 pub struct SquareRootConvergentsProblem {}

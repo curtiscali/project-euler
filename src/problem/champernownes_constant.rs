@@ -1,7 +1,5 @@
 use num::pow;
-
-use crate::arithmetic::num_digits;
-
+use crate::number_theory::num_digits;
 use super::Problem;
 
 fn nth_digit(num: usize, digit_num: usize) -> usize {

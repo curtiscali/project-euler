@@ -1,6 +1,5 @@
 use std::{cmp::Ordering, fmt::Display, ops::Add};
-
-use crate::arithmetic::{gcd, lcm};
+use crate::number_theory::{gcd, lcm};
 
 #[derive(PartialOrd, Copy, Clone, Debug)]
 pub struct Fraction {
@@ -29,7 +28,6 @@ impl Eq for Fraction {}
 
 impl Ord for Fraction {
     fn cmp(&self, other: &Self) -> Ordering {
-        
         if self.eq(other) {
             Ordering::Equal
         } else {

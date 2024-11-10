@@ -1,5 +1,5 @@
 use num::{BigInt, One};
-use crate::arithmetic::bigint_quadratic_sum;
+use crate::number_theory::bigint_quadratic_sum;
 use super::Problem;
 
 // This function based on an algorithm from: https://www.ivl-projecteuler.com/overview-of-problems/25-difficulty/problem-401

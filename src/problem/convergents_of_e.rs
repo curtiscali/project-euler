@@ -1,5 +1,5 @@
 use num::{BigInt, One};
-use crate::arithmetic::bigint_digit_sum;
+use crate::number_theory::bigint_digit_sum;
 use super::Problem;
 
 // based on the recurrence relation for a(n) defined here:

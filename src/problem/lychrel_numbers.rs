@@ -1,19 +1,17 @@
-use crate::arithmetic::{reverse, is_palindrome};
+use crate::number_theory::{reverse, is_palindrome};
 use super::Problem;
 
 fn is_lychrel_number(n: u128) -> bool {
     const MAX_LYCHREL_ITERATIONS: u32 = 50;
 
-    let mut i = 0;
     let mut x = n;
-    while i < MAX_LYCHREL_ITERATIONS {
+    for _ in 0..MAX_LYCHREL_ITERATIONS {
         let number = x + reverse(x);
         if is_palindrome(number) {
             return false;
         }
 
         x = number;
-        i += 1;
     }
 
     return true;

@@ -1,4 +1,4 @@
-use crate::arithmetic::is_palindrome;
+use crate::number_theory::is_palindrome;
 use super::Problem;
 
 pub struct LargestPalindromeProduct {}

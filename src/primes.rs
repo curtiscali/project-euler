@@ -1,6 +1,6 @@
 use std::{collections::HashMap, hash::Hash};
 use num::{Num, PrimInt, Unsigned};
-use crate::arithmetic::fast_modpow;
+use crate::number_theory::fast_modpow;
 
 pub fn sieve_of_eratosthenes(n: usize) -> Vec<bool> {
     let vec_len = n - 2;
@@ -154,4 +154,17 @@ pub fn fermat_primality_test<T: Num + Copy + PartialOrd + Eq >(n: T, tests: T) -
     }
 
     true
+}
+
+// Tis function based on the fourier transform: https://cp-algorithms.com/algebra/phi-function.html#etf_1_to_n
+pub fn totient(n: u64) -> u64 
+{
+    let prime_factors = prime_factors(n);
+
+    let mut product = n as f64;
+    for (p, _) in prime_factors {
+        product = product * (1.0 - (1.0 / (p as f64)));
+    }
+
+    product as u64
 }

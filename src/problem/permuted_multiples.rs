@@ -1,4 +1,4 @@
-use crate::arithmetic::to_digits;
+use crate::number_theory::to_digits;
 use super::Problem;
 
 pub struct PermutedMultiplesProblem {}

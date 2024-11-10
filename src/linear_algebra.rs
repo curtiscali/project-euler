@@ -1,6 +1,5 @@
 use std::fmt::Display;
-
-use crate::arithmetic::f64_equals;
+use crate::number_theory::f64_equals;
 
 #[derive(Debug)]
 pub struct Vector2D {

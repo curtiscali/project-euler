@@ -1,5 +1,5 @@
 use super::Problem;
-use crate::{arithmetic::linear_sum, primes::prime_factors};
+use crate::{number_theory::linear_sum, primes::prime_factors};
 
 fn num_factors(n: u32) -> u32 {
     let prime_factors = prime_factors(n);

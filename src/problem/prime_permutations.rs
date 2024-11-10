@@ -1,4 +1,4 @@
-use crate::{arithmetic::to_digits, primes::sieve_of_atkin};
+use crate::{number_theory::to_digits, primes::sieve_of_atkin};
 use super::Problem;
 
 pub struct PrimePermutationsProblem {}
@@ -9,8 +9,7 @@ impl Problem for PrimePermutationsProblem {
 
         let (mut prime_1, mut prime_2, mut prime_3) = (0usize, 0usize, 0usize);
 
-        let mut i = 1488;
-        while i < all_primes_under_10k.len() {
+        for i in 1488..all_primes_under_10k.len() {
             if all_primes_under_10k[i] {
                 let j = i + 3330;
                 let k = i + 6660;
@@ -33,8 +32,6 @@ impl Problem for PrimePermutationsProblem {
                     break;
                 }
             }
-
-            i += 1;
         }
 
         format!("{}{}{}", prime_1, prime_2, prime_3)
