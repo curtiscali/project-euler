@@ -1,30 +1,27 @@
-use crate::primes::{sieve_of_atkin, totient};
+use crate::primes::primes_below;
 use super::Problem;
 
 pub struct TotientMaximumProblem {}
 
 impl Problem for TotientMaximumProblem {
     fn solve(&self) -> String {
-        let primes_below_bound = sieve_of_atkin(1_000_000);
+        const N: usize = 6; // upper bound is 10^N where n = 6, so 1,000,000
 
-        let mut max_totient_n = 2;
-        let mut max_totient_ratio = 0.0;
+        // To achieve a maximal ratio of n/totient(n), we want a highly divisble number,
+        // we also want the product of a certain consecutive series of primes
+        // Using the asymptotic bounds nln(n)+n(ln(ln(n))−1) < pn < nln(n)+nln(ln(n)) for n >= 6
+        // We can generate a list of primes below that upper bound for the nth primes
+        // then look at index n - 1 to find our target prime
+        let float_n = (N + 1) as f64;
+        let ln = float_n.ln();
+        let float_upper_bound = (float_n * ln) + (float_n * ln.ln());
+        let upper_bound = float_upper_bound as usize;
 
-        let mut i = 0;
-        while i < primes_below_bound.len() {
-            if !primes_below_bound[i] { // prime numbers will have low totients, so skip that
-                let n = (i as u64) + 2;
-                
-                let totient = totient(n);
+        let primes = primes_below::<u32>(upper_bound);
 
-                let totient_ratio = n as f64 / totient as f64;
-                if totient_ratio > max_totient_ratio {
-                    max_totient_ratio = totient_ratio;
-                    max_totient_n = n;
-                }
-            }
-            
-            i += 1; 
+        let mut max_totient_n = 1;
+        for i in 0..=N  {
+            max_totient_n *= primes[i];
         }
 
         return format!("{}", max_totient_n);
