@@ -19,13 +19,10 @@ pub struct DigitFactorialsProblem {}
 impl Problem for DigitFactorialsProblem {
     fn solve(&self) -> String {
         let mut matching_sum = 0;
-        let mut i = 10;
-        while i <= 2_540_161 {
+        for i in 10..=41_000 {
             if i == digit_factorial_sum(i) {
                 matching_sum += i;
             }
-
-            i += 1;
         }
 
         return format!("{}", matching_sum);
