@@ -156,6 +156,51 @@ pub fn fermat_primality_test<T: Num + Copy + PartialOrd + Eq >(n: T, tests: T) -
     true
 }
 
+fn is_composite(a: u64, d: u64, n: u64, r: u32) -> bool {
+    if fast_modpow(a, d, n) == 1 {
+        return false;
+    }
+
+    for i in 0..r {
+        if fast_modpow(a, 2.pow(i) * d, n) == n - 1 {
+            return false;
+        }
+    }
+
+    true
+}
+
+pub fn miller_primality_test(n: u64) -> bool {
+    if n < 2 {
+        return false;
+    }
+
+    if n == 2 || n == 3 {
+        return true;
+    }
+
+    if n % 2 == 0 {
+        return false;
+    }
+
+    let tests = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37];
+
+    let mut d = n - 1;
+    let mut r = 0;
+    while d % 2 == 0 {
+        d /= 2;
+        r += 1;
+    }
+
+    for k in tests {
+        if is_composite(k, d, n, r) {
+            return false;
+        }
+    }
+
+    true
+}
+
 // Tis function based on the fourier transform: https://cp-algorithms.com/algebra/phi-function.html#etf_1_to_n
 pub fn totient(n: u64) -> u64 
 {

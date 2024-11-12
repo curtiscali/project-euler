@@ -2,14 +2,14 @@ use crate::primes::fermat_primality_test;
 use super::Problem;
 
 // # of numbers along both diagonals = 2n - 1
-fn num_values_in_diagonals(n: usize) -> usize { (2 * n) - 1 }
+fn num_values_in_diagonals(n: u64) -> u64 { (2 * n) - 1 }
 
 pub struct SpiralPrimesProblem {}
 
 impl Problem for SpiralPrimesProblem {
     fn solve(&self) -> String {
-        const MAX_SPIRAL_SIZE: usize = 30_000;
-        const NUM_TESTS: usize = 20;
+        const MAX_SPIRAL_SIZE: u64 = 30_000;
+        const NUM_TESTS: u64 = 20;
 
         let mut current_spiral_dim = 9;
         let mut found_primes = 8u32;
