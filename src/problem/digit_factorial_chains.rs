@@ -1,5 +1,4 @@
-use std::collections::{BTreeSet, HashMap};
-
+use std::collections::HashMap;
 use super::Problem;
 
 fn digit_factorial_sum(n: u64) -> u64 {
