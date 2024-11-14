@@ -1,7 +1,4 @@
 use num::integer::Roots;
-
-use crate::number_theory::to_digits;
-
 use super::Problem;
 
 fn matches(n: &u128) -> bool {
