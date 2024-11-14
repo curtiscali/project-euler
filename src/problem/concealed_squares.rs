@@ -26,14 +26,11 @@ pub struct ConcealedSquaresProblem {}
 
 impl Problem for ConcealedSquaresProblem {
     fn solve(&self) -> String {
-        // max = sqrt(1929394959697989990)
-        // min = sqrt(1020304050607080900)
-
         let min = 1020304050607080900u128.sqrt();
         let max = 1929394959697989990u128.sqrt() + 1;
 
         let mut found = 0u128;
-        for i in min..max {
+        for i in (min..max).rev() {
             let x = i * i;
 
             if matches(&x) {
