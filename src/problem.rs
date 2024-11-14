@@ -82,6 +82,7 @@ pub mod non_bouncy_numbers;
 pub mod path_sum_three_ways;
 pub mod path_sum_four_ways;
 pub mod digit_factorial_chains;
+pub mod concealed_squares;
 
 pub trait Problem {
     fn solve(&self) -> String;

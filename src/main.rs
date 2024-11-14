@@ -10,6 +10,7 @@ use problem::{
     coin_partitions::CoinPartitionsProblem,
     coin_sums::CoinSumProblem,
     combinatoric_selections::CombinatoricSelectionsProblem, 
+    concealed_squares::ConcealedSquaresProblem,
     consecutive_positive_divisors::ConsecutivePositiveDivisorsProblem, 
     consecutive_prime_sum::ConsecutivePrimeSumProblem, 
     convergents_of_e::ConvergentsOfEProblem, 
@@ -221,6 +222,7 @@ fn main() {
         (179, Box::new(ConsecutivePositiveDivisorsProblem {})),
         (187, Box::new(SemiprimesProblem {})),
         (188, Box::new(HyperexponentiationProblem {})),
+        (206, Box::new(ConcealedSquaresProblem {})),
         (401, Box::new(SumOfSquaresOfDivisorsProblem {}))
     ]);
 
