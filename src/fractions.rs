@@ -155,7 +155,7 @@ fn update_lookup_table(lookup: &mut FareyLookupTable, m: u32) {
 }
 
 // This algorithm is my implementation of Algorithm C with time complexity n^3/4
-// link: https://www.nature.com/articles/s41598-021-99545-w
+// https://pmc.ncbi.nlm.nih.gov/articles/PMC8593030/#Sec6
 pub fn farey_length(n: u32, include_ends: Option<bool>) -> u128 {
     let r = n.sqrt();
     let u = n / (r + 1);
