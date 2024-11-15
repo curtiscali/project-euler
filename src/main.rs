@@ -51,7 +51,8 @@ use problem::{
     non_abundant_sums::NonAbundantSumsProblem,
     non_bouncy_numbers::NonBouncyNumbersProblem,
     number_letter_counts::NumberLetterCountsProblem, 
-    number_power_spirals::NumberPowerSpiralsProblem, 
+    number_power_spirals::NumberPowerSpiralsProblem,
+    number_splitting::NumberSplittingProblem,
     odd_period_square_roots::OddPeriodSquareRootsProblem, 
     ordered_fractions::OrderedFractionsProblem, 
     ordered_radicals::OrderedRadicalsProblem, 
@@ -223,7 +224,8 @@ fn main() {
         (187, Box::new(SemiprimesProblem {})),
         (188, Box::new(HyperexponentiationProblem {})),
         (206, Box::new(ConcealedSquaresProblem {})),
-        (401, Box::new(SumOfSquaresOfDivisorsProblem {}))
+        (401, Box::new(SumOfSquaresOfDivisorsProblem {})),
+        (719, Box::new(NumberSplittingProblem {}))
     ]);
 
     match args.problem {

@@ -83,6 +83,7 @@ pub mod path_sum_three_ways;
 pub mod path_sum_four_ways;
 pub mod digit_factorial_chains;
 pub mod concealed_squares;
+pub mod number_splitting;
 
 pub trait Problem {
     fn solve(&self) -> String;
