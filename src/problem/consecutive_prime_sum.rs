@@ -10,7 +10,7 @@ impl Problem for ConsecutivePrimeSumProblem {
     }
 
     fn number(&self) -> u16 {
-        179
+        50
     }
 
     fn solve(&self) -> String {

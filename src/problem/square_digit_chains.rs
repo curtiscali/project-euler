@@ -42,7 +42,7 @@ impl Problem for SquareDigitChainsProblem  {
     }
 
     fn number(&self) -> u16 {
-        91
+        92
     }
 
     fn solve(&self) -> String {

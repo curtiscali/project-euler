@@ -1,6 +1,6 @@
 use std::time::Instant;
-use std::collections::BTreeMap;
 use clap::Parser;
+use inquire::Select;
 use problem::{
     amicable_numbers::AmicableNumbersProblem,
     bouncy_numbers::BouncyNumbersProblem, 
@@ -110,12 +110,12 @@ struct Args {
     problem: Option<u16>
 }
 
-fn print_solution(problem_number: u16, problem: &dyn Problem) {
+fn print_solution(problem: &dyn Problem) {
     const NS_TO_US: u128 = 1000;
     const NS_TO_MS: u128 = 1_000_000;
     const NS_TO_S: u128 = 1_000_000_000;
 
-    println!("Selected Problem: {}", problem_number);
+    println!("Selected Problem: {}", problem.number());
 
     let now = Instant::now();
 
@@ -139,114 +139,119 @@ fn print_solution(problem_number: u16, problem: &dyn Problem) {
 fn main() {
     let args = Args::parse();
 
-    let problems_lookup: BTreeMap<u16, Box<dyn Problem>> = BTreeMap::from([
-        (1, Box::new(MultiplesProblem {}) as Box<dyn Problem>),
-        (2, Box::new(EvenFibonacciProblem {})),
-        (3, Box::new(LargestPrimeFactorProblem {})),
-        (4, Box::new(LargestPalindromeProduct {})),
-        (5, Box::new(SmallestMultipleProblem {})),
-        (6, Box::new(SumSquareDifference {}) ),
-        (7, Box::new(NthPrimeProblem {})),
-        (8, Box::new(LargestProductProblem {})),
-        (9, Box::new(SpecialPythagoreanTripletProblem {})),
-        (10, Box::new(SummationOfPrimes {})),
-        (11, Box::new(LargestProductInAGridProblem {})),
-        (12, Box::new(HighlyDivisibleTriangleNumber {})),
-        (13, Box::new(LargeSumProblem {})),
-        (14, Box::new(LongestCollatzSequenceProblem {})),
-        (15, Box::new(LatticePathsProblem {})),
-        (16, Box::new(PowerDigitSum {})),
-        (17, Box::new(NumberLetterCountsProblem {})),
-        (18, Box::new(MaximumPathSumOneProblem {})),
-        (19, Box::new(CountingSundaysProblem {})),
-        (20, Box::new(FactorialDigitSum {})),
-        (21, Box::new(AmicableNumbersProblem {})),
-        (22, Box::new(NamesScoresProblem {})),
-        (23, Box::new(NonAbundantSumsProblem {})),
-        (24, Box::new(LexicographicPermutationsProblem {})),
-        (25, Box::new(ThousandDigitFibonacciNumberProblem {})),
-        (26, Box::new(ReciprocalCyclesProblem {})),
-        (28, Box::new(NumberPowerSpiralsProblem {})),
-        (29, Box::new(DistinctPowersProblem {})),
-        (30, Box::new(DigitFifthPowersProblem {})),
-        (31, Box::new(CoinSumProblem {})),
-        (32, Box::new(PandigitalProductsProblem {})),
-        (34, Box::new(DigitFactorialsProblem {})),
-        (35, Box::new(CircularPrimesProblem {})),
-        (36, Box::new(DoubleBasePalindromeProblem {})),
-        (38, Box::new(PandigitalMultiplesProblem {})),
-        (39, Box::new(IntegerRightTrianglesProblem {})),
-        (40, Box::new(ChampernownesConstantProblem {})),
-        (41, Box::new(PandigitalPrimeProblem {})),
-        (42, Box::new(CodedTriangleNumbersProblem {})),
-        (45, Box::new(TriangularPentagonalHexagonalNumberProblem {})),
-        (46, Box::new(GoldbachsOtherConjectureProblem {})),
-        (47, Box::new(DistinctPrimeFactorsProblem {})),
-        (48, Box::new(SelfPowersProblem {})),
-        (49, Box::new(PrimePermutationsProblem {})),
-        (50, Box::new(ConsecutivePrimeSumProblem {})),
-        (52, Box::new(PermutedMultiplesProblem {})),
-        (53, Box::new(CombinatoricSelectionsProblem {})),
-        (55, Box::new(LychrelNumbersProblem {})),
-        (56, Box::new(PowerfulDigitSumProblem {})),
-        (57, Box::new(SquareRootConvergentsProblem {})),
-        (58, Box::new(SpiralPrimesProblem {})),
-        (63, Box::new(PowerfulDigitCountsProblem {})),
-        (64, Box::new(OddPeriodSquareRootsProblem {})),
-        (65, Box::new(ConvergentsOfEProblem {})),
-        (67, Box::new(MaximumPathSumTwoProblem {})),
-        (69, Box::new(TotientMaximumProblem {})),
-        (70, Box::new(TotientPermutationProblem {})),
-        (71, Box::new(OrderedFractionsProblem {})),
-        (72, Box::new(CountingFractionsProblem {})),
-        (73, Box::new(CountingFractionsInARangeProblem {})),
-        (74, Box::new(DigitFactorialChainsProblem {})),
-        (76, Box::new(CountingSummationsProblem {})),
-        (77, Box::new(PrimeSummationsProblem {})),
-        (78, Box::new(CoinPartitionsProblem {})),
-        (79, Box::new(PasscodeDerivationProblem {})),
-        (81, Box::new(PathSumTwoWaysProblem {})),
-        (82, Box::new(PathSumThreeWaysProblem {})),
-        (83, Box::new(PathSumFourWaysProblem {})),
-        (85, Box::new(CountingRectanglesProblem {})),
-        (89, Box::new(RomanNumeralsProblem {})),
-        (92, Box::new(SquareDigitChainsProblem {})),
-        (97, Box::new(LargeNonMersennePrimeProblem {})),
-        (99, Box::new(LargestExponentialProblem {})),
-        (102, Box::new(TriangleContainmentProblem {})),
-        (112, Box::new(BouncyNumbersProblem {})),
-        (113, Box::new(NonBouncyNumbersProblem {})),
-        (122, Box::new(EfficientExponentiationProblem {})),
-        (124, Box::new(OrderedRadicalsProblem {})),
-        (144, Box::new(LaserBeamReflectionsProblem {})),
-        (145, Box::new(ReversibleNumbersProblem {})),
-        (179, Box::new(ConsecutivePositiveDivisorsProblem {})),
-        (187, Box::new(SemiprimesProblem {})),
-        (188, Box::new(HyperexponentiationProblem {})),
-        (206, Box::new(ConcealedSquaresProblem {})),
-        (401, Box::new(SumOfSquaresOfDivisorsProblem {})),
-        (719, Box::new(NumberSplittingProblem {}))
-    ]);
+    let solved_problems = vec![
+        Box::new(MultiplesProblem {}) as Box<dyn Problem>,
+        Box::new(EvenFibonacciProblem {}),
+        Box::new(LargestPrimeFactorProblem {}),
+        Box::new(LargestPalindromeProduct {}),
+        Box::new(SmallestMultipleProblem {}),
+        Box::new(SumSquareDifference {}) ,
+        Box::new(NthPrimeProblem {}),
+        Box::new(LargestProductProblem {}),
+        Box::new(SpecialPythagoreanTripletProblem {}),
+        Box::new(SummationOfPrimes {}),
+        Box::new(LargestProductInAGridProblem {}),
+        Box::new(HighlyDivisibleTriangleNumber {}),
+        Box::new(LargeSumProblem {}),
+        Box::new(LongestCollatzSequenceProblem {}),
+        Box::new(LatticePathsProblem {}),
+        Box::new(PowerDigitSum {}),
+        Box::new(NumberLetterCountsProblem {}),
+        Box::new(MaximumPathSumOneProblem {}),
+        Box::new(CountingSundaysProblem {}),
+        Box::new(FactorialDigitSum {}),
+        Box::new(AmicableNumbersProblem {}),
+        Box::new(NamesScoresProblem {}),
+        Box::new(NonAbundantSumsProblem {}),
+        Box::new(LexicographicPermutationsProblem {}),
+        Box::new(ThousandDigitFibonacciNumberProblem {}),
+        Box::new(ReciprocalCyclesProblem {}),
+        Box::new(NumberPowerSpiralsProblem {}),
+        Box::new(DistinctPowersProblem {}),
+        Box::new(DigitFifthPowersProblem {}),
+        Box::new(CoinSumProblem {}),
+        Box::new(PandigitalProductsProblem {}),
+        Box::new(DigitFactorialsProblem {}),
+        Box::new(CircularPrimesProblem {}),
+        Box::new(DoubleBasePalindromeProblem {}),
+        Box::new(PandigitalMultiplesProblem {}),
+        Box::new(IntegerRightTrianglesProblem {}),
+        Box::new(ChampernownesConstantProblem {}),
+        Box::new(PandigitalPrimeProblem {}),
+        Box::new(CodedTriangleNumbersProblem {}),
+        Box::new(TriangularPentagonalHexagonalNumberProblem {}),
+        Box::new(GoldbachsOtherConjectureProblem {}),
+        Box::new(DistinctPrimeFactorsProblem {}),
+        Box::new(SelfPowersProblem {}),
+        Box::new(PrimePermutationsProblem {}),
+        Box::new(ConsecutivePrimeSumProblem {}),
+        Box::new(PermutedMultiplesProblem {}),
+        Box::new(CombinatoricSelectionsProblem {}),
+        Box::new(LychrelNumbersProblem {}),
+        Box::new(PowerfulDigitSumProblem {}),
+        Box::new(SquareRootConvergentsProblem {}),
+        Box::new(SpiralPrimesProblem {}),
+        Box::new(PowerfulDigitCountsProblem {}),
+        Box::new(OddPeriodSquareRootsProblem {}),
+        Box::new(ConvergentsOfEProblem {}),
+        Box::new(MaximumPathSumTwoProblem {}),
+        Box::new(TotientMaximumProblem {}),
+        Box::new(TotientPermutationProblem {}),
+        Box::new(OrderedFractionsProblem {}),
+        Box::new(CountingFractionsProblem {}),
+        Box::new(CountingFractionsInARangeProblem {}),
+        Box::new(DigitFactorialChainsProblem {}),
+        Box::new(CountingSummationsProblem {}),
+        Box::new(PrimeSummationsProblem {}),
+        Box::new(CoinPartitionsProblem {}),
+        Box::new(PasscodeDerivationProblem {}),
+        Box::new(PathSumTwoWaysProblem {}),
+        Box::new(PathSumThreeWaysProblem {}),
+        Box::new(PathSumFourWaysProblem {}),
+        Box::new(CountingRectanglesProblem {}),
+        Box::new(RomanNumeralsProblem {}),
+        Box::new(SquareDigitChainsProblem {}),
+        Box::new(LargeNonMersennePrimeProblem {}),
+        Box::new(LargestExponentialProblem {}),
+        Box::new(TriangleContainmentProblem {}),
+        Box::new(BouncyNumbersProblem {}),
+        Box::new(NonBouncyNumbersProblem {}),
+        Box::new(EfficientExponentiationProblem {}),
+        Box::new(OrderedRadicalsProblem {}),
+        Box::new(LaserBeamReflectionsProblem {}),
+        Box::new(ReversibleNumbersProblem {}),
+        Box::new(ConsecutivePositiveDivisorsProblem {}),
+        Box::new(SemiprimesProblem {}),
+        Box::new(HyperexponentiationProblem {}),
+        Box::new(ConcealedSquaresProblem {}),
+        Box::new(SumOfSquaresOfDivisorsProblem {}),
+        Box::new(NumberSplittingProblem {})
+    ];
+
 
     match args.problem {
         Some(problem_number) => {
-            match problems_lookup.get(&problem_number) {
-                Some(selected_problem) => {
-                    print_solution(problem_number, selected_problem.as_ref());
-                }
-                None => {
+            match solved_problems.binary_search_by(|p| p.number().cmp(&problem_number)) {
+                Ok(idx_of_problem) => {
+                    let selected_problem = &solved_problems[idx_of_problem];
+                    print_solution(selected_problem.as_ref());
+                }, 
+                Err(_) => {
                     println!("Problem {} has not yet been solved", problem_number);
                 }
             }
         },
         None => {
-            println!("No problem specified. Showing solutions to all solved problems");
+            let selection = Select::new(
+                "Select the problem for which you'd like to see the solution from the list below", 
+                solved_problems
+            ).with_vim_mode(true).prompt();
 
-            for problem_number in problems_lookup.keys() {
-                let selected_problem = problems_lookup.get(&problem_number).unwrap();
-                print_solution(*problem_number, selected_problem.as_ref());
-    
-                print!("\n\n");
+            match selection {
+                Ok(selected_problem) => {
+                    print_solution(selected_problem.as_ref());
+                },
+                Err(_) => println!("Must select a problem.")
             }
         }
     }

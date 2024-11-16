@@ -8,7 +8,7 @@ pub struct CoinPartitionsProblem {}
 
 impl Problem for CoinPartitionsProblem {
     fn name(&self) -> String {
-        String::from("Coin Partitions<F3>")
+        String::from("Coin Partitions")
     }
 
     fn number(&self) -> u16 {

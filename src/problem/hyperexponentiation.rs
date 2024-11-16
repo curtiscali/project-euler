@@ -6,7 +6,7 @@ pub struct HyperexponentiationProblem {}
 
 impl Problem for HyperexponentiationProblem {
     fn name(&self) -> String {
-        String::from("HyperexponentiationProblem")
+        String::from("Hyperexponentiation")
     }
 
     fn number(&self) -> u16 {
