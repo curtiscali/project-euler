@@ -86,6 +86,14 @@ fn to_roman(arabic: usize) -> String {
 pub struct RomanNumeralsProblem {}
 
 impl Problem for RomanNumeralsProblem {
+    fn name(&self) -> String {
+        String::from("Roman Numerals")
+    }
+
+    fn number(&self) -> u16 {
+        89
+    }
+
     fn solve(&self) -> String {
         let roman_numerals: HashMap<char, usize> = HashMap::from([
             ('I', 1),

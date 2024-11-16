@@ -1,5 +1,4 @@
 use num::ToPrimitive;
-
 use super::Problem;
 
 fn fifth_power_sum(n: u128) -> u128 {
@@ -19,6 +18,14 @@ fn fifth_power_sum(n: u128) -> u128 {
 pub struct DigitFifthPowersProblem {}
 
 impl Problem for DigitFifthPowersProblem {
+    fn name(&self) -> String {
+        String::from("Digit Fifth Powers")
+    }
+
+    fn number(&self) -> u16 {
+        30
+    }
+
     fn solve(&self) -> String {
         let mut i = 1000;
         let mut matching_sum = 0;

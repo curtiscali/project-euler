@@ -17,6 +17,14 @@ fn digit_factorial_sum(n: u64) -> u64 {
 pub struct DigitFactorialsProblem {}
 
 impl Problem for DigitFactorialsProblem {
+    fn name(&self) -> String {
+        String::from("Digit Factorials")
+    }
+
+    fn number(&self) -> u16 {
+        34
+    }
+
     fn solve(&self) -> String {
         let mut matching_sum = 0;
         for i in 10..=41_000 {

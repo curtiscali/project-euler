@@ -23,6 +23,14 @@ fn distinct_prime_factors_product(n: u32, smallest_prime_factors: &Vec<u32>) -> 
 pub struct OrderedRadicalsProblem {}
 
 impl Problem for OrderedRadicalsProblem {
+    fn name(&self) -> String {
+        String::from("Ordered Radicals")
+    }
+
+    fn number(&self) -> u16 {
+        124
+    }
+
     fn solve(&self) -> String {
         let smallest_prime_factors = spf_sieve::<u32>(100_000);
         let mut rad_data: Vec<(u32, u32)> = vec![];

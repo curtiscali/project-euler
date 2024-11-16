@@ -43,6 +43,14 @@ fn is_abundant_sum(n: usize, lookup: &BTreeSet<usize>) -> bool {
 pub struct NonAbundantSumsProblem {}
 
 impl Problem for NonAbundantSumsProblem {
+    fn name(&self) -> String {
+        String::from("Non-Abundant Sums")
+    }
+
+    fn number(&self) -> u16 {
+        23
+    }
+
     fn solve(&self) -> String {
         let mut abundant_numbers: BTreeSet<usize> = BTreeSet::new();
 

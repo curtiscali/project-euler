@@ -19,15 +19,15 @@ fn is_palindrome(n: u32, base: u32) -> bool {
 pub struct DoubleBasePalindromeProblem {}
 
 impl Problem for DoubleBasePalindromeProblem {
+    fn name(&self) -> String {
+        String::from("Double-base Palindromes")
+    }
+
+    fn number(&self) -> u16 {
+        36
+    }
+
     fn solve(&self) -> String {
-        let mut palindrome_sum = 0;
-
-        for i in 1..1_000_000 {
-            if is_palindrome(i, 10) && is_palindrome(i, 2) {
-                palindrome_sum += i;
-            }
-        }
-
-        return format!("{}", palindrome_sum);
+        return format!("{}", (1..1_000_000).filter(|i| is_palindrome(*i, 10) && is_palindrome(*i, 2)).sum::<u32>());
     }
 }

@@ -28,6 +28,14 @@ fn get_weekday(year: u32, month: u32, day: u32) -> u32 {
 pub struct CountingSundaysProblem {}
 
 impl Problem for CountingSundaysProblem {
+    fn name(&self) -> String {
+        String::from("Counting Sundays")
+    }
+
+    fn number(&self) -> u16 {
+        19
+    }
+
     fn solve(&self) -> String {
         const STARTING_YEAR: u32 = 1901;
         const MONTHS_PER_YEAR: u32 = 12;

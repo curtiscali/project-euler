@@ -23,6 +23,14 @@ fn sigma2_sum(n: u64) -> BigInt {
 pub struct SumOfSquaresOfDivisorsProblem {}
 
 impl Problem for SumOfSquaresOfDivisorsProblem {
+    fn name(&self) -> String {
+        String::from("Sum of Squares of Divisors")
+    }
+
+    fn number(&self) -> u16 {
+        401
+    }
+
     fn solve(&self) -> String {
         const N: u64 = 1_000_000_000_000_000;
         const MOD: u64 = 1_000_000_000;

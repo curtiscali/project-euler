@@ -26,6 +26,14 @@ fn get_all_references_to_key(keymap: &HashMap<char, HashSet<char>>, ch: char) ->
 pub struct PasscodeDerivationProblem {}
 
 impl Problem for PasscodeDerivationProblem {
+    fn name(&self) -> String {
+        String::from("Passcode Derivation")
+    }
+
+    fn number(&self) -> u16 {
+        79
+    }
+
     fn solve(&self) -> String {
         let bytes = include_bytes!("../data_files/0079_keylog.txt");
         let file_data = String::from_utf8_lossy(bytes);

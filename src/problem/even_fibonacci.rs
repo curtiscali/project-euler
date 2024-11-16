@@ -3,6 +3,14 @@ use super::Problem;
 pub struct EvenFibonacciProblem {}
 
 impl Problem for EvenFibonacciProblem {
+    fn name(&self) -> String {
+        String::from("Even Fibonacci Numbers")
+    }
+
+    fn number(&self) -> u16 {
+        2
+    }
+
     fn solve(&self) -> String {
         const LIMIT: u32 = 4_000_000;
 

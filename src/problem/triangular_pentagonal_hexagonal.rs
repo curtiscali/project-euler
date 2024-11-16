@@ -11,6 +11,14 @@ fn is_pentagonal(n: usize) -> bool {
 pub struct TriangularPentagonalHexagonalNumberProblem {}
 
 impl Problem for TriangularPentagonalHexagonalNumberProblem {
+    fn name(&self) -> String {
+        String::from("Triangular, Pentagonal, and Hexagonal")
+    }
+
+    fn number(&self) -> u16 {
+        45
+    }
+
     fn solve(&self) -> String {
         let mut n = 287;
         let mut triangle_num = linear_sum(n);

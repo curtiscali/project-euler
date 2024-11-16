@@ -7,6 +7,14 @@ fn num_values_in_diagonals(n: u64) -> u64 { (2 * n) - 1 }
 pub struct SpiralPrimesProblem {}
 
 impl Problem for SpiralPrimesProblem {
+    fn name(&self) -> String {
+        String::from("Spiral Primes")
+    }
+
+    fn number(&self) -> u16 {
+        58
+    }
+
     fn solve(&self) -> String {
         const MAX_SPIRAL_SIZE: u64 = 30_000;
         const NUM_TESTS: u64 = 20;

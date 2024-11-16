@@ -47,6 +47,14 @@ fn chain_length(n: u64) -> u64 {
 pub struct DigitFactorialChainsProblem {}
 
 impl Problem for DigitFactorialChainsProblem {
+    fn name(&self) -> String {
+        String::from("Digit Factorial Chains")
+    }
+
+    fn number(&self) -> u16 {
+        74
+    }
+
     fn solve(&self) -> String {
         let mut num_chains_with_len_sixty = 0;
 

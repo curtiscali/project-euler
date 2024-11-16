@@ -3,6 +3,14 @@ use super::Problem;
 pub struct LargestProductInAGridProblem {}
 
 impl Problem for LargestProductInAGridProblem {
+    fn name(&self) -> String {
+        String::from("Largest Product in a Grid")
+    }
+
+    fn number(&self) -> u16 {
+        11
+    }
+
     fn solve(&self) -> String {
         const GRID_DIM: usize = 20;
 

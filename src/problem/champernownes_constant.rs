@@ -35,6 +35,14 @@ fn champernowne_digit(n: usize) -> usize {
 pub struct ChampernownesConstantProblem {}
 
 impl Problem for ChampernownesConstantProblem {
+    fn name(&self) -> String {
+        String::from("Champernowne's Constant")
+    }
+
+    fn number(&self) -> u16 {
+        40
+    }
+
     fn solve(&self) -> String {
         let mut product: usize = 1;
         let mut i: usize = 0;

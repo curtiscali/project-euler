@@ -4,6 +4,14 @@ use super::Problem;
 pub struct TotientMaximumProblem {}
 
 impl Problem for TotientMaximumProblem {
+    fn name(&self) -> String {
+        String::from("Totient Maximum")
+    }
+
+    fn number(&self) -> u16 {
+        69
+    }
+
     fn solve(&self) -> String {
         const N: usize = 6; // upper bound is 10^N where n = 6, so 1,000,000
 
@@ -18,11 +26,7 @@ impl Problem for TotientMaximumProblem {
         let upper_bound = float_upper_bound as usize;
 
         let primes = primes_below::<u32>(upper_bound);
-
-        let mut max_totient_n = 1;
-        for i in 0..=N  {
-            max_totient_n *= primes[i];
-        }
+        let max_totient_n = primes.into_iter().product::<u32>();
 
         return format!("{}", max_totient_n);
     }

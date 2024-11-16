@@ -1,11 +1,18 @@
 use crate::primes::sieve_of_atkin;
-
 use super::Problem;
 
 
 pub struct GoldbachsOtherConjectureProblem {}
 
 impl Problem for GoldbachsOtherConjectureProblem {
+    fn name(&self) -> String {
+        String::from("Goldbach's Other Conjecture")
+    }
+
+    fn number(&self) -> u16 {
+        46
+    }
+
     fn solve(&self) -> String {
         let primes_lookup = sieve_of_atkin(500_000);
 

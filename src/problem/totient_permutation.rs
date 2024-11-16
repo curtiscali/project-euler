@@ -15,6 +15,14 @@ fn is_permutation(a: u64, b: u64) -> bool {
 pub struct TotientPermutationProblem {}
 
 impl Problem for TotientPermutationProblem {
+    fn name(&self) -> String {
+        String::from("Totient Permutation")
+    }
+
+    fn number(&self) -> u16 {
+        70
+    }
+
     fn solve(&self) -> String {
         // sqrt(10^7) = 10^3.5 ~ 3200. using 3700 here accounts for a or b being slightly over that
         let primes = primes_below::<u64>(3700);

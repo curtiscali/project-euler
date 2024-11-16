@@ -4,6 +4,14 @@ use crate::fractions::Fraction;
 pub struct OrderedFractionsProblem {}
 
 impl Problem for OrderedFractionsProblem {
+    fn name(&self) -> String {
+        String::from("Ordered Fractions")
+    }
+
+    fn number(&self) -> u16 {
+        71
+    }
+
     fn solve(&self) -> String {
         const DENOM_LIMIT: u32 = 1_000_000;
 

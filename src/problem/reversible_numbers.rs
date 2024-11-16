@@ -3,6 +3,14 @@ use super::Problem;
 pub struct ReversibleNumbersProblem {}
 
 impl Problem for ReversibleNumbersProblem {
+    fn name(&self) -> String {
+        String::from("Reversible Numbers")
+    }
+
+    fn number(&self) -> u16 {
+        145
+    }
+
     fn solve(&self) -> String {
         // This algorithm based on numerical analysis from: https://projecteuler.net/thread=145#6507
         // let n = the number of digits for a number

@@ -33,6 +33,14 @@ fn get_rotations(n: usize) -> Vec<usize> {
 pub struct CircularPrimesProblem {}
 
 impl Problem for CircularPrimesProblem {
+    fn name(&self) -> String {
+        String::from("Circular Primes")
+    }
+
+    fn number(&self) -> u16 {
+        35
+    }
+
     fn solve(&self) -> String {
         let primes_below_bound_lookup = sieve_of_atkin(1_000_000);
 

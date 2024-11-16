@@ -41,6 +41,14 @@ fn is_bouncy(n: u32) -> bool {
 pub struct BouncyNumbersProblem {}
 
 impl Problem for BouncyNumbersProblem {
+    fn name(&self) -> String {
+        String::from("Bouncy Numbers")
+    }
+
+    fn number(&self) -> u16 {
+        112
+    }
+
     fn solve(&self) -> String {
         let mut total_numbers_count = 21780u32;
         let mut bouncy_numbers_count = 19602u32; // 90% of 21780 is 19602

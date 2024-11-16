@@ -3,6 +3,14 @@ use super::Problem;
 pub struct PowerfulDigitCountsProblem {}
 
 impl Problem for PowerfulDigitCountsProblem {
+    fn name(&self) -> String {
+        String::from("Powerful Digit Counts")
+    }
+
+    fn number(&self) -> u16 {
+        63
+    }
+
     fn solve(&self) -> String {
         let mut num_powerful_numbers = 0u32;
 

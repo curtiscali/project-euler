@@ -23,6 +23,14 @@ fn tens_length(n: usize) -> usize {
 pub struct NumberLetterCountsProblem {}
 
 impl Problem for NumberLetterCountsProblem {
+    fn name(&self) -> String {
+        String::from("Number Letter Counts")
+    }
+
+    fn number(&self) -> u16 {
+        17
+    }
+
     fn solve(&self) -> String {
         const LENGTH_OF_ONE_THOUSAND: usize = 11;
         const LENGTH_OF_HUNDRED: usize = 7;

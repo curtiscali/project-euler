@@ -21,6 +21,14 @@ fn distinct_prime_factors_count(n: usize, smallest_prime_factors: &Vec<usize>) -
 pub struct DistinctPrimeFactorsProblem {}
 
 impl Problem for DistinctPrimeFactorsProblem {
+    fn name(&self) -> String {
+        String::from("Distinct Prime Factors")
+    }
+
+    fn number(&self) -> u16 {
+        47
+    }
+
     fn solve(&self) -> String {
         const TARGET_FACTORS_COUNT: usize = 4;
 

@@ -9,6 +9,14 @@ fn sum_divisible_by_under(target: u32, n: u32) -> u32 {
 pub struct MultiplesProblem {}
 
 impl Problem for MultiplesProblem {
+    fn name(&self) -> String {
+        String::from("Multiples")
+    }
+
+    fn number(&self) -> u16 {
+        1
+    }
+
     fn solve(&self) -> String {
         const LIMIT: u32 = 1000;
 

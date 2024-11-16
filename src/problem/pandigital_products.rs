@@ -22,6 +22,14 @@ fn is_product_pandigital(a: u32, b: u32) -> bool {
 pub struct PandigitalProductsProblem {}
 
 impl Problem for PandigitalProductsProblem {
+    fn name(&self) -> String {
+        String::from("Pandigital Products")
+    }
+
+    fn number(&self) -> u16 {
+        32
+    }
+
     fn solve(&self) -> String {
         let mut discovered_products: BTreeSet<u32> = BTreeSet::new();
 

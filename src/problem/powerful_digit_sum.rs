@@ -2,9 +2,17 @@ use num::BigInt;
 use crate::number_theory::bigint_digit_sum;
 use super::Problem;
 
-pub struct PowerDigitSumProblem {}
+pub struct PowerfulDigitSumProblem {}
 
-impl Problem for PowerDigitSumProblem {
+impl Problem for PowerfulDigitSumProblem {
+    fn name(&self) -> String {
+        String::from("Powerful Digit Sum")
+    }
+
+    fn number(&self) -> u16 {
+        56
+    }
+
     fn solve(&self) -> String {
         let mut max_digit_sum = BigInt::ZERO;
 

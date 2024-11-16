@@ -5,6 +5,14 @@ use num::BigInt;
 pub struct ThousandDigitFibonacciNumberProblem {}
 
 impl Problem for ThousandDigitFibonacciNumberProblem {
+    fn name(&self) -> String {
+        String::from("1000-digit Fibonacci Number")
+    }
+
+    fn number(&self) -> u16 {
+        25
+    }
+
     fn solve(&self) -> String {
         let one_thousand = BigInt::from(1000);
         let mut fib1 = BigInt::from(1);

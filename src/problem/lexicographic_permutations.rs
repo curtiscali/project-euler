@@ -38,6 +38,14 @@ fn get_next_permutation(arr: &mut [u8; 10]) -> bool {
 pub struct LexicographicPermutationsProblem {}
 
 impl Problem for LexicographicPermutationsProblem {
+    fn name(&self) -> String {
+        String::from("Lexicographic Permutations")
+    }
+
+    fn number(&self) -> u16 {
+        24    
+    }
+    
     fn solve(&self) -> String {
         let mut start_permutation: [u8; 10] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         let mut perm_count = 1;

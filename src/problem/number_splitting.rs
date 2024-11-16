@@ -4,7 +4,7 @@ use super::Problem;
 fn partitions(n: u64) -> Vec<Vec<u64>> {
     let mut partitions = vec![];
 
-    partitions;
+    partitions
 }
 
 fn is_s_number(n: u64) -> bool {
@@ -14,6 +14,14 @@ fn is_s_number(n: u64) -> bool {
 pub struct NumberSplittingProblem {}
 
 impl Problem for NumberSplittingProblem {
+    fn name(&self) -> String {
+        String::from("Number Splitting")
+    }
+
+    fn number(&self) -> u16 {
+        719
+    }
+
     fn solve(&self) -> String {
         const N: u64 = 1_000_000_000_000;
         let root = N.sqrt();

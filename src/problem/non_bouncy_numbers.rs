@@ -5,6 +5,14 @@ use super::Problem;
 pub struct NonBouncyNumbersProblem {}
 
 impl Problem for NonBouncyNumbersProblem {
+    fn name(&self) -> String {
+        String::from("Non-bouncy Numbers")
+    }
+
+    fn number(&self) -> u16 {
+        113
+    }
+
     fn solve(&self) -> String {
         let nine = BigInt::from(9);
         let ten = BigInt::from(10);

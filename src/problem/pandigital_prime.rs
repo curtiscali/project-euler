@@ -51,6 +51,14 @@ fn get_next_permutation(arr: &mut [u8; 7]) -> bool {
 pub struct PandigitalPrimeProblem {}
 
 impl Problem for PandigitalPrimeProblem {
+    fn name(&self) -> String {
+        String::from("Pandigital Prime")
+    }
+
+    fn number(&self) -> u16 {
+        41
+    }
+
     fn solve(&self) -> String {
         let primes = sieve_of_eratosthenes(7_654_322);
         let mut pandigital: [u8; 7] = [7, 1, 2, 3, 4, 5, 6];

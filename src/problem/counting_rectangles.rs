@@ -8,6 +8,14 @@ fn num_rectangles_in_grid(m: u32, n: u32) -> u32 {
 pub struct CountingRectanglesProblem {}
 
 impl Problem for CountingRectanglesProblem {
+    fn name(&self) -> String {
+        String::from("Counting Rectangles")
+    }
+
+    fn number(&self) -> u16 {
+        85
+    }
+
     fn solve(&self) -> String {
         const TARGET_RECTANGLE_COUNT: u32 = 2_000_000;
 

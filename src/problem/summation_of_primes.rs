@@ -43,6 +43,14 @@ fn primes_sum(n: u64) -> u64 {
 pub struct SummationOfPrimes {}
 
 impl Problem for SummationOfPrimes {
+    fn name(&self) -> String {
+        String::from("Summation of Primes")
+    }
+
+    fn number(&self) -> u16 {
+        10
+    }
+
     fn solve(&self) -> String {
         format!("{}", primes_sum(2_000_000))
     }

@@ -15,9 +15,16 @@ fn factorial(n: u32) -> BigInt {
 pub struct FactorialDigitSum {}
 
 impl Problem for FactorialDigitSum {
+    fn name(&self) -> String {
+        String::from("Factorial Digit Sum")    
+    }
+
+    fn number(&self) -> u16 {
+        20
+    }
+
     fn solve(&self) -> String {
         let factorial = factorial(100);
-
         return format!("{}", bigint_digit_sum(&factorial));
     }
 }

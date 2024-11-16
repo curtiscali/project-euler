@@ -9,6 +9,14 @@ fn digit_product(str: &str) -> u64 {
 pub struct LargestProductProblem {}
 
 impl Problem for LargestProductProblem {
+    fn name(&self) -> String {
+        String::from("Largest Product")
+    }
+
+    fn number(&self) -> u16 {
+        8
+    }
+
     fn solve(&self) -> String {
         const COMBO_LENGTH: usize = 13;
         let extremely_large_number = "73167176531330624919225119674426574742355349194934\

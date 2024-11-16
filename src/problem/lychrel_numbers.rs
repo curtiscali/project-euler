@@ -20,6 +20,14 @@ fn is_lychrel_number(n: u128) -> bool {
 pub struct LychrelNumbersProblem {}
 
 impl Problem for LychrelNumbersProblem {
+    fn name(&self) -> String {
+        String::from("Lychrel Numbers")
+    }
+
+    fn number(&self) -> u16 {
+        55
+    }
+
     fn solve(&self) -> String {
         let mut lychrel_numbers_count = 0;
 

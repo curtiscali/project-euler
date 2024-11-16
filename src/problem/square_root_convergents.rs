@@ -5,6 +5,14 @@ use super::Problem;
 pub struct SquareRootConvergentsProblem {}
 
 impl Problem for SquareRootConvergentsProblem {
+    fn name(&self) -> String {
+        String::from("Square Root Convergents")
+    }
+
+    fn number(&self) -> u16 {
+        57
+    }
+
     fn solve(&self) -> String {
         let (mut a, mut b, mut num_qualified) = (BigInt::from(1), BigInt::from(1), 0u32);
 

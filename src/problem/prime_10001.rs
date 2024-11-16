@@ -4,6 +4,14 @@ use super::Problem;
 pub struct NthPrimeProblem {}
 
 impl Problem for NthPrimeProblem {
+    fn name(&self) -> String {
+        String::from("10,001st Prime")
+    }
+
+    fn number(&self) -> u16 {
+        7
+    }
+
     fn solve(&self) -> String {
         const N: usize = 10001;
 

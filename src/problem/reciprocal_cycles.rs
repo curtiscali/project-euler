@@ -21,6 +21,14 @@ fn multiplicative_order(n: u32) -> u32 {
 pub struct ReciprocalCyclesProblem {}
 
 impl Problem for ReciprocalCyclesProblem {
+    fn name(&self) -> String {
+        String::from("Reciprocal Cycles")
+    }
+
+    fn number(&self) -> u16 {
+        26
+    }
+
     fn solve(&self) -> String {
         const MAX_DENOMINATOR: u32 = 1000;
 

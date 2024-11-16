@@ -5,6 +5,14 @@ use super::Problem;
 pub struct LargestPrimeFactorProblem {}
 
 impl Problem for LargestPrimeFactorProblem {
+    fn name(&self) -> String {
+        String::from("Largest Prime Factor")
+    }
+
+    fn number(&self) -> u16 {
+        3
+    }
+
     fn solve(&self) -> String {
         const N: u64 = 600_851_475_143;
 

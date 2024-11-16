@@ -4,6 +4,14 @@ use super::Problem;
 pub struct PandigitalMultiplesProblem {}
 
 impl Problem for PandigitalMultiplesProblem {
+    fn name(&self) -> String {
+        String::from("Pandigital Multiples")
+    }
+
+    fn number(&self) -> u16 {
+        38
+    }
+
     fn solve(&self) -> String {
         let digits = vec![1usize, 2, 3, 4, 5, 6, 7, 8, 9];
         let mut max_pandigital = 0;

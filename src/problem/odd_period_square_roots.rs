@@ -28,6 +28,14 @@ fn period_of_sqrt_fraction(n: u32) -> u32 {
 pub struct OddPeriodSquareRootsProblem {}
 
 impl Problem for OddPeriodSquareRootsProblem {
+    fn name(&self) -> String {
+        String::from("Odd Period Square Roots")
+    }
+
+    fn number(&self) -> u16 {
+        64
+    }
+
     fn solve(&self) -> String {
         let mut num_odd_period_roots = 0u32;
 

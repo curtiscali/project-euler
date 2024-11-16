@@ -36,7 +36,15 @@ fn digit_chain(n: u32, cache: &mut HashMap<u32, bool>) -> bool {
 
 pub struct SquareDigitChainsProblem {}
 
-impl Problem for SquareDigitChainsProblem {
+impl Problem for SquareDigitChainsProblem  {
+    fn name(&self) -> String {
+        String::from("Square Digit Chains")
+    }
+
+    fn number(&self) -> u16 {
+        91
+    }
+
     fn solve(&self) -> String {
         let mut chain_cache: HashMap<u32, bool> = HashMap::new();
         let mut num_qualified = 0;

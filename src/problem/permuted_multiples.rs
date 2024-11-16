@@ -4,13 +4,20 @@ use super::Problem;
 pub struct PermutedMultiplesProblem {}
 
 impl Problem for PermutedMultiplesProblem {
+    fn name(&self) -> String {
+        String::from("Permuted Multiples")
+    }
+
+    fn number(&self) -> u16 {
+        52
+    }
+
     fn solve(&self) -> String {
         let mut i: u64 = 125_875;
         let mut found_number = false;
         let mut matching_number = 125_874;
 
         while !found_number {
-            
             let mut digits = to_digits(i);
             digits.sort();
 
@@ -29,8 +36,13 @@ impl Problem for PermutedMultiplesProblem {
             let mut digits_6n = to_digits(6 * i);
             digits_6n.sort();
 
-            if digits == digits_2n && digits == digits_3n && digits == digits_4n && digits == digits_5n && digits == digits_6n {
-                found_number = true;
+            found_number = digits == digits_2n 
+                && digits == digits_3n 
+                && digits == digits_4n 
+                && digits == digits_5n && 
+                digits == digits_6n;
+
+            if found_number {
                 matching_number = i;
             }
 

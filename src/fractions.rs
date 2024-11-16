@@ -56,7 +56,7 @@ impl Ord for Fraction {
 
 impl Display for Fraction {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "({} / {})", self.numerator, self.denominator)    
+        write!(f, "({} / {})", self.numerator, self.denominator)
     }
 }
 

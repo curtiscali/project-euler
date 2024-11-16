@@ -25,6 +25,14 @@ fn matches(n: &u128) -> bool {
 pub struct ConcealedSquaresProblem {}
 
 impl Problem for ConcealedSquaresProblem {
+    fn name(&self) -> String {
+        String::from("Concealed Squares")
+    }
+
+    fn number(&self) -> u16 {
+        206
+    }
+
     fn solve(&self) -> String {
         let min = 1020304050607080900u128.sqrt();
         let max = 1929394959697989990u128.sqrt() + 1;

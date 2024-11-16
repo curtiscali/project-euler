@@ -4,6 +4,14 @@ use super::Problem;
 pub struct EfficientExponentiationProblem {}
 
 impl Problem for EfficientExponentiationProblem {
+    fn name(&self) -> String {
+        String::from("Efficient Exponentiation")
+    }
+
+    fn number(&self) -> u16 {
+        122
+    }
+
     fn solve(&self) -> String {
         // This lookup is based on A003313
         // https://oeis.org/search?q=A003313&language=english

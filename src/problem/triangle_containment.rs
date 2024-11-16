@@ -26,6 +26,14 @@ fn contains(triangle: Triangle, point: &Vector2D) -> bool {
 pub struct TriangleContainmentProblem { }
 
 impl Problem for TriangleContainmentProblem {
+    fn name(&self) -> String {
+        String::from("Triangle Containment")
+    }
+
+    fn number(&self) -> u16 {
+        102
+    }
+
     fn solve(&self) -> String {
         let bytes = include_bytes!("../data_files/triangles.txt");
         let file_data = String::from_utf8_lossy(bytes);

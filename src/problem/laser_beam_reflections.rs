@@ -77,6 +77,14 @@ fn has_exited_the_ellipse(laser: &Line2D) -> bool {
 pub struct LaserBeamReflectionsProblem {}
 
 impl Problem for LaserBeamReflectionsProblem {
+    fn name(&self) -> String {
+        String::from("Laser Beam Reflections")
+    }
+
+    fn number(&self) -> u16 {
+        144
+    }
+
     fn solve(&self) -> String {
         /* ALGORITHM
          * Let init vector = ((0, 10.1), (1.4, -9.6))

@@ -1,21 +1,21 @@
-use num::{BigInt, Integer};
+use num::BigInt;
+use crate::number_theory::bigint_digit_sum;
 
 use super::Problem;
 
 pub struct PowerDigitSum {}
 
 impl Problem for PowerDigitSum {
+    fn name(&self) -> String {
+        String::from("Power Digit Sum")
+    }
+
+    fn number(&self) -> u16 {
+        16
+    }
+
     fn solve(&self) -> String {
-        let ten = BigInt::from(10);
-
-        let mut value = BigInt::from(2).pow(1000);
-
-        let mut digit_sum = BigInt::ZERO;
-        while value.cmp(&BigInt::ZERO).is_gt() {
-            digit_sum = digit_sum.checked_add(&value.mod_floor(&ten)).unwrap();
-            value = value.checked_div(&ten).unwrap();
-        }
-
-        return format!("{}", digit_sum);
+        let value = BigInt::from(2).pow(1000);
+        return format!("{}", bigint_digit_sum(&value));
     }
 }

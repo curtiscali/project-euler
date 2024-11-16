@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 pub mod multiples;
 pub mod even_fibonacci;
 pub mod largest_palindrome_product;
@@ -86,5 +88,13 @@ pub mod concealed_squares;
 pub mod number_splitting;
 
 pub trait Problem {
+    fn name(&self) -> String;
+    fn number(&self) -> u16;
     fn solve(&self) -> String;
+}
+
+impl Display for dyn Problem {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Problem {}: {}", self.number(), self.name())
+    }
 }

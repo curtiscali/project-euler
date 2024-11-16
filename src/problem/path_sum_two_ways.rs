@@ -55,6 +55,14 @@ fn min_path_sum(dest: (usize, usize), grid: &Vec<Vec<i32>>) -> i32 {
 pub struct PathSumTwoWaysProblem {}
 
 impl Problem for PathSumTwoWaysProblem {
+    fn name(&self) -> String {
+        String::from("Path Sum: Two Ways")
+    }
+
+    fn number(&self) -> u16 {
+        81
+    }
+
     fn solve(&self) -> String {
         let mut grid = vec![];
 

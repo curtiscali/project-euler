@@ -1,22 +1,20 @@
+use crate::number_theory::{bigint_fast_pow, bigint_num_digits};
+
 use super::Problem;
 use num::BigInt;
 use std::{ops::Add, str::FromStr};
 
-fn num_digits(n: &BigInt) -> u32 {
-    let mut num_digits: u32 = 0;
-    let mut x = n.clone();
-
-    while x.cmp(&BigInt::ZERO).is_gt() {
-        num_digits += 1;
-        x = x.checked_div(&BigInt::from(10)).unwrap();
-    }
-
-    return num_digits;
-}
-
 pub struct LargeSumProblem {}
 
 impl Problem for LargeSumProblem {
+    fn name(&self) -> String {
+        String::from("Large Sum")
+    }
+
+    fn number(&self) -> u16 {
+        13
+    }
+
     fn solve(&self) -> String {
         let large_numbers: [BigInt; 100] = [
             BigInt::from_str("37107287533902102798797998220837590246510135740250").unwrap(),
@@ -121,13 +119,13 @@ impl Problem for LargeSumProblem {
             BigInt::from_str("53503534226472524250874054075591789781264330331690").unwrap()
         ];
 
-        let mut sum = BigInt::from(0u8);
-        for n in large_numbers {
-            sum = sum.add(n);
-        }
-        
-        let num_digits = num_digits(&sum) - 10;
+        let ten = BigInt::from(10);
 
-        return format!("{}", sum.checked_div(&BigInt::from(10).pow(num_digits)).unwrap());
+        let sum = large_numbers.into_iter().sum(); 
+        let num_digits = bigint_num_digits(&sum) - &ten;
+
+        let first_ten_digits = &sum / bigint_fast_pow(&ten, &num_digits);
+
+        return format!("{}", first_ten_digits)//sum.checked_div(&BigInt::from(10).pow(num_digits)).unwrap());
     }
 }

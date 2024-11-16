@@ -63,6 +63,14 @@ fn min_path_sum(target_column: usize, grid: &Vec<Vec<i32>>) -> i32 {
 pub struct PathSumThreeWaysProblem {}
 
 impl Problem for PathSumThreeWaysProblem {
+    fn name(&self) -> String {
+        String::from("Path Sum: Three Ways")
+    }
+
+    fn number(&self) -> u16 {
+        82
+    }
+
     fn solve(&self) -> String {
         const GRID_DIM: usize = 80;
 

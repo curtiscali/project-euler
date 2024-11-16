@@ -3,6 +3,14 @@ use super::Problem;
 pub struct ConsecutivePositiveDivisorsProblem {}
 
 impl Problem for ConsecutivePositiveDivisorsProblem {
+    fn name(&self) -> String {
+        String::from("Consecutive Positive Divisors")
+    }
+
+    fn number(&self) -> u16 {
+        179
+    }
+
     fn solve(&self) -> String {
         const UPPER_BOUND: u32 = 10_000_000;
 

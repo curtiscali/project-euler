@@ -30,6 +30,14 @@ fn get_pythagorean_triple(factor_pair: (u32, u32)) -> (u32, u32, u32) {
 pub struct SpecialPythagoreanTripletProblem {}
 
 impl Problem for SpecialPythagoreanTripletProblem {
+    fn name(&self) -> String {
+        String::from("Special Pythagorean Triplet") 
+    }
+
+    fn number(&self) -> u16 {
+        9
+    }
+
     fn solve(&self) -> String {
         const TARGET_SUM: u32 = 1000;
 

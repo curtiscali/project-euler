@@ -39,6 +39,14 @@ fn chain_length(n: u64, solutions: &mut HashMap<u64, u64>) -> u64 {
 pub struct LongestCollatzSequenceProblem {}
 
 impl Problem for LongestCollatzSequenceProblem {
+    fn name(&self) -> String {
+        String::from("Longest Collatz Sequence")
+    }
+
+    fn number(&self) -> u16 {
+        14
+    }
+
     fn solve(&self) -> String {
         const LIMIT: u64 = 1_000_000;
 

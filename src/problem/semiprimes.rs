@@ -37,6 +37,14 @@ fn pi(n: u32) -> u32 {
 pub struct SemiprimesProblem {}
 
 impl Problem for SemiprimesProblem {
+    fn name(&self) -> String {
+        String::from("Semiprimes")
+    }
+
+    fn number(&self) -> u16 {
+        187
+    }
+
     fn solve(&self) -> String {
         const N: u32 = 100_000_000;
 

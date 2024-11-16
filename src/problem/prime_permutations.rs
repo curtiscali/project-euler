@@ -4,6 +4,14 @@ use super::Problem;
 pub struct PrimePermutationsProblem {}
 
 impl Problem for PrimePermutationsProblem {
+    fn name(&self) -> String {
+        String::from("Prime Permutations")
+    }
+
+    fn number(&self) -> u16 {
+        49
+    }
+
     fn solve(&self) -> String {
         let all_primes_under_10k = sieve_of_atkin(9999);
 

@@ -18,6 +18,14 @@ fn proper_divisors_sum(n: u32) -> u32 {
 pub struct AmicableNumbersProblem {}
 
 impl Problem for AmicableNumbersProblem {
+    fn name(&self) -> String {
+        String::from("Amicable Numbers")
+    }
+
+    fn number(&self) -> u16 {
+        21
+    }
+
     fn solve(&self) -> String {
         let mut amicable_numbers_sum = 0;
 

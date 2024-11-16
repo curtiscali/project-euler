@@ -15,6 +15,14 @@ fn a(n: u32) -> u32 {
 pub struct ConvergentsOfEProblem {}
 
 impl Problem for ConvergentsOfEProblem {
+    fn name(&self) -> String {
+        String::from("Convergents of e")
+    }
+
+    fn number(&self) -> u16 {
+        65
+    }
+
     fn solve(&self) -> String {
         // This algorithm based on the following fraction expansion formula from
         // https://proofwiki.org/wiki/Continued_Fraction_Expansion_of_Euler%27s_Number

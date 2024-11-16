@@ -68,7 +68,7 @@ fn calculate_solutions(root: &CoprimeTreeNode, solutions: &mut HashMap<u32, u32>
 }
 
 fn get_pythagorean_triple(m: u32, n: u32) -> (u32, u32, u32) {
-    ((m*m) - (n*n), 2*m*n,(m*m) + (n*n))
+    ((m*m) - (n*n), 2*m*n, (m*m) + (n*n))
 }
 
 fn perimeter(triangle: (u32, u32, u32)) -> u32 {
@@ -78,6 +78,14 @@ fn perimeter(triangle: (u32, u32, u32)) -> u32 {
 pub struct IntegerRightTrianglesProblem {}
 
 impl Problem for IntegerRightTrianglesProblem {
+    fn name(&self) -> String {
+        String::from("Integer Right Triangles")
+    }
+
+    fn number(&self) -> u16 {
+        39
+    }
+
     fn solve(&self) -> String {
         const MAX_PERIMETER: u32 = 1000;
         let mut solutions: HashMap<u32, u32> = HashMap::new();

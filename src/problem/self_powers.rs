@@ -4,6 +4,14 @@ use super::Problem;
 pub struct SelfPowersProblem {}
 
 impl Problem for SelfPowersProblem {
+    fn name(&self) -> String {
+        String::from("Self Powers")
+    }
+
+    fn number(&self) -> u16 {
+        48
+    }
+
     fn solve(&self) -> String {
         let modulus = BigInt::from(10_000_000_000u64);
 

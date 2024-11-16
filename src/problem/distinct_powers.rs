@@ -5,6 +5,14 @@ use super::Problem;
 pub struct DistinctPowersProblem {}
 
 impl Problem for DistinctPowersProblem {
+    fn name(&self) -> String {
+        String::from("Distinct Powers")
+    }
+
+    fn number(&self) -> u16 {
+        29
+    }
+
     fn solve(&self) -> String {
         const MAX_POWER_AND_BASE: u32 = 100;
 

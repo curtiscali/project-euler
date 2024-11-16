@@ -5,6 +5,14 @@ use super::Problem;
 pub struct ConsecutivePrimeSumProblem {}
 
 impl Problem for ConsecutivePrimeSumProblem {
+    fn name(&self) -> String {
+        String::from("Consecutive Prime Sum")
+    }
+
+    fn number(&self) -> u16 {
+        179
+    }
+
     fn solve(&self) -> String {
         const LIMIT: usize = 1_000_000;
 

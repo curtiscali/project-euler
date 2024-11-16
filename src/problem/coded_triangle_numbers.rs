@@ -5,6 +5,14 @@ use crate::strings::{normalized_list, word_value};
 pub struct CodedTriangleNumbersProblem {}
 
 impl Problem for CodedTriangleNumbersProblem {
+    fn name(&self) -> String {
+        String::from("Coded Triangle Numbers")
+    }
+
+    fn number(&self) -> u16 {
+        42
+    }
+
     fn solve(&self) -> String {
         let bytes = include_bytes!("../data_files/words.txt");
         let file_data = String::from_utf8_lossy(bytes);

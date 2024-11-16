@@ -35,6 +35,14 @@ fn inclusion_exclusion(limit: u32, index: usize, primes: &Vec<u32>) -> u32 {
 pub struct CountingFractionsInARangeProblem {}
 
 impl Problem for CountingFractionsInARangeProblem {
+    fn name(&self) -> String {
+        String::from("Counting Fractions in a Range")
+    }
+
+    fn number(&self) -> u16 {
+        73
+    }
+
     fn solve(&self) -> String {
         const DENOM_LIMIT: u32 = 12_000;
 

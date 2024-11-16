@@ -3,6 +3,14 @@ use super::Problem;
 pub struct NumberPowerSpiralsProblem {}
 
 impl Problem for NumberPowerSpiralsProblem {
+    fn name(&self) -> String {
+        String::from("Number Power Spirals")
+    }
+
+    fn number(&self) -> u16 {
+        28
+    }
+
     fn solve(&self) -> String {
         const SPIRAL_SIZE: u128 = 1001;
         let n = SPIRAL_SIZE / 2;

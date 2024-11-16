@@ -4,6 +4,14 @@ use super::Problem;
 pub struct LargestPalindromeProduct {}
 
 impl Problem for LargestPalindromeProduct {
+    fn name(&self) -> String {
+        String::from("Largest Palindrome Product")
+    }
+
+    fn number(&self) -> u16 {
+        4
+    }
+
     fn solve(&self) -> String {
         let mut largest_palindrome = 0;
         let mut products: (u32, u32) = (0, 0);

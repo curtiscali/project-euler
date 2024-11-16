@@ -7,6 +7,14 @@ fn eval(a: f64, b: f64) -> f64 {
 pub struct LargestExponentialProblem { }
 
 impl Problem for LargestExponentialProblem {
+    fn name(&self) -> String {
+        String::from("Largest Exponential")
+    }
+
+    fn number(&self) -> u16 {
+        99
+    }
+
     fn solve(&self) -> String {
         let bytes = include_bytes!("../data_files/base_exp.txt");
         let file_data = String::from_utf8_lossy(bytes);

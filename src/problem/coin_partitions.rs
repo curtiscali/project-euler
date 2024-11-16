@@ -7,6 +7,14 @@ fn pentagonal_number(k: i64) -> i64 {
 pub struct CoinPartitionsProblem {}
 
 impl Problem for CoinPartitionsProblem {
+    fn name(&self) -> String {
+        String::from("Coin Partitions<F3>")
+    }
+
+    fn number(&self) -> u16 {
+        78
+    }
+
     fn solve(&self) -> String {
         const N: usize = 100_000;
         const MOD: i64 = 1_000_000;

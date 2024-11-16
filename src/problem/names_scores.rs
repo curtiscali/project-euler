@@ -4,6 +4,14 @@ use crate::strings::{normalized_list, word_value};
 pub struct NamesScoresProblem {}
 
 impl Problem for NamesScoresProblem {
+    fn name(&self) -> String {
+        String::from("Names Scores")
+    }
+
+    fn number(&self) -> u16 {
+        22
+    }
+
     fn solve(&self) -> String {
         let bytes = include_bytes!("../data_files/names.txt");
         let file_data = String::from_utf8_lossy(bytes);

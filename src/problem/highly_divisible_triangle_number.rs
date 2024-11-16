@@ -9,6 +9,14 @@ fn num_factors(n: u32) -> u32 {
 pub struct HighlyDivisibleTriangleNumber {}
 
 impl Problem for HighlyDivisibleTriangleNumber {
+    fn name(&self) -> String {
+        String::from("Highly Divisible Triangular Number")
+    }
+
+    fn number(&self) -> u16 {
+        12
+    }
+
     fn solve(&self) -> String {
         const TARGET_NUM_DIVISORS: u32 = 500;
 

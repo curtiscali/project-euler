@@ -3,6 +3,14 @@ use super::Problem;
 pub struct CombinatoricSelectionsProblem {}
 
 impl Problem for CombinatoricSelectionsProblem {
+    fn name(&self) -> String {
+        String::from("Combinatoric Selections")
+    }
+
+    fn number(&self) -> u16 {
+        53
+    }
+
     fn solve(&self) -> String {
         let mut num_combos_over_limit = 0;
         let mut n = 100u128;
