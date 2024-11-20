@@ -17,7 +17,7 @@ impl Problem for LargestPrimeFactorProblem {
         const N: u64 = 600_851_475_143;
 
         let largest_factor = N.sqrt();
-        let primes_under_largest_factor = primes_below::<u64>(largest_factor as usize);
+        let primes_under_largest_factor = primes_below(largest_factor as usize);
         let mut largest_prime_factor = 2;
 
         let mut n = primes_under_largest_factor.len() - 1;

@@ -25,8 +25,8 @@ impl Problem for TotientMaximumProblem {
         let float_upper_bound = (float_n * ln) + (float_n * ln.ln());
         let upper_bound = float_upper_bound as usize;
 
-        let primes = primes_below::<u32>(upper_bound);
-        let max_totient_n = primes.into_iter().product::<u32>();
+        let primes = primes_below(upper_bound);
+        let max_totient_n = primes.into_iter().product::<u64>();
 
         return format!("{}", max_totient_n);
     }

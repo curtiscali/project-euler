@@ -25,7 +25,7 @@ impl Problem for TotientPermutationProblem {
 
     fn solve(&self) -> String {
         // sqrt(10^7) = 10^3.5 ~ 3200. using 3700 here accounts for a or b being slightly over that
-        let primes = primes_below::<u64>(3700);
+        let primes = primes_below(3700);
         let mut min_totient_n = u64::MAX;
         let mut min_totient_ratio = f64::INFINITY;
 

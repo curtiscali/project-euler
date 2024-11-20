@@ -1,18 +1,19 @@
 use crate::primes::spf_sieve;
 use super::Problem;
 
-fn distinct_prime_factors_count(n: usize, smallest_prime_factors: &Vec<usize>) -> usize {
+fn distinct_prime_factors_count(n: u64, smallest_prime_factors: &Vec<u64>) -> u64 {
     let mut factors_count = 0;
 
     let mut most_recent_factor = 0;
     let mut x = n;
     while x != 1 {
-        if smallest_prime_factors[x] != most_recent_factor {
+        let x_idx = x as usize;
+        if smallest_prime_factors[x_idx] != most_recent_factor {
             factors_count += 1;
-            most_recent_factor = smallest_prime_factors[x];
+            most_recent_factor = smallest_prime_factors[x_idx];
         }
 
-        x /= smallest_prime_factors[x];
+        x /= smallest_prime_factors[x_idx];
     }
 
     factors_count
@@ -35,11 +36,11 @@ impl Problem for DistinctPrimeFactorsProblem {
         // 250k is the upper bound since I know the answer will be in the low 6 digits
         let smallest_prime_factors = spf_sieve(250_000);
 
-        let mut found_numbers: Vec<usize> = vec![];
+        let mut found_numbers: Vec<u64> = vec![];
         let mut n = 647;
 
         while found_numbers.len() < TARGET_FACTORS_COUNT {
-            let distinct_prime_factors_count = distinct_prime_factors_count(n, &smallest_prime_factors);
+            let distinct_prime_factors_count = distinct_prime_factors_count(n, &smallest_prime_factors) as usize;
 
             if distinct_prime_factors_count == TARGET_FACTORS_COUNT {
                 if found_numbers.len() == 0 {

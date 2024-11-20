@@ -77,14 +77,14 @@ pub fn sieve_of_atkin(n: usize) -> Vec<bool> {
     return primes;
 }
 
-pub fn spf_sieve<T: Unsigned + PrimInt>(n: usize) -> Vec<T> {
-    let mut smallest_prime_factors = vec![T::one(); n + 1];
+pub fn spf_sieve(n: usize) -> Vec<u64> {
+    let mut smallest_prime_factors = vec![1; n + 1];
 
     for i in 2..=n {
-        if smallest_prime_factors[i] == T::one() {
+        if smallest_prime_factors[i] == 1 {
             for j in (i..=n).step_by(i) {
-                if smallest_prime_factors[j] == T::one() {
-                    smallest_prime_factors[j] = T::from(i).unwrap();
+                if smallest_prime_factors[j] == 1 {
+                    smallest_prime_factors[j] = i as u64;
                 }
             }
         }
@@ -93,48 +93,46 @@ pub fn spf_sieve<T: Unsigned + PrimInt>(n: usize) -> Vec<T> {
     smallest_prime_factors
 }
 
-pub fn prime_factors<T: Num + Copy + PartialOrd + Hash + Eq>(number: T) -> HashMap<T, T> {
-    let two = T::one() + T::one();
-
-    let mut factors: HashMap<T, T> = HashMap::new();
+pub fn prime_factors(number: u64) -> HashMap<u64, u64> {
+    let mut factors: HashMap<u64, u64> = HashMap::new();
     let mut n = number;
 
-    while n % two == T::zero() {
-        factors.entry(two)
-            .and_modify(|x| *x = *x + T::one())
-            .or_insert(T::one());
+    while n % 2 == 0 {
+        factors.entry(2)
+            .and_modify(|x| *x += 1)
+            .or_insert(1);
 
-        n = n / two;
+        n /= 2;
     }
 
-    let mut i = T::one() + T::one() + T::one();
+    let mut i = 3;
     while i * i <= n {   
-        while n % i == T::zero() {
+        while n % i == 0 {
             factors.entry(i)
-                .and_modify(|x| *x = *x + T::one())
-                .or_insert(T::one());
+                .and_modify(|x| *x += 1)
+                .or_insert(1);
             n = n / i;
         }
 
-        i = i + two;
+        i += 2;
     }
 
-    if n > two {
+    if n > 2 {
         factors.entry(n)
-            .and_modify(|x| *x = *x + T::one())
-            .or_insert(T::one());
+            .and_modify(|x| *x += 1)
+            .or_insert(1);
     }
 
     return factors;
 }
 
-pub fn primes_below<T: Unsigned + PrimInt>(n: usize) -> Vec<T> {
+pub fn primes_below(n: usize) -> Vec<u64> {
     let sieve_lookup = sieve_of_atkin(n);
-    let mut primes: Vec<T> = vec![];
+    let mut primes = vec![];
 
     for i in 0..sieve_lookup.len() {
         if sieve_lookup[i] {
-            primes.push(T::from(i).unwrap());
+            primes.push(i as u64);
         }
     }
 

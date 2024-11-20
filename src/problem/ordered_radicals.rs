@@ -1,7 +1,7 @@
 use crate::primes::spf_sieve;
 use super::Problem;
 
-fn distinct_prime_factors_product(n: u32, smallest_prime_factors: &Vec<u32>) -> u32 {
+fn distinct_prime_factors_product(n: u64, smallest_prime_factors: &Vec<u64>) -> u64 {
     let mut factors_product = 1;
 
     let mut most_recent_factor = 0;
@@ -32,8 +32,8 @@ impl Problem for OrderedRadicalsProblem {
     }
 
     fn solve(&self) -> String {
-        let smallest_prime_factors = spf_sieve::<u32>(100_000);
-        let mut rad_data: Vec<(u32, u32)> = vec![];
+        let smallest_prime_factors = spf_sieve(100_000);
+        let mut rad_data: Vec<(u64, u64)> = vec![];
 
         for n in 1..=100_000 {
             rad_data.push(

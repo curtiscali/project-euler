@@ -23,7 +23,7 @@ impl Problem for NthPrimeProblem {
         let float_upper_bound = (float_n * ln) + (float_n * ln.ln());
         let upper_bound = float_upper_bound as usize;
 
-        let primes = primes_below::<u32>(upper_bound);
+        let primes = primes_below(upper_bound);
 
         return format!("{}", primes[N - 1]);
     }
