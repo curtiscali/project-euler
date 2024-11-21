@@ -1,5 +1,5 @@
-use std::{collections::HashMap, hash::Hash};
-use num::{Num, PrimInt, Unsigned};
+use std::{collections::HashMap};
+use num::{Num, PrimInt};
 use crate::number_theory::fast_modpow;
 
 pub fn sieve_of_eratosthenes(n: usize) -> Vec<bool> {

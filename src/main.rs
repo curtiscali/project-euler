@@ -52,7 +52,6 @@ use problem::{
     non_bouncy_numbers::NonBouncyNumbersProblem,
     number_letter_counts::NumberLetterCountsProblem, 
     number_power_spirals::NumberPowerSpiralsProblem,
-    number_splitting::NumberSplittingProblem,
     odd_period_square_roots::OddPeriodSquareRootsProblem, 
     ordered_fractions::OrderedFractionsProblem, 
     ordered_radicals::OrderedRadicalsProblem, 
@@ -225,7 +224,6 @@ fn main() {
         Box::new(HyperexponentiationProblem {}),
         Box::new(ConcealedSquaresProblem {}),
         Box::new(SumOfSquaresOfDivisorsProblem {}),
-        Box::new(NumberSplittingProblem {})
     ];
 
 
