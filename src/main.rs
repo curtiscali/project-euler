@@ -1,4 +1,4 @@
-use clap::Parser;
+use clap::{Parser, Subcommand};
 use inquire::Select;
 use problem::{
     amicable_numbers::AmicableNumbersProblem,
@@ -87,7 +87,9 @@ use problem::{
     totient_permutation::TotientPermutationProblem,
     triangle_containment::TriangleContainmentProblem,
     triangular_pentagonal_hexagonal::TriangularPentagonalHexagonalNumberProblem,
+    heegner::HeegnerProblem,
     Problem,
+    BonusProblem
 };
 use std::time::Instant;
 
@@ -101,21 +103,58 @@ pub mod problem;
 pub mod strings;
 pub mod triangles;
 
-/// Simple program to greet a person:104
-#[derive(Parser, Debug)]
-#[command(version, about, long_about = None)]
-struct Args {
-    /// Number of the problem for which you would like a solution as referenced on https://projecteuler.net
-    #[arg(short, long)]
-    problem: Option<u16>,
+#[derive(Subcommand, Debug)]
+enum SubCommand {
+    /// Run the standard numbered problems listed on Project Euler as referenced on https://projecteuler.net
+    Standard {
+        /// Number of the problem for which you would like a solution as referenced on https://projecteuler.net
+        #[arg(short, long)]
+        number: Option<u16>
+    },
+    // Run one of the bonus prolems listed in Project Euler bonus section
+    Bonus {
+        /// Name of the problem for which you would like a solution
+        #[arg(short, long)]
+        name: Option<String>
+    }
 }
 
-fn print_solution(problem: &dyn Problem) {
+/// Command Line tool to calculate the solutions to various problems on Project Euler (https://projecteuler.net)
+#[derive(Parser, Debug)]
+#[command(version, about, long_about = None, infer_subcommands = true)]
+struct Args {
+    #[command(subcommand)]
+    cmd: SubCommand
+}
+
+fn print_standard_problem_solution(problem: &dyn Problem) {
     const NS_TO_US: u128 = 1000;
     const NS_TO_MS: u128 = 1_000_000;
     const NS_TO_S: u128 = 1_000_000_000;
 
-    println!("Selected Problem: {}", problem.number());
+    let now = Instant::now();
+
+    let result = problem.solve();
+    let nanoseconds = now.elapsed().as_nanos();
+
+    let time_string = if nanoseconds < NS_TO_US {
+        format!("{}ns", nanoseconds)
+    } else if nanoseconds < NS_TO_MS {
+        format!("{}μs", nanoseconds / NS_TO_US)
+    } else if nanoseconds < NS_TO_S {
+        format!("{}ms", nanoseconds / NS_TO_MS)
+    } else {
+        format!("{:.3}s", (nanoseconds as f64) / (NS_TO_S as f64))
+    };
+
+    println!("Solution: {}", result);
+    println!("Time taken to solve the problem: {}", time_string);
+}
+
+fn print_bonus_problem_solution(problem: &dyn BonusProblem) {
+    const NS_TO_US: u128 = 1000;
+    const NS_TO_MS: u128 = 1_000_000;
+    const NS_TO_S: u128 = 1_000_000_000;
 
     let now = Instant::now();
 
@@ -139,126 +178,166 @@ fn print_solution(problem: &dyn Problem) {
 fn main() {
     let args = Args::parse();
 
-    let mut solved_problems = vec![
-        Box::new(MultiplesProblem {}) as Box<dyn Problem>,
-        Box::new(EvenFibonacciProblem {}),
-        Box::new(LargestPrimeFactorProblem {}),
-        Box::new(LargestPalindromeProduct {}),
-        Box::new(SmallestMultipleProblem {}),
-        Box::new(SumSquareDifference {}),
-        Box::new(NthPrimeProblem {}),
-        Box::new(LargestProductProblem {}),
-        Box::new(SpecialPythagoreanTripletProblem {}),
-        Box::new(SummationOfPrimes {}),
-        Box::new(LargestProductInAGridProblem {}),
-        Box::new(HighlyDivisibleTriangleNumber {}),
-        Box::new(LargeSumProblem {}),
-        Box::new(LongestCollatzSequenceProblem {}),
-        Box::new(LatticePathsProblem {}),
-        Box::new(PowerDigitSum {}),
-        Box::new(NumberLetterCountsProblem {}),
-        Box::new(MaximumPathSumOneProblem {}),
-        Box::new(CountingSundaysProblem {}),
-        Box::new(FactorialDigitSum {}),
-        Box::new(AmicableNumbersProblem {}),
-        Box::new(NamesScoresProblem {}),
-        Box::new(NonAbundantSumsProblem {}),
-        Box::new(LexicographicPermutationsProblem {}),
-        Box::new(ThousandDigitFibonacciNumberProblem {}),
-        Box::new(ReciprocalCyclesProblem {}),
-        Box::new(NumberPowerSpiralsProblem {}),
-        Box::new(DistinctPowersProblem {}),
-        Box::new(DigitFifthPowersProblem {}),
-        Box::new(CoinSumProblem {}),
-        Box::new(PandigitalProductsProblem {}),
-        Box::new(DigitFactorialsProblem {}),
-        Box::new(CircularPrimesProblem {}),
-        Box::new(DoubleBasePalindromeProblem {}),
-        Box::new(PandigitalMultiplesProblem {}),
-        Box::new(IntegerRightTrianglesProblem {}),
-        Box::new(ChampernownesConstantProblem {}),
-        Box::new(PandigitalPrimeProblem {}),
-        Box::new(CodedTriangleNumbersProblem {}),
-        Box::new(TriangularPentagonalHexagonalNumberProblem {}),
-        Box::new(GoldbachsOtherConjectureProblem {}),
-        Box::new(DistinctPrimeFactorsProblem {}),
-        Box::new(SelfPowersProblem {}),
-        Box::new(PrimePermutationsProblem {}),
-        Box::new(ConsecutivePrimeSumProblem {}),
-        Box::new(PermutedMultiplesProblem {}),
-        Box::new(CombinatoricSelectionsProblem {}),
-        Box::new(LychrelNumbersProblem {}),
-        Box::new(PowerfulDigitSumProblem {}),
-        Box::new(SquareRootConvergentsProblem {}),
-        Box::new(SpiralPrimesProblem {}),
-        Box::new(PowerfulDigitCountsProblem {}),
-        Box::new(OddPeriodSquareRootsProblem {}),
-        Box::new(ConvergentsOfEProblem {}),
-        Box::new(MaximumPathSumTwoProblem {}),
-        Box::new(TotientMaximumProblem {}),
-        Box::new(TotientPermutationProblem {}),
-        Box::new(OrderedFractionsProblem {}),
-        Box::new(CountingFractionsProblem {}),
-        Box::new(CountingFractionsInARangeProblem {}),
-        Box::new(DigitFactorialChainsProblem {}),
-        Box::new(CountingSummationsProblem {}),
-        Box::new(PrimeSummationsProblem {}),
-        Box::new(CoinPartitionsProblem {}),
-        Box::new(PasscodeDerivationProblem {}),
-        Box::new(PathSumTwoWaysProblem {}),
-        Box::new(PathSumThreeWaysProblem {}),
-        Box::new(PathSumFourWaysProblem {}),
-        Box::new(CountingRectanglesProblem {}),
-        Box::new(RomanNumeralsProblem {}),
-        Box::new(SquareDigitChainsProblem {}),
-        Box::new(LargeNonMersennePrimeProblem {}),
-        Box::new(LargestExponentialProblem {}),
-        Box::new(TriangleContainmentProblem {}),
-        Box::new(BouncyNumbersProblem {}),
-        Box::new(NonBouncyNumbersProblem {}),
-        Box::new(EfficientExponentiationProblem {}),
-        Box::new(OrderedRadicalsProblem {}),
-        Box::new(LaserBeamReflectionsProblem {}),
-        Box::new(ReversibleNumbersProblem {}),
-        Box::new(ConsecutivePositiveDivisorsProblem {}),
-        Box::new(SemiprimesProblem {}),
-        Box::new(HyperexponentiationProblem {}),
-        Box::new(ConcealedSquaresProblem {}),
-        Box::new(SumOfSquaresOfDivisorsProblem {}),
-        Box::new(Problem500 {})
-    ];
+    match args.cmd {
+        SubCommand::Standard { number } => {
+            let mut solved_problems = vec![
+                Box::new(MultiplesProblem {}) as Box<dyn Problem>,
+                Box::new(EvenFibonacciProblem {}),
+                Box::new(LargestPrimeFactorProblem {}),
+                Box::new(LargestPalindromeProduct {}),
+                Box::new(SmallestMultipleProblem {}),
+                Box::new(SumSquareDifference {}),
+                Box::new(NthPrimeProblem {}),
+                Box::new(LargestProductProblem {}),
+                Box::new(SpecialPythagoreanTripletProblem {}),
+                Box::new(SummationOfPrimes {}),
+                Box::new(LargestProductInAGridProblem {}),
+                Box::new(HighlyDivisibleTriangleNumber {}),
+                Box::new(LargeSumProblem {}),
+                Box::new(LongestCollatzSequenceProblem {}),
+                Box::new(LatticePathsProblem {}),
+                Box::new(PowerDigitSum {}),
+                Box::new(NumberLetterCountsProblem {}),
+                Box::new(MaximumPathSumOneProblem {}),
+                Box::new(CountingSundaysProblem {}),
+                Box::new(FactorialDigitSum {}),
+                Box::new(AmicableNumbersProblem {}),
+                Box::new(NamesScoresProblem {}),
+                Box::new(NonAbundantSumsProblem {}),
+                Box::new(LexicographicPermutationsProblem {}),
+                Box::new(ThousandDigitFibonacciNumberProblem {}),
+                Box::new(ReciprocalCyclesProblem {}),
+                Box::new(NumberPowerSpiralsProblem {}),
+                Box::new(DistinctPowersProblem {}),
+                Box::new(DigitFifthPowersProblem {}),
+                Box::new(CoinSumProblem {}),
+                Box::new(PandigitalProductsProblem {}),
+                Box::new(DigitFactorialsProblem {}),
+                Box::new(CircularPrimesProblem {}),
+                Box::new(DoubleBasePalindromeProblem {}),
+                Box::new(PandigitalMultiplesProblem {}),
+                Box::new(IntegerRightTrianglesProblem {}),
+                Box::new(ChampernownesConstantProblem {}),
+                Box::new(PandigitalPrimeProblem {}),
+                Box::new(CodedTriangleNumbersProblem {}),
+                Box::new(TriangularPentagonalHexagonalNumberProblem {}),
+                Box::new(GoldbachsOtherConjectureProblem {}),
+                Box::new(DistinctPrimeFactorsProblem {}),
+                Box::new(SelfPowersProblem {}),
+                Box::new(PrimePermutationsProblem {}),
+                Box::new(ConsecutivePrimeSumProblem {}),
+                Box::new(PermutedMultiplesProblem {}),
+                Box::new(CombinatoricSelectionsProblem {}),
+                Box::new(LychrelNumbersProblem {}),
+                Box::new(PowerfulDigitSumProblem {}),
+                Box::new(SquareRootConvergentsProblem {}),
+                Box::new(SpiralPrimesProblem {}),
+                Box::new(PowerfulDigitCountsProblem {}),
+                Box::new(OddPeriodSquareRootsProblem {}),
+                Box::new(ConvergentsOfEProblem {}),
+                Box::new(MaximumPathSumTwoProblem {}),
+                Box::new(TotientMaximumProblem {}),
+                Box::new(TotientPermutationProblem {}),
+                Box::new(OrderedFractionsProblem {}),
+                Box::new(CountingFractionsProblem {}),
+                Box::new(CountingFractionsInARangeProblem {}),
+                Box::new(DigitFactorialChainsProblem {}),
+                Box::new(CountingSummationsProblem {}),
+                Box::new(PrimeSummationsProblem {}),
+                Box::new(CoinPartitionsProblem {}),
+                Box::new(PasscodeDerivationProblem {}),
+                Box::new(PathSumTwoWaysProblem {}),
+                Box::new(PathSumThreeWaysProblem {}),
+                Box::new(PathSumFourWaysProblem {}),
+                Box::new(CountingRectanglesProblem {}),
+                Box::new(RomanNumeralsProblem {}),
+                Box::new(SquareDigitChainsProblem {}),
+                Box::new(LargeNonMersennePrimeProblem {}),
+                Box::new(LargestExponentialProblem {}),
+                Box::new(TriangleContainmentProblem {}),
+                Box::new(BouncyNumbersProblem {}),
+                Box::new(NonBouncyNumbersProblem {}),
+                Box::new(EfficientExponentiationProblem {}),
+                Box::new(OrderedRadicalsProblem {}),
+                Box::new(LaserBeamReflectionsProblem {}),
+                Box::new(ReversibleNumbersProblem {}),
+                Box::new(ConsecutivePositiveDivisorsProblem {}),
+                Box::new(SemiprimesProblem {}),
+                Box::new(HyperexponentiationProblem {}),
+                Box::new(ConcealedSquaresProblem {}),
+                Box::new(SumOfSquaresOfDivisorsProblem {}),
+                Box::new(Problem500 {})
+            ];
 
-    // ensure the problems list is sorted by number
-    // If the list gets too long in the future, we can ensure it's manually
-    // sorted above to save the computation
-    solved_problems.sort_by(|a, b| a.number().cmp(&b.number()));
+            // ensure the problems list is sorted by number
+            // If the list gets too long in the future, we can ensure it's manually
+            // sorted above to save the computation
+            solved_problems.sort_by(|a, b| a.number().cmp(&b.number()));
 
-    match args.problem {
-        Some(problem_number) => {
-            match solved_problems.binary_search_by(|p| p.number().cmp(&problem_number)) {
-                Ok(idx_of_problem) => {
-                    let selected_problem = &solved_problems[idx_of_problem];
-                    print_solution(selected_problem.as_ref());
+            match number {
+                Some(problem_number) => {
+                    match solved_problems.binary_search_by(|p| p.number().cmp(&problem_number)) {
+                        Ok(idx_of_problem) => {
+                            let selected_problem = &solved_problems[idx_of_problem];
+                            println!("{}", selected_problem);
+                            print_standard_problem_solution(selected_problem.as_ref());
+                        }
+                        Err(_) => {
+                            println!("Problem {} has not yet been solved", problem_number);
+                        }
+                    }
                 }
-                Err(_) => {
-                    println!("Problem {} has not yet been solved", problem_number);
+                None => {
+                    let selection = Select::new(
+                        "Select the problem for which you'd like to see the solution from the list below",
+                        solved_problems,
+                    )
+                    .with_vim_mode(true)
+                    .prompt();
+
+                    match selection {
+                        Ok(selected_problem) => {
+                            print_standard_problem_solution(selected_problem.as_ref());
+                        }
+                        Err(_) => println!("Must select a problem."),
+                    }
                 }
             }
-        }
-        None => {
-            let selection = Select::new(
-                "Select the problem for which you'd like to see the solution from the list below",
-                solved_problems,
-            )
-            .with_vim_mode(true)
-            .prompt();
+        },
+        SubCommand::Bonus { name } => {
+            let solved_bonus_problems = vec![Box::new(HeegnerProblem {}) as Box<dyn BonusProblem>];
 
-            match selection {
-                Ok(selected_problem) => {
-                    print_solution(selected_problem.as_ref());
+            match name {
+                Some(problem_name) => {
+                    match solved_bonus_problems.binary_search_by(|p| p.name().cmp(&problem_name)) {
+                        Ok(idx_of_problem) => {
+                                let selected_problem = &solved_bonus_problems[idx_of_problem];
+                                println!("{}", selected_problem);
+                                print_bonus_problem_solution(selected_problem.as_ref());
+
+                        },
+                        Err(_) => {
+                            println!("Problem {} has not yet been solved", problem_name);
+                        }
+                    }
+                },
+                None => {
+                    let selection = Select::new(
+                        "Select the problem for which you'd like to see the solution from the list below",
+                        solved_bonus_problems,
+                    )
+                    .with_vim_mode(true)
+                    .prompt();
+
+                    match selection {
+                        Ok(selected_problem) => {
+                            print_bonus_problem_solution(selected_problem.as_ref());
+                        }
+                        Err(_) => println!("Must select a problem."),
+                    }
                 }
-                Err(_) => println!("Must select a problem."),
             }
         }
     }
+
 }

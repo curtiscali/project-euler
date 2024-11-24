@@ -86,6 +86,7 @@ pub mod path_sum_four_ways;
 pub mod digit_factorial_chains;
 pub mod concealed_squares;
 pub mod problem_500;
+pub mod heegner;
 
 pub trait Problem {
     fn name(&self) -> String;
@@ -96,5 +97,16 @@ pub trait Problem {
 impl Display for dyn Problem {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "Problem {}: {}", self.number(), self.name())
+    }
+}
+
+pub trait BonusProblem {
+    fn name(&self) -> String;
+    fn solve(&self) -> String;
+}
+
+impl Display for dyn BonusProblem {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Problem {}", self.name())
     }
 }
