@@ -87,6 +87,7 @@ pub mod digit_factorial_chains;
 pub mod concealed_squares;
 pub mod problem_500;
 pub mod heegner;
+pub mod anagramic_squares;
 
 pub trait Problem {
     fn name(&self) -> String;
