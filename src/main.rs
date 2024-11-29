@@ -1,7 +1,6 @@
 use clap::{Parser, Subcommand};
 use inquire::Select;
 use problem::{
-    anagramic_squares::AnagramicSquaresProblem,
     amicable_numbers::AmicableNumbersProblem,
     bouncy_numbers::BouncyNumbersProblem,
     champernownes_constant::ChampernownesConstantProblem,
@@ -254,7 +253,6 @@ fn main() {
                 Box::new(RomanNumeralsProblem {}),
                 Box::new(SquareDigitChainsProblem {}),
                 Box::new(LargeNonMersennePrimeProblem {}),
-                Box::new(AnagramicSquaresProblem {}),
                 Box::new(LargestExponentialProblem {}),
                 Box::new(TriangleContainmentProblem {}),
                 Box::new(BouncyNumbersProblem {}),
