@@ -2,6 +2,7 @@ use num::BigInt;
 use crate::number_theory::{bigint_num_digits, is_perfect_square};
 use super::Problem;
 
+// Based on this integer-based algo: http://www.afjarvis.org.uk/maths/jarvisspec02.pdf
 fn approx_sqrt(n: &BigInt, precision: &BigInt) -> BigInt {
     let (mut a, mut b) = (BigInt::from(5 * n), BigInt::from(5));
 
