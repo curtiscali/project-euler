@@ -1,5 +1,5 @@
-use num::BigInt;
-use crate::number_theory::{bigint_num_digits, is_perfect_square};
+use num::{integer::Roots, BigInt};
+use crate::number_theory::{bigint_digit_sum, digit_sum, is_perfect_square};
 use super::Problem;
 
 // Based on this integer-based algo: http://www.afjarvis.org.uk/maths/jarvisspec02.pdf
@@ -35,10 +35,19 @@ impl Problem for SquareRootDigitalExpansionProblem {
     fn solve(&self) -> String {
         let precision: BigInt = BigInt::from(10).pow(115);
 
-        for n in 1u32..=100 {
+        let mut total_digit_sum = BigInt::ZERO;
 
+        for n in 1u32..=100 {
+            if is_perfect_square(n) {
+                total_digit_sum += digit_sum(n.sqrt());
+            } else {
+                let sqrt = approx_sqrt(&BigInt::from(n), &precision);
+                let first_100_digits = sqrt / 10u64.pow(15);
+
+                total_digit_sum += bigint_digit_sum(&first_100_digits);
+            }
         }
 
-        format!("")
+        format!("{}", total_digit_sum)
     }
 }
