@@ -111,6 +111,19 @@ pub fn to_digits<T: Unsigned + Copy + PartialOrd>(n: T) -> Vec<T> {
     return digits;
 }
 
+pub fn bigint_to_digits(b: &BigInt) -> Vec<u64> {
+    let mut digits = vec![];
+    let mut n = b.clone();
+    
+    while n > BigInt::ZERO {
+        let digit: BigInt = &n % 10;
+        digits.push(digit.to_string().parse::<u64>().unwrap());
+        n /= 10;
+    }
+
+    digits
+}
+
 pub fn from_digits<T: Unsigned + Copy + PartialOrd + Mul<Output = T>>(digits: &Vec<T>) -> T {
     let ten = T::one()
         + T::one()
