@@ -1,5 +1,10 @@
-use num::{integer::Roots, BigInt};
-use crate::number_theory::{bigint_digit_sum, digit_sum, is_perfect_square};
+use num::BigInt;
+use crate::number_theory::{
+    bigint_digit_sum, 
+    bigint_fast_pow, 
+    bigint_num_digits, 
+    is_perfect_square
+};
 use super::Problem;
 
 // Based on this integer-based algo: http://www.afjarvis.org.uk/maths/jarvisspec02.pdf
@@ -33,16 +38,20 @@ impl Problem for SquareRootDigitalExpansionProblem {
     }
 
     fn solve(&self) -> String {
-        let precision: BigInt = BigInt::from(10).pow(115);
+        // 10 ^ 110 will have at least 110 digits, which is enough precision
+        // to make sure the first 100 digits we need are accurate
+        let precision: BigInt = BigInt::from(10).pow(110);
+        let ten = BigInt::from(10);
 
         let mut total_digit_sum = BigInt::ZERO;
 
         for n in 1u32..=100 {
-            if is_perfect_square(n) {
-                total_digit_sum += digit_sum(n.sqrt());
-            } else {
+            if !is_perfect_square(n) {
                 let sqrt = approx_sqrt(&BigInt::from(n), &precision);
-                let first_100_digits = sqrt / 10u64.pow(15);
+                let num_digits = bigint_num_digits(&sqrt);
+                let num_digits_to_truncate = num_digits - 100;
+
+                let first_100_digits = sqrt / bigint_fast_pow(&ten, &num_digits_to_truncate);
 
                 total_digit_sum += bigint_digit_sum(&first_100_digits);
             }
