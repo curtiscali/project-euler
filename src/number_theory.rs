@@ -1,5 +1,5 @@
 use std::{mem, ops::Mul};
-use num::{integer::Roots, pow, BigInt, Num, Unsigned};
+use num::{integer::Roots, pow, BigInt, Integer, Num, Unsigned};
 
 const EPSILON: f64 = 1E-11;
 
@@ -45,7 +45,7 @@ pub fn fast_inverse_sqrt(n: f64) -> f64 {
     return y * (THREEHALFS - (x2 * y * y));
 }
 
-pub fn is_perfect_square<T: Unsigned + Copy + PartialEq + Roots>(n: T) -> bool {
+pub fn is_perfect_square<T: Integer + Copy + PartialEq + Roots>(n: T) -> bool {
     let root = n.sqrt();
     root * root == n
 }

@@ -291,7 +291,7 @@ fn main() {
                 }
                 None => {
                     let selection = Select::new(
-                        "Select the problem for which you'd like to see the solution from the list below",
+                        "Select the problem you'd like solve from the list below",
                         solved_problems,
                     )
                     .with_vim_mode(true)
@@ -325,7 +325,7 @@ fn main() {
                 },
                 None => {
                     let selection = Select::new(
-                        "Select the problem for which you'd like to see the solution from the list below",
+                        "Select the problem you'd like to solve from the list below",
                         solved_bonus_problems,
                     )
                     .with_vim_mode(true)
