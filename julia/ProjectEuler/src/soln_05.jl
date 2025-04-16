@@ -1,1 +1,0 @@
-println(lcm(collect(1:20)))
