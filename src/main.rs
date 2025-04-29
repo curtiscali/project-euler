@@ -88,7 +88,7 @@ use problem::{
     totient_permutation::TotientPermutationProblem,
     triangle_containment::TriangleContainmentProblem,
     triangular_pentagonal_hexagonal::TriangularPentagonalHexagonalNumberProblem,
-    heegner::HeegnerProblem,
+//    heegner::HeegnerProblem,
     Problem,
     BonusProblem
 };
@@ -307,11 +307,11 @@ fn main() {
             }
         },
         SubCommand::Bonus { name } => {
-            let solved_bonus_problems = vec![Box::new(HeegnerProblem {}) as Box<dyn BonusProblem>];
+            let solved_bonus_problems = vec![/*Box::new(HeegnerProblem {}) as Box<dyn BonusProblem>*/];
 
             match name {
                 Some(problem_name) => {
-                    match solved_bonus_problems.binary_search_by(|p| p.name().cmp(&problem_name)) {
+                    match solved_bonus_problems.binary_search_by(|p: &Box<dyn BonusProblem>| p.name().cmp(&problem_name)) {
                         Ok(idx_of_problem) => {
                                 let selected_problem = &solved_bonus_problems[idx_of_problem];
                                 println!("{}", selected_problem);
